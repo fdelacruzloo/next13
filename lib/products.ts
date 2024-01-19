@@ -3,44 +3,42 @@ type Product = {
   title: string;
   description: string;
   price: number;
+  imageUrl: string;
+  link: string;
 };
 const DUMMY_PRODUCTS = [
   {
     id: 'p1',
-    title: 'My First Product',
-    description: 'This is a first product - amazing!',
-    price: 9.99,
+    title: 'COCINA DOMESTICA, 4Q+HOR, REGULADOR:SI, 23 mbar, 11.05 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-01.jpg',
+    link: 'https://abb.com',
   },
   {
     id: 'p2',
-    title: 'My Second Product',
-    description: 'This is a second product - amazing!',
-    price: 9.99,
+    title: 'COCINA SI, 1Q, REGULADOR:NO, 340 mbar, 15 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-02.jpg',
+    link: 'https://abb.com',
   },
   {
     id: 'p3',
-    title: 'Third Product',
-    description: 'This is a third product - amazing!',
-    price: 9.99,
+    title: 'COCINA SI, 2Q, REGULADOR:NO, 340 mbar, 24 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-03.jpg',
+    link: 'https://abb.com',
   },
   {
     id: 'p4',
-    title: 'Fourth Product',
-    description: 'This is a fourth product - amazing!',
-    price: 9.99,
-  },
+    title: 'COCINA SI, 3Q, REGULADOR:NO, 340 mbar, 34 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-04.jpg',
+    link: 'https://abb.com',
+   },
   {
     id: 'p5',
-    title: 'Fifth Product',
-    description: 'This is a fifth product - amazing!',
-    price: 9.99,
+    title: 'COCINA SI, 4Q, REGULADOR:NO, 340 mbar, 45 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-05.jpg',
+    link: 'https://abb.com',
   },
 ];
 
 export async function getProducts() {
-  return new Promise<Product[]>((resolve, reject) => {
-    setTimeout(() => {
-      resolve(DUMMY_PRODUCTS);
-    }, 1000);
-  });
-}
+  return DUMMY_PRODUCTS;
+  }

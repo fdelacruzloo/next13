@@ -1,4 +1,3 @@
-import { Counter } from "@/components/Counter";
 import { getProducts } from "@/lib/products";
 
 export default async function ProductsPage() {
@@ -7,16 +6,44 @@ export default async function ProductsPage() {
   return (
     <div className="container">
       <h1 className="text-2xl">Products</h1>
-      <Counter>
-        <h2>Total Products: {products.length}</h2>
-      </Counter>
-      {products.map(({ description, id, price, title }) => (
+
+    <div className="flex">
+    
+    <div className="flex flex-wrap">
+    <div className="w-1/2 pr-4">
+      {products.slice(0, Math.ceil(products.length / 2)).map(({ description, id, title, imageUrl, link}) => (
         <div key={id} className="border p-4 my-4 rounded-md">
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            <img
+              src={imageUrl}
+              style={{ width: '170px', height: '170px' }}
+              className="mb-4 rounded-md object-cover"
+            />
+          </a>   
           <h2 className="text-xl">{title}</h2>
-          <p>{description}</p>
-          <p className="text-gray-700">${price}</p>
         </div>
       ))}
     </div>
-  )
+
+    <div className="w-1/2 pr-4">
+      {products.slice(Math.ceil(products.length / 2)).map(({ description, id, title, imageUrl, link}) => (
+        <div key={id} className="border p-4 my-4 rounded-md">
+          <a href={link} target="_blank" rel="noopener noreferrer">
+            <img
+              src={imageUrl}
+              style={{ width: '170px', height: '170px' }}
+              className="mb-4 rounded-md object-cover"
+            />
+          </a>   
+          <h1 className="text-xl">{title}</h1>
+        </div>
+       
+      ))}
+    </div>
+    </div>
+
+    </div>
+
+    </div>
+  );
 }
