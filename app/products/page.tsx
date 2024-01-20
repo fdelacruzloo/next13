@@ -21,7 +21,8 @@ export default async function ProductsPage() {
               className="mb-4 rounded-md object-cover"
             />
           </a>   
-          <h1 className="text-xs">{title}</h1>
+          <h1 className="text-xs" style={{ height: '30px' }}>{title}</h1>
+
         </div>
       ))}
     </div>
@@ -36,7 +37,7 @@ export default async function ProductsPage() {
               className="mb-4 rounded-md object-cover"
             />
           </a>   
-          <h1 className="text-xl">{title}</h1>
+          <h1 className="text-xs" style={{  height: '30px' }}>{title}</h1>
         </div>
        
       ))}
