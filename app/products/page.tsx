@@ -11,7 +11,7 @@ export default async function ProductsPage() {
     
     <div className="flex flex-wrap">
     <div className="w-1/2 pr-4">
-      {products.slice(0, Math.ceil(products.length / 2)).map(({ description, id, title, imageUrl, link}) => (
+      {products.slice(0, Math.ceil(products.length / 2)).map(({ id, title, imageUrl, link}) => (
         <div key={id} className="border p-4 my-4 rounded-md">
           <a href={link} target="_blank" rel="noopener noreferrer">
             <img
@@ -26,7 +26,7 @@ export default async function ProductsPage() {
     </div>
 
     <div className="w-1/2 pr-4">
-      {products.slice(Math.ceil(products.length / 2)).map(({ description, id, title, imageUrl, link}) => (
+      {products.slice(Math.ceil(products.length / 2)).map(({id, title, imageUrl, link}) => (
         <div key={id} className="border p-4 my-4 rounded-md">
           <a href={link} target="_blank" rel="noopener noreferrer">
             <img
