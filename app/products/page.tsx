@@ -17,7 +17,7 @@ export default async function ProductsPage() {
           <a href={link} target="_blank" rel="noopener noreferrer">
             <img
               src={imageUrl}
-              style={{ width: '170px', height: '170px' }}
+              style={{ width: '170px', height: '190px' }}
               className="mb-4 rounded-md object-cover"
             />
           </a>   
@@ -33,7 +33,7 @@ export default async function ProductsPage() {
           <a href={link} target="_blank" rel="noopener noreferrer">
             <img
               src={imageUrl}
-              style={{ width: '170px', height: '170px' }}
+              style={{ width: '170px', height: '190px' }}
               className="mb-4 rounded-md object-cover"
             />
           </a>   
