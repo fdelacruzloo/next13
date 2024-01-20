@@ -18,11 +18,12 @@ export default async function ProductsPage() {
             <img
               src={imageUrl}
               style={{ width: '180px', height: '150px' }}
-              className="mb-4 rounded-md object-cover"
+              className="mb-2 rounded-md object-cover"
             />
           </a>   
-          <h1 className="text-xs" style={{ height: '30px' }}>{title}</h1>
-
+          <div className="text-xs" style={{ height: '30px' }}>
+          <h1>{title}</h1>
+          </div>
         </div>
       ))}
     </div>
@@ -34,10 +35,12 @@ export default async function ProductsPage() {
             <img
               src={imageUrl}
               style={{ width: '180px', height: '150px' }}
-              className="mb-4 rounded-md object-cover"
+              className="mb-2 rounded-md object-cover"
             />
           </a>   
-          <h1 className="text-xs" style={{  height: '30px' }}>{title}</h1>
+          <div className="text-xs" style={{ height: '30px' }}>
+          <h1>{title}</h1>
+          </div>
         </div>
        
       ))}
