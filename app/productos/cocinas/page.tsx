@@ -1,5 +1,5 @@
-"use client"
 import { getCocinas } from "@/app/productos/cocinas/list";
+import { Counter } from "@/components/Counter";
 
 export default async function CocinasPage() {
   const cocinas = await getCocinas();
@@ -22,6 +22,7 @@ export default async function CocinasPage() {
                 </a>   
                 <div className="text-xs" style={{ height: '80px' }}>
                   <h1>{title}</h1>
+                  <Counter />
                 </div>
               </div>
             </div>
