@@ -16,12 +16,11 @@ export default async function ProductsPage() {
               <div className="border p-4 my-4 rounded-md">
                 <a href={link} target="_blank" rel="noopener noreferrer">
                   <img
-                    src={imageUrl}
-                    
+                    src={imageUrl}                 
                     className="mb-2 rounded-md object-cover"
                   />                 
                 </a>   
-                <div className="text-xs" style={{ height: '100px' }}>
+                <div className="text-xs" style={{ height: '80px' }}>
                   <h1>{title}</h1>
                 </div>
               </div>
