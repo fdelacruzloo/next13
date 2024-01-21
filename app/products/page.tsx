@@ -21,7 +21,7 @@ export default async function ProductsPage() {
                     className="mb-2 rounded-md object-cover"
                   />                 
                 </a>   
-                <div className="text-xs" style={{ height: '70px' }}>
+                <div className="text-xs" style={{ height: '100px' }}>
                   <h1>{title}</h1>
                 </div>
               </div>
