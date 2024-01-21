@@ -8,47 +8,28 @@ export default async function ProductsPage() {
     <div className="container">
       <h1 className="text-2xl">Products</h1>
 
-    <div className="flex">
+      <div className="flex">
     
-    <div className="flex flex-wrap">
-    <div className="w-1/2 pr-4">
-      {products.slice(0, Math.ceil(products.length / 2)).map(({ id, title, imageUrl, link}) => (
-        <div key={id} className="border p-4 my-4 rounded-md">
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            <img
-              src={imageUrl}
-              style={{ width: '180px', height: '150px' }}
-              className="mb-2 rounded-md object-cover"
-            />
-          </a>   
-          <div className="text-xs" style={{ height: '30px' }}>
-          <h1>{title}</h1>
-          </div>
+        <div className="flex flex-wrap">
+          {products.map(({ id, title, imageUrl, link }) => (
+            <div key={id} className="w-1/2 pr-4">
+              <div className="border p-4 my-4 rounded-md">
+                <a href={link} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={imageUrl}
+                    style={{ width: '180px', height: '150px' }}
+                    className="mb-2 rounded-md object-cover"
+                  />                 
+                </a>   
+                <div className="text-xs" style={{ height: '70px' }}>
+                  <h1>{title}</h1>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
 
-    <div className="w-1/2 pr-4">
-      {products.slice(Math.ceil(products.length / 2)).map(({id, title, imageUrl, link}) => (
-        <div key={id} className="border p-4 my-4 rounded-md">
-          <a href={link} target="_blank" rel="noopener noreferrer">
-            <img
-              src={imageUrl}
-              style={{ width: '180px', height: '150px' }}
-              className="mb-2 rounded-md object-cover"
-            />
-          </a>   
-          <div className="text-xs" style={{ height: '30px' }}>
-          <h1>{title}</h1>
-          </div>
-        </div>
-       
-      ))}
-    </div>
-    </div>
-
-    </div>
-
+      </div>
     </div>
   );
 }
