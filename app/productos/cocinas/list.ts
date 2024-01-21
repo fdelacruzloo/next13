@@ -1,12 +1,10 @@
-type Product = {
+type cocinas = {
   id: string;
   title: string;
-  description: string;
-  price: number;
   imageUrl: string;
   link: string;
 };
-const DUMMY_PRODUCTS = [
+const COCINAS = [
 //Cocinas
   {
     id: 'p1',
@@ -88,6 +86,6 @@ const DUMMY_PRODUCTS = [
   },
 ];
 
-export async function getProducts() {
-  return DUMMY_PRODUCTS;
+export async function getCocinas() {
+  return COCINAS;
   }

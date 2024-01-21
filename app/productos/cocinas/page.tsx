@@ -1,8 +1,8 @@
 "use client"
-import { getProducts } from "@/lib/products";
+import { getCocinas } from "@/app/productos/cocinas/list";
 
-export default async function ProductsPage() {
-  const products = await getProducts();
+export default async function CocinasPage() {
+  const cocinas = await getCocinas();
 
   return (
     <div className="container">
@@ -11,7 +11,7 @@ export default async function ProductsPage() {
       <div className="flex">
     
         <div className="flex flex-wrap">
-          {products.map(({ id, title, imageUrl, link }) => (
+          {cocinas.map(({ id, title, imageUrl, link }) => (
             <div key={id} className="w-1/2 pr-2">
               <div className="border p-4 my-4 rounded-md">
                 <a href={link} target="_blank" rel="noopener noreferrer">
