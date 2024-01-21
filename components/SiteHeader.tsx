@@ -21,9 +21,14 @@ export function SiteHeader() {
           <Link href="/productos/hornos">Hornos</Link>
         </div>
 
+        <div className={classNames("flex items-center", pathname === "/productos/secadoras" && "border-b-2 border-sky-400")}>
+          <Link href="/productos/secadoras">Secadoras</Link>
+        </div>   
+
         <div className={classNames("flex items-center", pathname === "/productos/otros" && "border-b-2 border-sky-400")}>
           <Link href="/productos/otros">Otros</Link>
-        </div>       
+        </div>   
+
       </nav>
     </header>
   )

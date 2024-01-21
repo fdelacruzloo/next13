@@ -1,91 +1,85 @@
-type cocinas = {
+type otros = {
   id: string;
   title: string;
   imageUrl: string;
   link: string;
 };
-const COCINAS = [
-//Cocinas
+const OTROS = [
+//Otros
   {
-    id: 'p1',
-    title: 'COCINA DOMESTICA, 4Q+HOR, REGULADOR:SI, 23 mbar, 11.05 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-01.jpg',
+    id: 'p27',
+    title: 'EQUIPO MIXTO, REGULADOR:NO, 340 mbar, 45 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-27.jpg',
     link: 'https://abb.com',
   },
   {
-    id: 'p2',
-    title: 'COCINA SI, 1Q, REGULADOR:NO, 340 mbar, 15 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-02.jpg',
+    id: 'p28',
+    title: 'BROSTERA, REGULADOR:NO, 340 mbar, 20 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-28.jpg',
     link: 'https://abb.com',
   },
   {
-    id: 'p3',
-    title: 'COCINA SI, 2Q, REGULADOR:NO, 340 mbar, 24 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-03.jpg',
+    id: 'p29',
+    title: 'PLANCHAS, REGULADOR:NO, 340 mbar, 20 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-29.jpg',
     link: 'https://abb.com',
   },
   {
-    id: 'p4',
-    title: 'COCINA SI, 3Q, REGULADOR:NO, 340 mbar, 34 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-04.jpg',
+    id: 'p30',
+    title: 'QUEMADOR, REGULADOR:SI, 23 mbar, 117 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-30.jpg',
     link: 'https://abb.com',
    },
   {
-    id: 'p5',
-    title: 'COCINA SI, 4Q, REGULADOR:NO, 340 mbar, 45 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-05.jpg',
+    id: 'p31',
+    title: 'CALENTADOR DE PSCINA, 140, REGULADOR:SI, 23 mbar, 71.8 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-31.jpg',
     link: 'https://abb.com',
   },
   {
-    id: 'p6',
-    title: 'COCINA SI, 5Q, REGULADOR:NO, 340 mbar, 55 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-06.jpg',
+    id: 'p32',
+    title: 'CALENTADOR DE PSCINA, 350, REGULADOR:SI, 23 mbar, 117.62 K',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-32.jpg',
     link: 'https://abb.com',
   },
   {
-    id: 'p7',
-    title: 'COCINA SI, 6Q, REGULADOR:NO, 340 mbar, 65 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-07.jpg',
+    id: 'p33',
+    title: 'CALENTADOR DE PSCINA, 750, REGULADOR:SI, 23 mbar, 331 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-33.jpg',
     link: 'https://abb.com',
   },
   {
-    id: 'p8',
-    title: 'COCINA WOK, 1Q, REGULADOR:NO,	340 mbar, 19.9 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-08.jpg',
+    id: 'p34',
+    title: 'OLLA ARROCERA, REGULADOR:SI,	23 mbar, 10.05 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-34.jpg',
     link: 'https://abb.com',
   },
   {
-    id: 'p9',
-    title: 'COCINA WOK, 2Q, REGULADOR:NO,	340 mbar, 39.8 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-09.jpg',
+    id: 'p35',
+    title: 'FORNILLON, REGULADOR:NO, 340 mbar, 50 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-35.jpg',
     link: 'https://abb.com',
    },
   {
-    id: 'p10',
-    title: 'COCINA WOK, 3Q, REGULADOR:NO, 340 mbar, 59.7 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-10.jpg',
+    id: 'p36',
+    title: 'GRATINADOR, REGULADOR:NO, 340 mbar, 22 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-36.jpg',
     link: 'https://abb.com',
   },
   {
-    id: 'p11',
-    title: 'COCINA WOK, 4Q, REGULADOR:NO, 340 mbar, 79.60 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-11.jpg',
+    id: 'p37',
+    title: 'SALAMANDRA, REGULADOR:NO, 340 mbar, 25 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-37.jpg',
     link: 'https://abb.com',
   },
   {
-    id: 'p12',
-    title: 'COCINA WOK, 5Q, REGULADOR:NO, 340 mbar, 99.5 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-12.jpg',
-    link: 'https://abb.com',
-  },
-  {
-    id: 'p13',
-    title: 'COCINA WOK, 6Q, REGULADOR:NO, 340 mbar, 119 KW',
-    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-13.jpg',
+    id: 'p38',
+    title: 'BUFETERA, REGULADOR:NO, 340 mbar, 36 KW',
+    imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-38.jpg',
     link: 'https://abb.com',
   },
 ];
 
-export async function getCocinas() {
-  return COCINAS;
+export async function getOtros() {
+  return OTROS;
   }
