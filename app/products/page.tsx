@@ -6,7 +6,7 @@ export default async function ProductsPage() {
 
   return (
     <div className="container">
-      <h1 className="text-2xl">Products</h1>
+      <h1 className="text-2xl text-center" >Cocinas</h1>
 
       <div className="flex">
     
