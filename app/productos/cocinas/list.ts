@@ -11,7 +11,7 @@ const COCINAS = [
     title: 'COCINA DOMESTICA, 4Q+HOR, REGULADOR:SI, 23 mbar, 11.05 KW',
     imageUrl: 'https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-01.jpg',
     cantidad: 0,
-  },
+   },
   {
     id: 'p2',
     title: 'COCINA SI, 1Q, REGULADOR:NO, 340 mbar, 15 KW',

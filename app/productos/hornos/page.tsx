@@ -1,5 +1,6 @@
 "use client"
 import { getHornos } from "@/app/productos/hornos/list";
+import { Counter } from "@/components/Counter";
 
 export default async function HornosPage() {
   const hornos = await getHornos();
@@ -10,20 +11,27 @@ export default async function HornosPage() {
       <div className="flex">
     
         <div className="flex flex-wrap">
-          {hornos.map(({ id, title, imageUrl, link }) => (
+          {hornos.map(({ id, title, imageUrl, cantidad }) => (
             <div key={id} className="w-1/2 pr-2">
-              <div className="border p-4 my-4 rounded-md">
-                <a href={link} target="_blank" rel="noopener noreferrer">
-                  <img
-                    src={imageUrl}                 
-                    className="mb-2 rounded-md object-cover"
-                  />                 
-                </a>   
-                <div className="text-xs" style={{ height: '120px' }}>
-                  <h1>{title}</h1>
-                </div>
+            <div className="border p-4 my-4 rounded-md">
+
+                <img
+                  src={imageUrl}                 
+                  className="mb-2 rounded-md object-cover"
+                />                 
+
+              <div className="text-xs" style={{ height: '120px' }}>
+                <h1>{title}</h1>
+              </div>
+              <div className="self-end text-xs" style={{ height: '40px' }}>
+                  <Counter />
+              <div className="text-xs flex items-center justify-center">
+                <h1>{cantidad}</h1>
+              </div>
+              
               </div>
             </div>
+          </div>
           ))}
         </div>
 
