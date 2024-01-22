@@ -19,7 +19,7 @@ export default async function SecadorasPage() {
                     className="mb-2 rounded-md object-cover"
                   />                 
                 </a>   
-                <div className="text-xs" style={{ height: '80px' }}>
+                <div className="text-xs" style={{ height: '120px' }}>
                   <h1>{title}</h1>
                 </div>
               </div>

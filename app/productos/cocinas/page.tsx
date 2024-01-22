@@ -19,7 +19,7 @@ export default async function CocinasPage() {
                     className="mb-2 rounded-md object-cover"
                   />                 
                 </a>   
-                <div className="text-xs" style={{ height: '100px' }}>
+                <div className="text-xs" style={{ height: '120px' }}>
                   <h1>{title}</h1>
                   <Counter />
                 </div>
