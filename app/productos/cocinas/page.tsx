@@ -10,25 +10,24 @@ export default async function CocinasPage() {
 
       <div className="flex">
     
-          {cocinas.map(({ id, title, imageUrl, link }) => (
+          {cocinas.map(({ id, title, imageUrl, cantidad }) => (
             <div key={id} className="w-1/2 pr-2">
               <div className="border p-4 my-4 rounded-md">
-                <a href={link} target="_blank" rel="noopener noreferrer">
                   <img
                     src={imageUrl}                 
                     className="mb-2 rounded-md object-cover"
                   />                 
-                </a>   
                 <div className="text-xs" style={{ height: '120px' }}>
                   <h1>{title}</h1>
                   <Counter />
+                  <h1>{cantidad}</h1>
                 </div>
+                
               </div>
             </div>
           ))}
         </div>
 
-      </div>
     </div>
   );
 }
