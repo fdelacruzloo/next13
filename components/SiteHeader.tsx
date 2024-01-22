@@ -7,7 +7,7 @@ export function SiteHeader() {
   const pathname = usePathname();
   return (
     <header className="sticky top-0 z-40 w-full shadow-sm bg-white border-b">
-      <nav className="container h-14 flex gap-x-5 text-sm">
+      <nav className="container h-14 flex flex-wrap justify-center sm:justify-start gap-x-5 text-sm">
 
         <div className={classNames("flex items-center", pathname === "/productos/cocinas" && "border-b-2 border-sky-400")}>
           <Link href="/productos/cocinas">Cocinas</Link>
