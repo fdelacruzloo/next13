@@ -24,11 +24,7 @@ export default async function SecadorasPage() {
               <h1>{title}</h1>
             </div>
             <div className="self-end text-xs" style={{ height: '40px' }}>
-                <Counter />
-            <div className="text-xs flex items-center justify-center">
-              <h1>{cantidad}</h1>
-            </div>
-            
+                <Counter />           
             </div>
           </div>
         </div>
