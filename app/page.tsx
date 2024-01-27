@@ -1,8 +1,12 @@
 // page.tsx
 import React from 'react';
 
-function HelloWorld() {
-  return <h1>Hola Mundo</h1>;
+function Home({ children }) {
+  return (
+    <AppProviders>
+      {children}
+    </AppProviders>
+  );
 }
 
-export default HelloWorld;
+export default Home;
