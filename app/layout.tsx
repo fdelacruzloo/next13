@@ -1,9 +1,8 @@
+// layout.tsx
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 import { AppProviders } from "@/components/AppProviders";
-
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,11 +17,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-       <body className={inter.className}>
-       <AppProviders>
-          <SiteHeader />
+      <body
+        className={
+          "min-h-screen bg-background font-sans antialiased" +
+          inter.className
+        }
+      >
+        <AppProviders>
           {children}
-        </AppProviders>{" "}
+        </AppProviders>
       </body>
     </html>
   );

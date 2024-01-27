@@ -1,8 +1,8 @@
-import Image from 'next/image'
+// page.tsx
+import React from 'react';
 
-export default function Home() {
-  return (
-    <div>
-    </div>
-  )
+function HelloWorld() {
+  return <h1>Hola Mundo</h1>;
 }
+
+export default HelloWorld;
