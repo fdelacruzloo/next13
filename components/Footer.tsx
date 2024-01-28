@@ -1,27 +1,28 @@
 // Footer.tsx
 "use client";
-import React, { useState, useEffect } from "react";
-import Button from "../components/Button";
+import React from "react";
+import Button from "./Button";
 
-const Footer: React.FC = () => {
-  const [isHighPressureClicked, setHighPressureClicked] = useState(false);
-  const [isLowPressureClicked, setLowPressureClicked] = useState(false);
+type FooterProps = {
+  containers: string[];
+  setVisibleContainer: (name: string) => void;
+};
 
-  console.log(`isHighPressureClicked: ${isHighPressureClicked}, isLowPressureClicked: ${isLowPressureClicked}`);
- 
+const Footer: React.FC<FooterProps> = ({ containers, setVisibleContainer }) => {
   return (
-    <footer className="py-5 flex justify-center space-x-4 fixed inset-x-0 bottom-0 bg-white">
+    
+<div className="py-5 flex justify-center space-x-4 fixed inset-x-0 bottom-0 bg-white">
+  
+  <div className="flex space-x-1">
+    {containers.map((name) => (
       <Button
-        name="Alta Presión"
-        onClick={() => setHighPressureClicked(!isHighPressureClicked)}      
-        className={isHighPressureClicked ? "bg-gray-400" : ""}
+        key={name}
+        name={name}
+        onClick={() => setVisibleContainer(name)}
       />
-      <Button
-        name="Baja Presión"
-        onClick={() => setLowPressureClicked(!isLowPressureClicked)}
-        className={isLowPressureClicked ? "bg-gray-400" : ""}
-      />
-    </footer>
+    ))}
+  </div>
+</div>
   );
 };
 

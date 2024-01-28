@@ -1,5 +1,5 @@
-"use client"
-import React, { useState, useEffect } from 'react';
+"use client";
+import React, { useState, useEffect } from "react";
 import { getCocinas } from "@/app/productos/list";
 import PhotoList from "@/components/Photos";
 
@@ -24,10 +24,11 @@ const CocinasPage: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <div className="text-2xl py-5 flex items-center space-x-4">
-      </div>
+      <div className="text-2xl py-5 flex items-center space-x-4"></div>
       <div className="flex flex-wrap">
-        {cocinas.map(cocina => <PhotoList key={cocina.id} {...cocina} />)}
+        {cocinas.map((cocina) => (
+          <PhotoList key={cocina.id} {...cocina} />
+        ))}
       </div>
     </div>
   );
