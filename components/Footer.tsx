@@ -10,19 +10,15 @@ type FooterProps = {
 
 const Footer: React.FC<FooterProps> = ({ containers, setVisibleContainer }) => {
   return (
-    
-<div className="py-5 flex justify-center space-x-4 fixed inset-x-0 bottom-0 bg-white">
-  
-  <div className="flex space-x-1">
-    {containers.map((name) => (
-      <Button
-        key={name}
-        name={name}
-        onClick={() => setVisibleContainer(name)}
-      />
-    ))}
-  </div>
-</div>
+    <div className="py-5 flex justify-center space-x-4 fixed inset-x-0 bottom-0 bg-white">
+      {containers.map((name) => (
+        <Button
+          key={name}
+          name={name}
+          onClick={() => setVisibleContainer(name)}
+        />
+      ))}
+    </div>
   );
 };
 
