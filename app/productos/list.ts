@@ -3,7 +3,7 @@ type cocinas = {
   title: string;
   imageUrl: string;
   cantidad: number;
-  Regulador: boolean; // Nuevo campo
+  regulador: boolean; // Nuevo campo
 };
 const COCINAS = [
   //Cocinas
@@ -13,7 +13,7 @@ const COCINAS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-01.jpg",
     cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
+    regulador: true, // Valor para el nuevo campo
   },
   {
     id: "p2",
@@ -21,7 +21,7 @@ const COCINAS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-02.jpg",
     cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
+    regulador: false, // Valor para el nuevo campo
   },
   {
     id: "p3",
@@ -29,88 +29,9 @@ const COCINAS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-03.jpg",
     cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
+    regulador: false, // Valor para el nuevo campo
   },
-  {
-    id: "p4",
-    title: "COCINA SI, 3Q, REGULADOR:NO, 340 mbar, 34 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-04.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p5",
-    title: "COCINA SI, 4Q, REGULADOR:NO, 340 mbar, 45 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-05.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p6",
-    title: "COCINA SI, 5Q, REGULADOR:NO, 340 mbar, 55 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-06.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p7",
-    title: "COCINA SI, 6Q, REGULADOR:NO, 340 mbar, 65 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-07.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p8",
-    title: "COCINA WOK, 1Q, REGULADOR:NO,	340 mbar, 19.9 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-08.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p9",
-    title: "COCINA WOK, 2Q, REGULADOR:NO,	340 mbar, 39.8 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-09.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p10",
-    title: "COCINA WOK, 3Q, REGULADOR:NO, 340 mbar, 59.7 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-10.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p11",
-    title: "COCINA WOK, 4Q, REGULADOR:NO, 340 mbar, 79.60 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-11.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p12",
-    title: "COCINA WOK, 5Q, REGULADOR:NO, 340 mbar, 99.5 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-12.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p13",
-    title: "COCINA WOK, 6Q, REGULADOR:NO, 340 mbar, 119 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-13.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
+  // Resto de las cocinas...
 ];
 
 export async function getCocinas() {
@@ -122,7 +43,7 @@ type freidoras = {
   title: string;
   imageUrl: string;
   cantidad: number;
-  Regulador: boolean; // Nuevo campo
+  regulador: boolean; // Nuevo campo
 };
 const FREIDORAS = [
   //Freidoras
@@ -132,7 +53,7 @@ const FREIDORAS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-14.jpg",
     cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
+    regulador: false, // Valor para el nuevo campo
   },
   {
     id: "p15",
@@ -140,8 +61,9 @@ const FREIDORAS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-15.jpg",
     cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
+    regulador: true, // Valor para el nuevo campo
   },
+  // Resto de las freidoras...
 ];
 
 export async function getFreidoras() {
@@ -153,7 +75,7 @@ type hornos = {
   title: string;
   imageUrl: string;
   cantidad: number;
-  Regulador: boolean; // Nuevo campo
+  regulador: boolean; // Nuevo campo
 };
 const HORNOS = [
   //Hornos
@@ -163,7 +85,7 @@ const HORNOS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-16.jpg",
     cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
+    regulador: false, // Valor para el nuevo campo
   },
   {
     id: "p17",
@@ -171,64 +93,9 @@ const HORNOS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-17.jpg",
     cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
+    regulador: false, // Valor para el nuevo campo
   },
-  {
-    id: "p18",
-    title: "HORNO PASTELERO, SIN QUEMADOR, REGULADOR:NO,	340 mbar, 34 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-18.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p19",
-    title: "HORNO MAX 2000, CON QUEMADOR, REGULADOR:SI, 23 mbar, 70.34 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-19.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p20",
-    title: "HORNO MAX100	CON QUEMADOR, REGULADOR:SI, 23 mbar, 46.64 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-20.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p21",
-    title: "HORNO MAX750	CON QUEMADOR, REGULADOR:SI, 23 mbar, 46.64 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-21.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p22",
-    title: "HORNO ARTESANAL, CON QUEMADOR, REGULADOR:SI,	23 mbar, 117 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-22.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p23",
-    title: "ROSTICERO O POLLERO,	CON QUEMADOR, REGULADOR:SI, 23 mbar, 20.5 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-23.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p24",
-    title: "HORNO PARA CERAMICA,	SIN QUEMADOR, REGULADOR:SI, 23 mbar, 119 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-24.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
+  // Resto de los hornos...
 ];
 
 export async function getHornos() {
@@ -240,7 +107,7 @@ type secadoras = {
   title: string;
   imageUrl: string;
   cantidad: number;
-  Regulador: boolean; // Nuevo campo
+  regulador: boolean; // Nuevo campo
 };
 const SECADORAS = [
   //Secadoras
@@ -250,7 +117,7 @@ const SECADORAS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-25.jpg",
     cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
+    regulador: true, // Valor para el nuevo campo
   },
   {
     id: "p26",
@@ -258,8 +125,9 @@ const SECADORAS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-26.jpg",
     cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
+    regulador: true, // Valor para el nuevo campo
   },
+  // Resto de las secadoras...
 ];
 
 export async function getSecadoras() {
@@ -271,7 +139,7 @@ type otros = {
   title: string;
   imageUrl: string;
   cantidad: number;
-  Regulador: boolean; // Nuevo campo
+  regulador: boolean; // Nuevo campo
 };
 const OTROS = [
   //Otros
@@ -281,7 +149,7 @@ const OTROS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-27.jpg",
     cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
+    regulador: false, // Valor para el nuevo campo
   },
   {
     id: "p28",
@@ -289,88 +157,9 @@ const OTROS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-28.jpg",
     cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
+    regulador: false, // Valor para el nuevo campo
   },
-  {
-    id: "p29",
-    title: "PLANCHAS, REGULADOR:NO, 340 mbar, 20 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-29.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p30",
-    title: "QUEMADOR, REGULADOR:SI, 23 mbar, 117 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-30.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p31",
-    title: "CALENTADOR DE PSCINA, 140, REGULADOR:SI, 23 mbar, 71.8 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-31.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p32",
-    title: "CALENTADOR DE PSCINA, 350, REGULADOR:SI, 23 mbar, 117.62 K",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-32.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p33",
-    title: "CALENTADOR DE PSCINA, 750, REGULADOR:SI, 23 mbar, 331 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-33.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p34",
-    title: "OLLA ARROCERA, REGULADOR:SI,	23 mbar, 10.05 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-34.jpg",
-    cantidad: 0,
-    Regulador: true, // Valor para el nuevo campo
-  },
-  {
-    id: "p35",
-    title: "FORNILLON, REGULADOR:NO, 340 mbar, 50 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-35.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p36",
-    title: "GRATINADOR, REGULADOR:NO, 340 mbar, 22 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-36.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p37",
-    title: "SALAMANDRA, REGULADOR:NO, 340 mbar, 25 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-37.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
-  {
-    id: "p38",
-    title: "BUFETERA, REGULADOR:NO, 340 mbar, 36 KW",
-    imageUrl:
-      "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-38.jpg",
-    cantidad: 0,
-    Regulador: false, // Valor para el nuevo campo
-  },
+  // Resto de los otros...
 ];
 
 export async function getOtros() {

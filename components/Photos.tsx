@@ -7,6 +7,7 @@ interface PhotoListProps {
   id: string;
   title: string;
   imageUrl: string;
+  regulador: boolean
 }
 
 const PhotoList: React.FC<PhotoListProps> = ({ id, title, imageUrl }) => (
