@@ -11,7 +11,7 @@ type Otro = {
 };
 
 const OtrosPage: React.FC = () => {
-  const [otross, setOtros] = useState<Otro[]>([]);
+  const [otros, setOtros] = useState<Otro[]>([]);
 
   useEffect(() => {
     const fetchOtros = async () => {
@@ -27,7 +27,7 @@ const OtrosPage: React.FC = () => {
       <div className="text-2xl py-5 flex items-center space-x-4">
       </div>
       <div className="flex flex-wrap">
-        {otross.map(otros => <PhotoList key={otros.id} {...otros} />)}
+        {otros.map(otros => <PhotoList key={otros.id} {...otros} />)}
       </div>
     </div>
   );
