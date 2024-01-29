@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <main className="container flex flex-col items-center justify-center min-h-screen pb-20">
       <div className="flex-grow w-full flex flex-col items-center">
-        <Header />
+        {/*<Header />*/}
         <div>
           {containers.map((name) => (
             <Container
