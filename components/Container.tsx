@@ -1,4 +1,5 @@
 // Container.tsx
+"use client";
 import React from 'react';
 import CocinasPage from './CocinasPage';
 import FreidorasPage from './FreidorasPage';

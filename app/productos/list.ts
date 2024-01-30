@@ -1,7 +1,10 @@
-// En el archivo de getCocinas
-"use client";
-import React from 'react';
-
+type cocinas = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  cantidad: number;
+  regulador: boolean; // Nuevo campo
+};
 const COCINAS = [
   //Cocinas
   {
@@ -10,7 +13,7 @@ const COCINAS = [
     imageUrl:
       "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-01.jpg",
     cantidad: 0,
-    regulador: false, // Valor para el nuevo campo
+    regulador: true, // Valor para el nuevo campo
   },
   {
     id: "p2",
@@ -110,16 +113,8 @@ const COCINAS = [
   },
 ];
 
-function getCocinas(isHighPressureClicked: boolean, isLowPressureClicked: boolean) {
-  return COCINAS.filter((cocina) => {
-    if (cocina.regulador && !isHighPressureClicked) {
-      return false;
-    }
-    if (!cocina.regulador && !isLowPressureClicked) {
-      return false;
-    }
-    return true;
-  });
+export async function getCocinas() {
+  return COCINAS;
 }
 
 type freidoras = {
@@ -127,7 +122,7 @@ type freidoras = {
   title: string;
   imageUrl: string;
   cantidad: number;
-  Regulador: boolean; // Nuevo campo
+  regulador: boolean; // Nuevo campo
 };
 const FREIDORAS = [
   //Freidoras
@@ -149,20 +144,17 @@ const FREIDORAS = [
   },
 ];
 
-function getFreidoras(isHighPressureClicked: boolean, isLowPressureClicked: boolean) {
-  return FREIDORAS.filter((freidora) => {
-    if (freidora.regulador && !isHighPressureClicked) {
-      return false;
-    }
-    if (!freidora.regulador && !isLowPressureClicked) {
-      return false;
-    }
-    return true;
-  });
+export async function getFreidoras() {
+  return FREIDORAS;
 }
 
-export { getFreidoras };
-
+type hornos = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  cantidad: number;
+  regulador: boolean; // Nuevo campo
+};
 const HORNOS = [
   //Hornos
   {
@@ -239,20 +231,17 @@ const HORNOS = [
   },
 ];
 
-function getHornos(isHighPressureClicked: boolean, isLowPressureClicked: boolean) {
-  return HORNOS.filter((horno) => {
-    if (horno.regulador && !isHighPressureClicked) {
-      return false;
-    }
-    if (!horno.regulador && !isLowPressureClicked) {
-      return false;
-    }
-    return true;
-  });
+export async function getHornos() {
+  return HORNOS;
 }
 
-export { getHornos };
-
+type secadoras = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  cantidad: number;
+  regulador: boolean; // Nuevo campo
+};
 const SECADORAS = [
   //Secadoras
   {
@@ -273,20 +262,17 @@ const SECADORAS = [
   },
 ];
 
-function getSecadoras(isHighPressureClicked: boolean, isLowPressureClicked: boolean) {
-  return SECADORAS.filter((secadora) => {
-    if (secadora.regulador && !isHighPressureClicked) {
-      return false;
-    }
-    if (!secadora.regulador && !isLowPressureClicked) {
-      return false;
-    }
-    return true;
-  });
+export async function getSecadoras() {
+  return SECADORAS;
 }
 
-export { getSecadoras };
-
+type otros = {
+  id: string;
+  title: string;
+  imageUrl: string;
+  cantidad: number;
+  regulador: boolean; // Nuevo campo
+};
 const OTROS = [
   //Otros
   {
@@ -387,16 +373,6 @@ const OTROS = [
   },
 ];
 
-function getOtros(isHighPressureClicked: boolean, isLowPressureClicked: boolean) {
-  return OTROS.filter((otro) => {
-    if (otro.regulador && !isHighPressureClicked) {
-      return false;
-    }
-    if (!otro.regulador && !isLowPressureClicked) {
-      return false;
-    }
-    return true;
-  });
+export async function getOtros() {
+  return OTROS;
 }
-
-export { getOtros, getCocinas };

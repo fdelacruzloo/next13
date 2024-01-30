@@ -1,6 +1,6 @@
 // Footer.tsx
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 
 type FooterProps = {
@@ -9,13 +9,21 @@ type FooterProps = {
 };
 
 const Footer: React.FC<FooterProps> = ({ containers, setVisibleContainer }) => {
+  const [activeContainer, setActiveContainer] = useState("");
+
+  const handleClick = (name: string) => {
+    setVisibleContainer(name);
+    setActiveContainer(name);
+  };
+
   return (
     <div className="py-5 flex justify-center space-x-4 fixed inset-x-0 bottom-0 bg-white">
       {containers.map((name) => (
         <Button
           key={name}
           name={name}
-          onClick={() => setVisibleContainer(name)}
+          onClick={() => handleClick(name)}
+          className={name === activeContainer && ["Cocinas", "Freidoras", "Hornos", "Secadoras", "Otros"].includes(name) ? 'bg-gray-400' : ''}
         />
       ))}
     </div>
