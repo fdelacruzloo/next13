@@ -3,27 +3,36 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-const Header: React.FC = () => {
-  const [isHighPressureClicked, setHighPressureClicked] = useState(false);
-  const [isLowPressureClicked, setLowPressureClicked] = useState(false);
+type FooterProps = {
+  containers: string[];
+  setVisibleContainer: (name: string) => void;
+};
+
+const Footer: React.FC<FooterProps> = ({ containers, setVisibleContainer }) => {
+  const [activeContainer, setActiveContainer] = useState("");
+
+  const handleClick = (name: string) => {
+    setVisibleContainer(name);
+    setActiveContainer(name);
+  };
 
   return (
-    <header className="py-5 flex flex-col items-center justify-center fixed w-full top-0 bg-white z-50">
-      <h1 className="text-2xl text-center mb-4">Gasodomésticos</h1>
-      <div className="flex space-x-1">
-        <Button
-          name="Alta Presión"
-          onClick={() => setHighPressureClicked(!isHighPressureClicked)}      
-          className={isHighPressureClicked ? "bg-gray-400" : ""}
-        />
-        <Button
-          name="Baja Presión"
-          onClick={() => setLowPressureClicked(!isLowPressureClicked)}
-          className={isLowPressureClicked ? "bg-gray-400" : ""}
-        />
-      </div>
-    </header>
+<div className="py-1 flex flex-col items-center w-full justify-center space-x-4 fixed inset-x-0 top-0 bg-white">
+  <h1 className="text-2xl text-center mb-1 mt-0">Gasodomésticos</h1>
+  <div className="flex flex-row space-x-5 justify-center">
+    {containers.map((name) => (
+      <Button
+        key={name}
+        name={name}
+        onClick={() => handleClick(name)}
+        className={name === activeContainer && ["Cocinas", "Freidoras", "Hornos", "Secadoras", "Otros"].includes(name) ? 'bg-gray-400' : ''}
+      />
+    ))}
+  </div>
+</div>
+
+
   );
 };
 
-export default Header;
+export default Footer;
