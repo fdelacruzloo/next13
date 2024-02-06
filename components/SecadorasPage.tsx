@@ -4,7 +4,7 @@ import SecadorasComponent from "./SecadorasList";
 import Footer from "./Footer";
 
 const SecadorasPage: React.FC = () => {
-
+ 
   const [isHighPressureClicked, setHighPressureClicked] = useState(false);
   const [isLowPressureClicked, setLowPressureClicked] = useState(false);
 
@@ -24,6 +24,7 @@ const SecadorasPage: React.FC = () => {
     </div>
   </div>
 );
+
 };
 
 export default SecadorasPage;
