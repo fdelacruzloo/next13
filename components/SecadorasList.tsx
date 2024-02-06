@@ -1,4 +1,5 @@
 "use client";
+"use client";
 import React, { useState } from "react";
 import PhotoList from "@/components/Photos";
 
@@ -17,8 +18,24 @@ interface SecadorasPageProps {
 
 const SecadorasPage: React.FC<SecadorasPageProps> = ({ isHighPressureClicked, isLowPressureClicked }) => {
   const [secadoras, setSecadoras] = useState<Secadora[]>([
-    // Aquí van tus objetos Secadora
-    // ...
+
+    {
+      id: "p25",
+      title: "SECADORA DOMESTICA, REGULADOR:SI, 23 mbar, 7.2 KW",
+      imageUrl:
+        "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-25.jpg",
+      cantidad: 0,
+      regulador: true, // Valor para el nuevo campo
+    },
+    {
+      id: "p26",
+      title: "SECADORA INDUSTRIAL, REGULADOR:SI, 23 mbar, 20 KW",
+      imageUrl:
+        "https://pdf-viewe-2024.s3.amazonaws.com/2022-11-15/Name+of+First+Album/Image-26.jpg",
+      cantidad: 0,
+      regulador: true, // Valor para el nuevo campo
+    },
+
   ]);
 
   const incrementarCantidad = (id: string) => {

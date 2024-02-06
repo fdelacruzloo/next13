@@ -3,12 +3,12 @@
 import React, { useState } from "react";
 import Button from "./Button";
 
-type FooterProps = {
+type HeaderProps = {
   containers: string[];
   setVisibleContainer: (name: string) => void;
 };
 
-const Footer: React.FC<FooterProps> = ({ containers, setVisibleContainer }) => {
+const Header: React.FC<HeaderProps> = ({ containers, setVisibleContainer }) => {
   const [activeContainer, setActiveContainer] = useState("");
 
   const handleClick = (name: string) => {
@@ -17,8 +17,10 @@ const Footer: React.FC<FooterProps> = ({ containers, setVisibleContainer }) => {
   };
 
   return (
-<div className="py-1 flex flex-col items-center w-full justify-center space-x-4 fixed inset-x-0 top-0 bg-white">
-  <h1 className="text-2xl text-center mb-1 mt-0">Gasodomésticos</h1>
+<div className="py-1 flex flex-col items-center w-full justify-center space-x-4 fixed inset-x-0 top-0 bg-white z-50">
+  <div>
+    <h1 className="text-2xl text-center mb-1 mt-0 text-black">Gasodomésticos</h1>
+  </div>
   <div className="flex flex-row space-x-5 justify-center">
     {containers.map((name) => (
       <Button
@@ -35,4 +37,4 @@ const Footer: React.FC<FooterProps> = ({ containers, setVisibleContainer }) => {
   );
 };
 
-export default Footer;
+export default Header;
