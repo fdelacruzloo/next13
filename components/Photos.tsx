@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react"; // Asegúrate de importar useEffect
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface PhotoListProps {
@@ -21,13 +21,11 @@ const Counter: React.FC<CounterProps> = ({
   id,
   incrementarCantidad,
 }) => {
-  // Inicializa el estado con el valor almacenado en localStorage o 0 si no hay nada almacenado
   const [count, setCount] = useState(() => {
     const savedCount = localStorage.getItem(id);
     return savedCount ? Number(savedCount) : 0;
   });
 
-  // Actualiza localStorage cada vez que count cambia
   useEffect(() => {
     localStorage.setItem(id, String(count));
   }, [count, id]);
@@ -63,9 +61,10 @@ const PhotoList: React.FC<PhotoListProps> = ({
         <Image
           src={imageUrl}
           alt={title}
-          width={180} // replace with the width of your image
-          height={200} // replace with the height of your image
+          width={180}
+          height={200}
           objectFit="contain"
+          sizes="(max-width: 600px) 100vw, 600px" // new sizes attribute for srcSet
         />
       </div>
 
