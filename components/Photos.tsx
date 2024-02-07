@@ -63,7 +63,8 @@ const PhotoList: React.FC<PhotoListProps> = ({
         <Image
           src={imageUrl}
           alt={title}
-          layout="fill"
+          width={200} // replace with the width of your image
+          height={200} // replace with the height of your image
           objectFit="contain"
         />
       </div>
