@@ -125,32 +125,42 @@ const HornosComponent: React.FC<HornosComponentProps> = ({ isHighPressureClicked
   ]);
 
   const incrementarCantidad = (id: string) => {
-    setHornos(hornos.map(horno => 
-      horno.id === id ? { ...horno, cantidad: horno.cantidad + 1 } : horno
-    ));
+    setHornos(
+      hornos.map((horno) =>
+        horno.id === id
+          ? { ...horno, cantidad: horno.cantidad + 1 }
+          : horno
+      )
+    );
   };
 
-  const filteredHornos = hornos.filter(horno => {
+  // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
+  const filteredHornos = hornos.filter((horno) => {
     if (isHighPressureClicked && isLowPressureClicked) {
-      return true;
+      return true; // Mostrar todos los objetos
     } else if (isHighPressureClicked) {
-      return !horno.regulador;
+      return !horno.regulador; // Mostrar solo los objetos con regulador=false
     } else if (isLowPressureClicked) {
-      return horno.regulador;
+      return horno.regulador; // Mostrar solo los objetos con regulador=true
     } else {
-      return false;
+      return false; // No mostrar ningún objeto
     }
   });
 
-  const photoListItems = filteredHornos.map(horno => 
-    <PhotoList key={horno.id} id={horno.id} title={horno.title} imageUrl={horno.imageUrl} regulador={horno.regulador} />
-  );
+  // Ahora puedes mapear tus datos filtrados a componentes PhotoList
+  const photoListItems = filteredHornos.map((horno) => (
+    <PhotoList
+      key={horno.id}
+      id={horno.id}
+      title={horno.title}
+      imageUrl={horno.imageUrl}
+      regulador={horno.regulador}
+      incrementarCantidad={incrementarCantidad}
+    />
+  ));
 
-  return (
-    <div className="flex flex-wrap">
-      {photoListItems}
-    </div>
-  );
+  // Y luego renderizarlos en tu JSX
+  return <div className="flex flex-wrap">{photoListItems}</div>;
 };
 
 export default HornosComponent;
