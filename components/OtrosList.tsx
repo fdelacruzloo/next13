@@ -118,32 +118,42 @@ const OtrosComponent: React.FC<OtrosComponentProps> = ({ isHighPressureClicked, 
   ]);
 
   const incrementarCantidad = (id: string) => {
-    setOtros(otros.map(otro => 
-      otro.id === id ? { ...otro, cantidad: otro.cantidad + 1 } : otro
-    ));
+    setOtros(
+      otros.map((otro) =>
+        otro.id === id
+          ? { ...otro, cantidad: otro.cantidad + 1 }
+          : otro
+      )
+    );
   };
 
-  const filteredOtros = otros.filter(otro => {
+  // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
+  const filteredOtros = otros.filter((otro) => {
     if (isHighPressureClicked && isLowPressureClicked) {
-      return true;
+      return true; // Mostrar todos los objetos
     } else if (isHighPressureClicked) {
-      return !otro.regulador;
+      return !otro.regulador; // Mostrar solo los objetos con regulador=false
     } else if (isLowPressureClicked) {
-      return otro.regulador;
+      return otro.regulador; // Mostrar solo los objetos con regulador=true
     } else {
-      return false;
+      return false; // No mostrar ningún objeto
     }
   });
 
-  const photoListItems = filteredOtros.map(otro => 
-    <PhotoList key={otro.id} id={otro.id} title={otro.title} imageUrl={otro.imageUrl} regulador={otro.regulador} />
-  );
+  // Ahora puedes mapear tus datos filtrados a componentes PhotoList
+  const photoListItems = filteredOtros.map((otro) => (
+    <PhotoList
+      key={otro.id}
+      id={otro.id}
+      title={otro.title}
+      imageUrl={otro.imageUrl}
+      regulador={otro.regulador}
+      incrementarCantidad={incrementarCantidad}
+    />
+  ));
 
-  return (
-    <div className="flex flex-wrap">
-      {photoListItems}
-    </div>
-  );
+  // Y luego renderizarlos en tu JSX
+  return <div className="flex flex-wrap">{photoListItems}</div>;
 };
 
 export default OtrosComponent;
