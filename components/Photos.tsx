@@ -54,6 +54,7 @@ const PhotoList: React.FC<PhotoListProps> = ({
   id,
   title,
   imageUrl,
+  regulador,
   incrementarCantidad,
 }) => (
   <div key={id} className="w-1/2 pr-2">
