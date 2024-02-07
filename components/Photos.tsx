@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"; // Asegúrate de importar useEffect
 import Image from "next/image";
 
 interface PhotoListProps {
@@ -21,11 +21,13 @@ const Counter: React.FC<CounterProps> = ({
   id,
   incrementarCantidad,
 }) => {
+  // Inicializa el estado con el valor almacenado en localStorage o 0 si no hay nada almacenado
   const [count, setCount] = useState(() => {
     const savedCount = localStorage.getItem(id);
     return savedCount ? Number(savedCount) : 0;
   });
 
+  // Actualiza localStorage cada vez que count cambia
   useEffect(() => {
     localStorage.setItem(id, String(count));
   }, [count, id]);
@@ -55,25 +57,22 @@ const PhotoList: React.FC<PhotoListProps> = ({
   regulador,
   incrementarCantidad,
 }) => (
-  <div key={id} className="w-1/2 pr-2">
-    <div className="border p-4 my-4 rounded-md ">
-      <div className="relative h-60 w-full mb-2 rounded-md items-center">
+  <div key={id} className="w-1/2 pr-2 flex items-center pt-5">
+    <div className="border items-center flex flex-col justify-center w-full mb-2">
+
         <Image
           src={imageUrl}
           alt={title}
-          width={180}
-          height={200}
+          width={180} // replace with the width of your image
+          height={200} // replace with the height of your image
           objectFit="contain"
-          sizes="(max-width: 600px) 100vw, 600px" // new sizes attribute for srcSet
         />
-      </div>
 
-      <div className="text-xs" style={{ height: "120px" }}>
+      <div className="text-xs my-2">
         <h1>{title}</h1>
-      </div>
-      <div className="self-end text-xs" style={{ height: "40px" }}>
         <Counter id={id} incrementarCantidad={incrementarCantidad} />
       </div>
+
     </div>
   </div>
 );

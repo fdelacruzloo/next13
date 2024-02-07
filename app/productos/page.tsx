@@ -12,7 +12,7 @@ export default function Page() {
 
   return (
     <main className="container flex flex-col items-center justify-center min-h-screen pb-20">
-      <div className="flex-grow w-full flex flex-col items-center pt-20"> {/* Agregado padding-top */}
+      <div className="flex-grow w-full flex flex-col items-center"> {/* Agregado padding-top */}
         <Header
           containers={containers}
           setVisibleContainer={setVisibleContainer}
