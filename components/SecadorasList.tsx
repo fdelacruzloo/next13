@@ -39,32 +39,39 @@ const SecadorasPage: React.FC<SecadorasPageProps> = ({ isHighPressureClicked, is
   ]);
 
   const incrementarCantidad = (id: string) => {
-    setSecadoras(secadoras.map(secadora => 
-      secadora.id === id ? { ...secadora, cantidad: secadora.cantidad + 1 } : secadora
-    ));
+    setSecadoras(
+      secadoras.map((secadora) =>
+        secadora.id === id
+          ? { ...secadora, cantidad: secadora.cantidad + 1 }
+          : secadora
+      )
+    );
   };
 
-  const filteredSecadoras = secadoras.filter(secadora => {
+  const filteredSecadoras = secadoras.filter((secadora) => {
     if (isHighPressureClicked && isLowPressureClicked) {
-      return true;
+      return true; // Mostrar todos los objetos
     } else if (isHighPressureClicked) {
-      return !secadora.regulador;
+      return !secadora.regulador; // Mostrar solo los objetos con regulador=false
     } else if (isLowPressureClicked) {
-      return secadora.regulador;
+      return secadora.regulador; // Mostrar solo los objetos con regulador=true
     } else {
-      return false;
+      return false; // No mostrar ningún objeto
     }
   });
 
-  const photoListItems = filteredSecadoras.map(secadora => 
-    <PhotoList key={secadora.id} id={secadora.id} title={secadora.title} imageUrl={secadora.imageUrl} regulador={secadora.regulador} />
-  );
+  const photoListItems = filteredSecadoras.map((secadora) => (
+    <PhotoList
+      key={secadora.id}
+      id={secadora.id}
+      title={secadora.title}
+      imageUrl={secadora.imageUrl}
+      regulador={secadora.regulador}
+      incrementarCantidad={incrementarCantidad}
+    />
+  ));
 
-  return (
-    <div className="flex flex-wrap">
-      {photoListItems}
-    </div>
-  );
+  return <div className="flex flex-wrap">{photoListItems}</div>;
 };
 
 export default SecadorasPage;
