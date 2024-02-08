@@ -1,13 +1,11 @@
 // page.tsx
-import { AppProviders } from '@/components/AppProviders';
-import React from 'react';
 
-function Home({ children }: { children: React.ReactNode }) {
+export default function Page() {
   return (
-    <AppProviders>
-      {children}
-    </AppProviders>
-  );
+    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
+ 
+      </div>
+    </main>
+  )
 }
-
-export default Home;

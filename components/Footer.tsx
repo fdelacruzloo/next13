@@ -1,32 +1,33 @@
 // Footer.tsx
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Button from "./Button";
 
-type FooterProps = {
-  containers: string[];
-  setVisibleContainer: (name: string) => void;
-};
+interface FooterProps {
+  isHighPressureClicked: boolean;
+  isLowPressureClicked: boolean;
+  setHighPressureClicked: (value: boolean) => void;
+  setLowPressureClicked: (value: boolean) => void;
+}
 
-const Footer: React.FC<FooterProps> = ({ containers, setVisibleContainer }) => {
-  const [activeContainer, setActiveContainer] = useState("");
-
-  const handleClick = (name: string) => {
-    setVisibleContainer(name);
-    setActiveContainer(name);
-  };
-
+const Footer: React.FC<FooterProps> = ({ isHighPressureClicked, isLowPressureClicked, setHighPressureClicked, setLowPressureClicked }) => {
   return (
-    <div className="py-5 flex justify-center space-x-4 fixed inset-x-0 bottom-0 bg-white">
-      {containers.map((name) => (
+    <footer className="py-5 flex flex-col items-center justify-center fixed w-full bottom-0 bg-white z-50">
+      
+      <div className="flex space-x-1">
         <Button
-          key={name}
-          name={name}
-          onClick={() => handleClick(name)}
-          className={name === activeContainer && ["Cocinas", "Freidoras", "Hornos", "Secadoras", "Otros"].includes(name) ? 'bg-gray-400' : ''}
+          name="Alta Presión"
+          onClick={() => setHighPressureClicked(!isHighPressureClicked)}
+          className={isHighPressureClicked ? "bg-gray-400" : ""}
         />
-      ))}
-    </div>
+        <Button
+          name="Baja Presión"
+          onClick={() => setLowPressureClicked(!isLowPressureClicked)}
+          className={isLowPressureClicked ? "bg-gray-400" : ""}
+        />
+      </div>
+      
+    </footer>
   );
 };
 

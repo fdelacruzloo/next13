@@ -1,21 +1,11 @@
-import React from 'react';
-import PhotoList from "@/components/Photos"; // Asegúrate de importar PhotoList desde su ubicación correcta
+// pages/api/cocinas.js
 
-type Cocina = {
-  id: string;
-  title: string;
-  imageUrl: string;
-  cantidad: number;
-  regulador: boolean;
-};
+export default function handler(req, res) {
+  // Tu código para manejar la solicitud aquí
+  // Por ejemplo, podrías devolver un array de "cocinas" como este:
+  const cocinas = [
 
-interface CocinasComponentProps {
-  isHighPressureClicked: boolean;
-  isLowPressureClicked: boolean;
-}
-
-const COCINAS: Cocina[] = [
-
+  //Cocinas
   {
     id: "p1",
     title: "COCINA DOMESTICA, 4Q+HOR, REGULADOR:SI, 23 mbar, 11.05 KW",
@@ -120,34 +110,8 @@ const COCINAS: Cocina[] = [
     cantidad: 0,
     regulador: false, // Valor para el nuevo campo
   },
+   
+  ];
 
-];
-
-const CocinasComponent: React.FC<CocinasComponentProps> = ({ isHighPressureClicked, isLowPressureClicked }) => {
-  // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
-  const filteredCocinas = COCINAS.filter(cocina => {
-    if (isHighPressureClicked && isLowPressureClicked) {
-      return true; // Mostrar todos los objetos
-    } else if (isHighPressureClicked) {
-      return !cocina.regulador; // Mostrar solo los objetos con regulador=false
-    } else if (isLowPressureClicked) {
-      return cocina.regulador; // Mostrar solo los objetos con regulador=true
-    } else {
-      return false; // No mostrar ningún objeto
-    }
-  });
-
-  // Ahora puedes mapear tus datos filtrados a componentes PhotoList
-  const photoListItems = filteredCocinas.map(cocina => 
-    <PhotoList key={cocina.id} id={cocina.id} title={cocina.title} imageUrl={cocina.imageUrl} regulador={cocina.regulador} />
-  );
-
-  // Y luego renderizarlos en tu JSX
-  return (
-    <div className="flex flex-wrap">
-      {photoListItems}
-    </div>
-  );
-};
-
-export default CocinasComponent;
+  res.status(200).json(cocinas);
+}
