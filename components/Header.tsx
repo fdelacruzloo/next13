@@ -2,6 +2,9 @@
 "use client";
 import React, { useState } from "react";
 import Button from "./Button";
+{/*
+  import { Link } from "react-router-dom";
+*/}
 
 type HeaderProps = {
   containers: string[];
@@ -17,23 +20,49 @@ const Header: React.FC<HeaderProps> = ({ containers, setVisibleContainer }) => {
   };
 
   return (
-<div className="py-1 flex flex-col items-center w-full justify-center space-x-4 fixed inset-x-0 top-0 bg-white z-50">
-  <div>
-    <h1 className="text-2xl text-center mb-1 mt-0 text-black">Gasodomésticos</h1>
-  </div>
-  <div className="flex flex-row space-x-5 justify-center">
-    {containers.map((name) => (
-      <Button
-        key={name}
-        name={name}
-        onClick={() => handleClick(name)}
-        className={name === activeContainer && ["Cocinas", "Freidoras", "Hornos", "Secadoras", "Otros"].includes(name) ? 'bg-gray-400' : ''}
-      />
-    ))}
-  </div>
-</div>
+    <div className="py-1 flex flex-col w-full justify-center space-x-4 fixed inset-x-0 top-0 bg-white z-50">
+      <div className="flex flex-col space-y-1">
+  
+        {/* 
+                <div className="flex flex-row space-x-2 justify-center mb-2">
+                    <Link to="/app/productos" className="btn">
+                      Productos
+                    </Link>
+                    <Link to="app/cotizacion" className="btn">
+                      Cotización
+                    </Link>
+                    <Link to="app/cliente" className="btn">
+                      Cliente
+                    </Link>
+                    <Link to="app/manuales" className="btn">
+                      Inicio
+                    </Link>
+                  </div>
+        */}
 
-
+        <div className="flex flex-row space-x-1 justify-center mb-2">
+          {containers.map((name) => (
+            <Button
+              key={name}
+              name={name}
+              onClick={() => handleClick(name)}
+              className={
+                name === activeContainer &&
+                [
+                  "Cocinas",
+                  "Freidoras",
+                  "Hornos",
+                  "Secadoras",
+                  "Otros",
+                ].includes(name)
+                  ? "bg-gray-400"
+                  : ""
+              }
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
