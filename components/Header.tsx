@@ -2,9 +2,6 @@
 "use client";
 import React, { useState } from "react";
 import Button from "./Button";
-{/*
-  import { Link } from "react-router-dom";
-*/}
 
 type HeaderProps = {
   containers: string[];
@@ -24,7 +21,7 @@ const Header: React.FC<HeaderProps> = ({ containers, setVisibleContainer }) => {
   <div>
     <h1 className="text-2xl text-center mb-1 mt-0 text-black">Gasodomésticos</h1>
   </div>
-  <div className="flex flex-row space-x-1 justify-center">
+  <div className="flex flex-row space-x-5 justify-center">
     {containers.map((name) => (
       <Button
         key={name}
