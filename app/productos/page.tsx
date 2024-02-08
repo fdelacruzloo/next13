@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const containers = ["Cocinas", "Freidoras", "Hornos", "Secadoras", "Otros"];
 
