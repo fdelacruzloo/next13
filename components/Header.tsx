@@ -17,10 +17,10 @@ const Header: React.FC<HeaderProps> = ({ containers, setVisibleContainer }) => {
   };
 
   return (
-<div className="py-1 flex flex-col items-center w-full justify-center space-x-4 fixed inset-x-0 top-0 bg-white z-50">
-  <div>
-    <h1 className="text-2xl text-center mb-1 mt-0 text-black">Gasodomésticos</h1>
-  </div>
+<div className="py-1 flex flex-col items-center w-full justify-center space-x-4 fixed inset-x-0 bg-white z-50"> {/* top-0 */}
+  {/* <div>
+      <h1 className="text-2xl text-center mb-1 mt-0 text-black">Gasodomésticos</h1>
+    </div> */}
   <div className="flex flex-row space-x-1 justify-center">
     {containers.map((name) => (
       <Button

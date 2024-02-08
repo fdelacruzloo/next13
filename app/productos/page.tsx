@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Container from "@/components/Container";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { SiteHeader } from "@/components/SiteHeader";
 
 const containers = ["Cocinas", "Freidoras", "Hornos", "Secadoras", "Otros"];
 
@@ -12,8 +12,11 @@ export default function Page() {
 
   return (
     <main className="container flex flex-col items-center justify-center min-h-screen pb-20">
-      <div className="flex-grow w-full flex flex-col items-center"> {/* Agregado padding-top */}
-        <Header
+
+        <SiteHeader />
+
+      <div className="flex-grow w-full flex flex-col items-center">
+         <Header
           containers={containers}
           setVisibleContainer={setVisibleContainer}
         />
