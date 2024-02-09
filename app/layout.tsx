@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={
-          "min-h-screen bg-background font-sans antialiased" +
+          "min-h-screen bg-background font-sans antialiased flex items-center justify-center" +
           inter.className
         }
       >

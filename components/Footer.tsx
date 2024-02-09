@@ -12,7 +12,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ isHighPressureClicked, isLowPressureClicked, setHighPressureClicked, setLowPressureClicked }) => {
   return (
-    <footer className="py-5 flex flex-col items-center justify-center fixed w-full bottom-0 bg-white z-50">
+    <footer className="flex flex-col items-center justify-center fixed w-full bottom-0 bg-white">
       
       <div className="flex space-x-1">
         <Button

@@ -10,7 +10,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ name, onClick, className }) => (
   <button
-  className={`border border-gray-600 rounded ${className}`} // Añade la clase 'border'
+  className={`border border-gray-600 rounded p-0.5 ${className}`} // Añade la clase 'border'
     type="button"
     onClick={() => onClick(name)}
   >
