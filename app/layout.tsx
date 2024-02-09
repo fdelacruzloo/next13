@@ -24,7 +24,7 @@ export default function RootLayout({
           inter.className
         }
       >
-        <AppProviders>
+        <AppProviders>       
           {children}
         </AppProviders>
       </body>

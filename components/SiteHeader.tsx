@@ -12,22 +12,26 @@ export function SiteHeader() {
         <div
           className={classNames(
             "flex items-center",
-            pathname === "/manuales" && "rounded bg-gray-400"
+            pathname === "/cliente" && "rounded bg-gray-400"
           )}
         >
-        <Link href="/manuales">
-          <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">Cliente</span>
-        </Link>
-        </div>        
+          <Link href="/cliente">
+            <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">
+              Cliente
+            </span>
+          </Link>
+        </div>
         <div
           className={classNames(
             "flex items-center",
             pathname === "/productos" && "rounded bg-gray-400"
           )}
-        >         
-        <Link href="/productos">
-          <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">Productos</span>
-        </Link>
+        >
+          <Link href="/productos">
+            <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">
+              Productos
+            </span>
+          </Link>
         </div>
         <div
           className={classNames(
@@ -35,19 +39,22 @@ export function SiteHeader() {
             pathname === "/cotizacion" && "rounded bg-gray-400"
           )}
         >
-        <Link href="/cotizacion">
-          <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">Cotización</span>
-        </Link>
+          <Link href="/cotizacion">
+            <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">
+              Cotización
+            </span>
+          </Link>
         </div>
-        <div
-          className={classNames(
-            "flex items-center",
-            pathname === "/manuales" && "rounded bg-gray-400"
-          )}
-        >
-        <Link href="/manuales">
-          <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">Retornar</span>
-        </Link>
+        <div>
+          <a
+            href="https://master.d17h195czic561.amplifyapp.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">
+              Retornar
+            </span>
+          </a>
         </div>
       </nav>
     </header>
