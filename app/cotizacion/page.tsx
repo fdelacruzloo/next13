@@ -1,18 +1,15 @@
-// page.tsx
+// cliente/cotizacion.tsx
 "use client";
 import { NavBar } from "@/components/NavBar";
 import React, { useState } from "react";
 
-const containers = ["Cocinas", "Freidoras", "Hornos", "Secadoras", "Otros"];
-
 export default function Page() {
-  const [visibleContainer, setVisibleContainer] = useState(containers[0]);
 
   return (
-    <main className="container flex flex-col items-center justify-center min-h-screen pb-20">
+    <main className="container flex flex-col items-center justify-center min-h-screen font-sans text-sm">
       <div className="flex-grow w-full flex flex-col items-center">
         <NavBar />
-        <h1>Hola cotización</h1>
+        <h1>Hola cotizacion</h1>
       </div>
     </main>
   );

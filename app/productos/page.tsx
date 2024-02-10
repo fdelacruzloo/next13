@@ -1,4 +1,4 @@
-// page.tsx
+// productos/page.tsx
 "use client";
 import React, { useState } from "react";
 import Container from "@/components/Container";
