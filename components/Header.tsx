@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ containers, setVisibleContainer }) => {
   };
 
   return (
-<div className="py-1 flex flex-col items-center w-full justify-center space-x-4 fixed inset-x-0 bg-white z-50">
+<div className="py-1 flex flex-col items-center w-full justify-center bg-white">{/*py-1 flex flex-col items-center w-full justify-center fixed inset-x-0 bg-white z-100*/}
   <div className="flex flex-row space-x-1 justify-center">
     {containers.map((name) => (
       <Button

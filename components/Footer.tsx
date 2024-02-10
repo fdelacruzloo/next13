@@ -10,10 +10,16 @@ interface FooterProps {
   setLowPressureClicked: (value: boolean) => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ isHighPressureClicked, isLowPressureClicked, setHighPressureClicked, setLowPressureClicked }) => {
+const Footer: React.FC<FooterProps> = ({
+  isHighPressureClicked,
+  isLowPressureClicked,
+  setHighPressureClicked,
+  setLowPressureClicked,
+}) => {
   return (
-    <footer className="flex flex-col items-center justify-center fixed w-full bottom-0 bg-white">
-      
+    <footer className="flex flex-col items-center justify-center botton-10 bg-white">
+      {/*flex flex-col items-center justify-center fixed w-full bottom-0 bg-white z-100*/}
+
       <div className="flex space-x-1">
         <Button
           name="Alta Presión"
@@ -26,7 +32,6 @@ const Footer: React.FC<FooterProps> = ({ isHighPressureClicked, isLowPressureCli
           className={isLowPressureClicked ? "bg-gray-400" : ""}
         />
       </div>
-      
     </footer>
   );
 };

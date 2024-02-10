@@ -12,12 +12,14 @@ export default function Page() {
 
   return (
     <main className="container flex flex-col items-center justify-center min-h-screen font-sans text-sm">
-      <NavBar />
-      <div className="flex-grow w-full flex flex-col items-center">     
-        <Header
-          containers={containers}
-          setVisibleContainer={setVisibleContainer}
-        />
+      <div className="flex-grow w-full flex flex-col items-center">
+        <div className="fixed w-full bg-white z-50">
+          <NavBar />
+          <Header
+            containers={containers}
+            setVisibleContainer={setVisibleContainer}
+          />
+        </div>
         <div>
           {containers.map((name) => (
             <Container

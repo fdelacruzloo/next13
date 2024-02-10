@@ -8,17 +8,21 @@ const CocinasPage: React.FC = () => {
   const [isLowPressureClicked, setLowPressureClicked] = useState(false);
 
   return (
-    <div className="flex-grow w-full flex flex-col items-center">
-      <Footer
-        isHighPressureClicked={isHighPressureClicked}
-        isLowPressureClicked={isLowPressureClicked}
-        setHighPressureClicked={setHighPressureClicked}
-        setLowPressureClicked={setLowPressureClicked}
-      />
-      <div className="flex flex-col items-center mt-10 text-2xl py-5 space-x-4">
-        <CocinasComponent
+    <div className="flex items-center justify-center"> 
+      <div className="flex-grow w-full flex flex-col items-center justify-between"> 
+        <div className="flex flex-col items-center mt-10 text-2xl py-5 space-x-4">
+          <CocinasComponent
+            isHighPressureClicked={isHighPressureClicked}
+            isLowPressureClicked={isLowPressureClicked}
+          />
+        </div>
+      </div>
+      <div className="fixed w-full bg-white bottom-0 z-50 ">
+        <Footer
           isHighPressureClicked={isHighPressureClicked}
           isLowPressureClicked={isLowPressureClicked}
+          setHighPressureClicked={setHighPressureClicked}
+          setLowPressureClicked={setLowPressureClicked}
         />
       </div>
     </div>

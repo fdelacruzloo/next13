@@ -58,7 +58,7 @@ const PhotoList: React.FC<PhotoListProps> = ({
   incrementarCantidad,
 }) => (
   <div key={id} className="w-1/2 pr-2 flex items-center pt-5">
-    <div className="border items-center flex flex-col justify-center w-full mb-2">
+    <div className="border items-center flex flex-col justify-center w-full mb-2">{/*border items-center flex flex-col justify-center w-full mb-2*/}
 
         <Image
           src={imageUrl}
