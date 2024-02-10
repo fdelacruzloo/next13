@@ -33,7 +33,7 @@ const Counter: React.FC<CounterProps> = ({
   }, [count, id]);
 
   return (
-    <div className=" flex items-center justify-center space-x-2 ">
+    <div className=" flex items-center justify-center space-x-2 h-6">
       <button
         className=" border rounded"
         type="button"

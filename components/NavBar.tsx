@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 export function NavBar() {
   const pathname = usePathname();
   return (
-    <nav className="sticky top-0 w-full bg-white h-14 flex justify-center items-center gap-x-2 p-0.5">
+    <nav className="sticky top-0 w-full bg-white h-10 flex justify-center items-center p-0.5 space-x-1">
       <div
         className={classNames(
           "flex items-center",
@@ -15,7 +15,7 @@ export function NavBar() {
         )}
       >
         <Link href="/cliente">
-          <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">
+          <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
             Cliente
           </span>
         </Link>
@@ -27,7 +27,7 @@ export function NavBar() {
         )}
       >
         <Link href="/productos">
-          <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">
+          <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
             Productos
           </span>
         </Link>
@@ -39,7 +39,7 @@ export function NavBar() {
         )}
       >
         <Link href="/cotizacion">
-          <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">
+          <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
             Cotización
           </span>
         </Link>
@@ -50,7 +50,7 @@ export function NavBar() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <span className="px-1 py-1 text-black border border-gray-500 rounded inline-block">
+          <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
             Retornar
           </span>
         </a>
