@@ -135,7 +135,6 @@ const CocinasComponent: React.FC<CocinasComponentProps> = ({
     );
   };
 
-
   // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
   const filteredCocinas = cocinas.filter((cocina) => {
     if (isHighPressureClicked && isLowPressureClicked) {

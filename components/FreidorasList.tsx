@@ -47,7 +47,7 @@ const FreidorasComponent: React.FC<FreidorasComponentProps> = ({
       )
     );
   };
-
+  
   // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
   const filteredFreidoras = freidoras.filter((freidora) => {
     if (isHighPressureClicked && isLowPressureClicked) {
@@ -60,7 +60,7 @@ const FreidorasComponent: React.FC<FreidorasComponentProps> = ({
       return false; // No mostrar ningún objeto
     }
   });
-
+  
   // Ahora puedes mapear tus datos filtrados a componentes PhotoList
   const photoListItems = filteredFreidoras.map((freidora) => (
     <PhotoList
@@ -69,12 +69,14 @@ const FreidorasComponent: React.FC<FreidorasComponentProps> = ({
       title={freidora.title}
       imageUrl={freidora.imageUrl}
       regulador={freidora.regulador}
-      incrementarCantidad={incrementarCantidad}
+      incrementarCantidad={() => incrementarCantidad(freidora.id)}
+      cantidad={freidora.cantidad}
+      setCantidad={(id, cantidad) => {}}
     />
   ));
-
+  
   // Y luego renderizarlos en tu JSX
   return <div className="flex flex-wrap">{photoListItems}</div>;
-};
-
-export default FreidorasComponent;
+  };
+  
+  export default FreidorasComponent;

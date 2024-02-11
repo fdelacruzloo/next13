@@ -47,7 +47,8 @@ const SecadorasPage: React.FC<SecadorasPageProps> = ({ isHighPressureClicked, is
       )
     );
   };
-
+  
+  // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
   const filteredSecadoras = secadoras.filter((secadora) => {
     if (isHighPressureClicked && isLowPressureClicked) {
       return true; // Mostrar todos los objetos
@@ -59,7 +60,8 @@ const SecadorasPage: React.FC<SecadorasPageProps> = ({ isHighPressureClicked, is
       return false; // No mostrar ningún objeto
     }
   });
-
+  
+  // Ahora puedes mapear tus datos filtrados a componentes PhotoList
   const photoListItems = filteredSecadoras.map((secadora) => (
     <PhotoList
       key={secadora.id}
@@ -67,11 +69,14 @@ const SecadorasPage: React.FC<SecadorasPageProps> = ({ isHighPressureClicked, is
       title={secadora.title}
       imageUrl={secadora.imageUrl}
       regulador={secadora.regulador}
-      incrementarCantidad={incrementarCantidad}
+      incrementarCantidad={() => incrementarCantidad(secadora.id)}
+      cantidad={secadora.cantidad}
+      setCantidad={(id, cantidad) => {}}
     />
   ));
-
+  
+  // Y luego renderizarlos en tu JSX
   return <div className="flex flex-wrap">{photoListItems}</div>;
-};
-
-export default SecadorasPage;
+  };
+  
+  export default SecadorasPage;

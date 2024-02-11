@@ -126,7 +126,7 @@ const OtrosComponent: React.FC<OtrosComponentProps> = ({ isHighPressureClicked, 
       )
     );
   };
-
+  
   // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
   const filteredOtros = otros.filter((otro) => {
     if (isHighPressureClicked && isLowPressureClicked) {
@@ -139,7 +139,7 @@ const OtrosComponent: React.FC<OtrosComponentProps> = ({ isHighPressureClicked, 
       return false; // No mostrar ningún objeto
     }
   });
-
+  
   // Ahora puedes mapear tus datos filtrados a componentes PhotoList
   const photoListItems = filteredOtros.map((otro) => (
     <PhotoList
@@ -148,12 +148,14 @@ const OtrosComponent: React.FC<OtrosComponentProps> = ({ isHighPressureClicked, 
       title={otro.title}
       imageUrl={otro.imageUrl}
       regulador={otro.regulador}
-      incrementarCantidad={incrementarCantidad}
+      incrementarCantidad={() => incrementarCantidad(otro.id)}
+      cantidad={otro.cantidad}
+      setCantidad={(id, cantidad) => {}}
     />
   ));
-
+  
   // Y luego renderizarlos en tu JSX
   return <div className="flex flex-wrap">{photoListItems}</div>;
-};
-
-export default OtrosComponent;
+  };
+  
+  export default OtrosComponent;

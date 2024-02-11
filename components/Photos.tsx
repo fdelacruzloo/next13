@@ -2,7 +2,7 @@
 "use client";
 import React, { useEffect } from "react"; // Asegúrate de importar useEffect
 import Image from "next/image";
-import  data  from '@/app/productos/data.js';
+import { getData } from "@/app/productos/data.js";
 
 interface PhotoListProps {
   id: string;
@@ -12,7 +12,6 @@ interface PhotoListProps {
   incrementarCantidad: (id: string) => void;
   cantidad: number;
   setCantidad: (id: string, cantidad: number) => void;
-
 }
 interface CounterProps {
   children?: React.ReactNode;
@@ -31,17 +30,23 @@ const Counter: React.FC<CounterProps> = ({
 }) => {
   // Recupera la cantidad de localStorage cuando se carga la página
   useEffect(() => {
-    const storedCantidad = data.find((item: { id: string; cantidad: number }) => item.id === id)?.cantidad;
+    const storedCantidad = localStorage.getItem(id);
     if (storedCantidad) {
       setCantidad(id, Number(storedCantidad));
     }
   }, [id, setCantidad]);
 
   // Actualiza localStorage cada vez que cantidad cambia
-  useEffect(() => {      
+  useEffect(() => {
     localStorage.setItem(id, String(cantidad));
-    console.log(`ID: ${id}, Cantidad: ${cantidad}`); // Imprime el id y la cantidad
-    }, [cantidad, id]);
+    //console.log(`ID: ${id}, Cantidad: ${cantidad}`); // Imprime el id y la cantidad
+    getData();
+    // Imprime las variables kw1 a kw38
+    for (let i = 1; i <= 38; i++) {
+      const kw = localStorage.getItem(`kw${i}`);
+      console.log(`KW${i}: ${kw}`);
+    }
+  }, [cantidad, id]);
 
   return (
     <div className=" flex items-center justify-center space-x-2 h-6">
@@ -49,7 +54,9 @@ const Counter: React.FC<CounterProps> = ({
         className=" border rounded"
         type="button"
         onClick={() => {
-          {/*setCantidad(id, cantidad + 1);*/}
+          {
+            /*setCantidad(id, cantidad + 1);*/
+          }
           incrementarCantidad(id);
         }}
       >
