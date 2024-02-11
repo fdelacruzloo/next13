@@ -1,5 +1,5 @@
 // CocinasList.tsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import PhotoList from "@/components/Photos"; // Asegúrate de importar PhotoList desde su ubicación correcta
 
 type Cocina = {
@@ -15,9 +15,11 @@ interface CocinasComponentProps {
   isLowPressureClicked: boolean;
 }
 
-const CocinasComponent: React.FC<CocinasComponentProps> = ({ isHighPressureClicked, isLowPressureClicked }) => {
+const CocinasComponent: React.FC<CocinasComponentProps> = ({
+  isHighPressureClicked,
+  isLowPressureClicked,
+}) => {
   const [cocinas, setCocinas] = useState<Cocina[]>([
-
     {
       id: "p1",
       title: "COCINA DOMESTICA, 4Q+HOR, REGULADOR:SI, 23 mbar, 11.05 KW",
@@ -122,17 +124,20 @@ const CocinasComponent: React.FC<CocinasComponentProps> = ({ isHighPressureClick
       cantidad: 0,
       regulador: false, // Valor para el nuevo campo
     },
-
   ]);
 
+  // CODIGO ORIGINAL OK
   const incrementarCantidad = (id: string) => {
-    setCocinas(cocinas.map(cocina => 
-      cocina.id === id ? { ...cocina, cantidad: cocina.cantidad + 1 } : cocina
-    ));
+    setCocinas(
+      cocinas.map((cocina) =>
+        cocina.id === id ? { ...cocina, cantidad: cocina.cantidad + 1 } : cocina
+      )
+    );
   };
 
+
   // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
-  const filteredCocinas = cocinas.filter(cocina => {
+  const filteredCocinas = cocinas.filter((cocina) => {
     if (isHighPressureClicked && isLowPressureClicked) {
       return true; // Mostrar todos los objetos
     } else if (isHighPressureClicked) {
@@ -145,16 +150,21 @@ const CocinasComponent: React.FC<CocinasComponentProps> = ({ isHighPressureClick
   });
 
   // Ahora puedes mapear tus datos filtrados a componentes PhotoList
-  const photoListItems = filteredCocinas.map(cocina => 
-    <PhotoList key={cocina.id} id={cocina.id} title={cocina.title} imageUrl={cocina.imageUrl} regulador={cocina.regulador} incrementarCantidad={incrementarCantidad} />
-  );
+  const photoListItems = filteredCocinas.map((cocina) => (
+    <PhotoList
+      key={cocina.id}
+      id={cocina.id}
+      title={cocina.title}
+      imageUrl={cocina.imageUrl}
+      regulador={cocina.regulador}
+      incrementarCantidad={() => incrementarCantidad(cocina.id)}
+      cantidad={cocina.cantidad}
+      setCantidad={(id, cantidad) => {}}
+    />
+  ));
 
   // Y luego renderizarlos en tu JSX
-  return (
-    <div className="flex flex-wrap">
-      {photoListItems}
-    </div>
-  );
+  return <div className="flex flex-wrap">{photoListItems}</div>;
 };
 
 export default CocinasComponent;
