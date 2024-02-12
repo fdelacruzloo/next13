@@ -1,6 +1,7 @@
 //FreidorasList.tsx
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import PhotoList from "@/components/Photos"; // Asegúrate de importar PhotoList desde su ubicación correcta
+import { getData } from "@/app/productos/data.js";
 
 type Freidora = {
   id: string;
@@ -38,45 +39,72 @@ const FreidorasComponent: React.FC<FreidorasComponentProps> = ({
     },
   ]);
 
-  const incrementarCantidad = (id: string) => {
-    setFreidoras(
-      freidoras.map((freidora) =>
-        freidora.id === id
-          ? { ...freidora, cantidad: freidora.cantidad + 1 }
-          : freidora
-      )
-    );
-  };
-  
-  // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
-  const filteredFreidoras = freidoras.filter((freidora) => {
-    if (isHighPressureClicked && isLowPressureClicked) {
-      return true; // Mostrar todos los objetos
-    } else if (isHighPressureClicked) {
-      return !freidora.regulador; // Mostrar solo los objetos con regulador=false
-    } else if (isLowPressureClicked) {
-      return freidora.regulador; // Mostrar solo los objetos con regulador=true
-    } else {
-      return false; // No mostrar ningún objeto
-    }
-  });
-  
-  // Ahora puedes mapear tus datos filtrados a componentes PhotoList
-  const photoListItems = filteredFreidoras.map((freidora) => (
-    <PhotoList
-      key={freidora.id}
-      id={freidora.id}
-      title={freidora.title}
-      imageUrl={freidora.imageUrl}
-      regulador={freidora.regulador}
-      incrementarCantidad={() => incrementarCantidad(freidora.id)}
-      cantidad={freidora.cantidad}
-      setCantidad={(id, cantidad) => {}}
-    />
-  ));
-  
-  // Y luego renderizarlos en tu JSX
-  return <div className="flex flex-wrap">{photoListItems}</div>;
-  };
-  
-  export default FreidorasComponent;
+  // CODIGO MODIFICADO
+const incrementarCantidad = (id: string) => {
+  setFreidoras(
+    freidoras.map((freidora) => {
+      if (freidora.id === id) {
+        const newCantidad = freidora.cantidad + 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...freidora, cantidad: newCantidad };
+      } else {
+        return freidora;
+      }
+    })
+  );
+};
+
+useEffect(() => {
+  // Recupera la cantidad de localStorage cuando se carga la página
+  setFreidoras((prevFreidoras) =>
+    prevFreidoras.map((freidora) => {
+      const storedCantidad = localStorage.getItem(freidora.id);
+      if (storedCantidad) {
+        return { ...freidora, cantidad: Number(storedCantidad) };
+      } else {
+        return freidora;
+      }
+    })
+  );
+}, []); // Dependencias vacías para que se ejecute solo una vez al montar el componente
+
+// Resto del código...
+
+// Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
+const filteredFreidoras = freidoras.filter((freidora) => {
+  if (isHighPressureClicked && isLowPressureClicked) {
+    return true; // Mostrar todos los objetos
+  } else if (isHighPressureClicked) {
+    return !freidora.regulador; // Mostrar solo los objetos con regulador=false
+  } else if (isLowPressureClicked) {
+    return freidora.regulador; // Mostrar solo los objetos con regulador=true
+  } else {
+    return false; // No mostrar ningún objeto
+  }
+});
+
+// Ahora puedes mapear tus datos filtrados a componentes PhotoList
+const photoListItems = filteredFreidoras.map((freidora) => (
+  <PhotoList
+    key={freidora.id}
+    id={freidora.id}
+    title={freidora.title}
+    imageUrl={freidora.imageUrl}
+    regulador={freidora.regulador}
+    incrementarCantidad={() => incrementarCantidad(freidora.id)}
+    cantidad={freidora.cantidad}
+    setCantidad={(id, cantidad) => {}}
+  />
+));
+
+// Y luego renderizarlos en tu JSX
+return <div className="flex flex-wrap">{photoListItems}</div>;
+};
+
+export default FreidorasComponent;

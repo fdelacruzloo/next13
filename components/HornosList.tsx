@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+//HornosList.tsx
+import React, {useEffect, useState } from "react";
 import PhotoList from "@/components/Photos";
+import { getData } from "@/app/productos/data.js";
 
 type Horno = {
   id: string;
@@ -92,45 +94,72 @@ const HornosComponent: React.FC<HornosComponentProps> = ({ isHighPressureClicked
      
   ]);
 
-  const incrementarCantidad = (id: string) => {
-    setHornos(
-      hornos.map((horno) =>
-        horno.id === id
-          ? { ...horno, cantidad: horno.cantidad + 1 }
-          : horno
-      )
-    );
-  };
-  
-  // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
-  const filteredHornos = hornos.filter((horno) => {
-    if (isHighPressureClicked && isLowPressureClicked) {
-      return true; // Mostrar todos los objetos
-    } else if (isHighPressureClicked) {
-      return !horno.regulador; // Mostrar solo los objetos con regulador=false
-    } else if (isLowPressureClicked) {
-      return horno.regulador; // Mostrar solo los objetos con regulador=true
-    } else {
-      return false; // No mostrar ningún objeto
-    }
-  });
-  
-  // Ahora puedes mapear tus datos filtrados a componentes PhotoList
-  const photoListItems = filteredHornos.map((horno) => (
-    <PhotoList
-      key={horno.id}
-      id={horno.id}
-      title={horno.title}
-      imageUrl={horno.imageUrl}
-      regulador={horno.regulador}
-      incrementarCantidad={() => incrementarCantidad(horno.id)}
-      cantidad={horno.cantidad}
-      setCantidad={(id, cantidad) => {}}
-    />
-  ));
-  
-  // Y luego renderizarlos en tu JSX
-  return <div className="flex flex-wrap">{photoListItems}</div>;
-  };
-  
-  export default HornosComponent;
+// CODIGO MODIFICADO
+const incrementarCantidad = (id: string) => {
+  setHornos(
+    hornos.map((horno) => {
+      if (horno.id === id) {
+        const newCantidad = horno.cantidad + 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...horno, cantidad: newCantidad };
+      } else {
+        return horno;
+      }
+    })
+  );
+};
+
+useEffect(() => {
+  // Recupera la cantidad de localStorage cuando se carga la página
+  setHornos((prevHornos) =>
+    prevHornos.map((horno) => {
+      const storedCantidad = localStorage.getItem(horno.id);
+      if (storedCantidad) {
+        return { ...horno, cantidad: Number(storedCantidad) };
+      } else {
+        return horno;
+      }
+    })
+  );
+}, []); // Dependencias vacías para que se ejecute solo una vez al montar el componente
+
+// Resto del código...
+
+// Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
+const filteredHornos = hornos.filter((horno) => {
+  if (isHighPressureClicked && isLowPressureClicked) {
+    return true; // Mostrar todos los objetos
+  } else if (isHighPressureClicked) {
+    return !horno.regulador; // Mostrar solo los objetos con regulador=false
+  } else if (isLowPressureClicked) {
+    return horno.regulador; // Mostrar solo los objetos con regulador=true
+  } else {
+    return false; // No mostrar ningún objeto
+  }
+});
+
+// Ahora puedes mapear tus datos filtrados a componentes PhotoList
+const photoListItems = filteredHornos.map((horno) => (
+  <PhotoList
+    key={horno.id}
+    id={horno.id}
+    title={horno.title}
+    imageUrl={horno.imageUrl}
+    regulador={horno.regulador}
+    incrementarCantidad={() => incrementarCantidad(horno.id)}
+    cantidad={horno.cantidad}
+    setCantidad={(id, cantidad) => {}}
+  />
+));
+
+// Y luego renderizarlos en tu JSX
+return <div className="flex flex-wrap">{photoListItems}</div>;
+};
+
+export default HornosComponent;

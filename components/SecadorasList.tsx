@@ -1,7 +1,8 @@
 "use client";
 "use client";
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import PhotoList from "@/components/Photos";
+import { getData } from "@/app/productos/data.js";
 
 type Secadora = {
   id: string;
@@ -38,45 +39,72 @@ const SecadorasPage: React.FC<SecadorasPageProps> = ({ isHighPressureClicked, is
 
   ]);
 
-  const incrementarCantidad = (id: string) => {
-    setSecadoras(
-      secadoras.map((secadora) =>
-        secadora.id === id
-          ? { ...secadora, cantidad: secadora.cantidad + 1 }
-          : secadora
-      )
-    );
-  };
-  
-  // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
-  const filteredSecadoras = secadoras.filter((secadora) => {
-    if (isHighPressureClicked && isLowPressureClicked) {
-      return true; // Mostrar todos los objetos
-    } else if (isHighPressureClicked) {
-      return !secadora.regulador; // Mostrar solo los objetos con regulador=false
-    } else if (isLowPressureClicked) {
-      return secadora.regulador; // Mostrar solo los objetos con regulador=true
-    } else {
-      return false; // No mostrar ningún objeto
-    }
-  });
-  
-  // Ahora puedes mapear tus datos filtrados a componentes PhotoList
-  const photoListItems = filteredSecadoras.map((secadora) => (
-    <PhotoList
-      key={secadora.id}
-      id={secadora.id}
-      title={secadora.title}
-      imageUrl={secadora.imageUrl}
-      regulador={secadora.regulador}
-      incrementarCantidad={() => incrementarCantidad(secadora.id)}
-      cantidad={secadora.cantidad}
-      setCantidad={(id, cantidad) => {}}
-    />
-  ));
-  
-  // Y luego renderizarlos en tu JSX
-  return <div className="flex flex-wrap">{photoListItems}</div>;
-  };
-  
-  export default SecadorasPage;
+// CODIGO MODIFICADO
+const incrementarCantidad = (id: string) => {
+  setSecadoras(
+    secadoras.map((secadora) => {
+      if (secadora.id === id) {
+        const newCantidad = secadora.cantidad + 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...secadora, cantidad: newCantidad };
+      } else {
+        return secadora;
+      }
+    })
+  );
+};
+
+useEffect(() => {
+  // Recupera la cantidad de localStorage cuando se carga la página
+  setSecadoras((prevSecadoras) =>
+    prevSecadoras.map((secadora) => {
+      const storedCantidad = localStorage.getItem(secadora.id);
+      if (storedCantidad) {
+        return { ...secadora, cantidad: Number(storedCantidad) };
+      } else {
+        return secadora;
+      }
+    })
+  );
+}, []); // Dependencias vacías para que se ejecute solo una vez al montar el componente
+
+// Resto del código...
+
+// Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
+const filteredSecadoras = secadoras.filter((secadora) => {
+  if (isHighPressureClicked && isLowPressureClicked) {
+    return true; // Mostrar todos los objetos
+  } else if (isHighPressureClicked) {
+    return !secadora.regulador; // Mostrar solo los objetos con regulador=false
+  } else if (isLowPressureClicked) {
+    return secadora.regulador; // Mostrar solo los objetos con regulador=true
+  } else {
+    return false; // No mostrar ningún objeto
+  }
+});
+
+// Ahora puedes mapear tus datos filtrados a componentes PhotoList
+const photoListItems = filteredSecadoras.map((secadora) => (
+  <PhotoList
+    key={secadora.id}
+    id={secadora.id}
+    title={secadora.title}
+    imageUrl={secadora.imageUrl}
+    regulador={secadora.regulador}
+    incrementarCantidad={() => incrementarCantidad(secadora.id)}
+    cantidad={secadora.cantidad}
+    setCantidad={(id, cantidad) => {}}
+  />
+));
+
+// Y luego renderizarlos en tu JSX
+return <div className="flex flex-wrap">{photoListItems}</div>;
+};
+
+export default SecadorasPage;

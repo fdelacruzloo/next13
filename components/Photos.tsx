@@ -28,7 +28,7 @@ const Counter: React.FC<CounterProps> = ({
   cantidad,
   setCantidad,
 }) => {
-  // Recupera la cantidad de localStorage cuando se carga la página
+{/*  // Recupera la cantidad de localStorage cuando se carga la página
   useEffect(() => {
     const storedCantidad = localStorage.getItem(id);
     if (storedCantidad) {
@@ -39,14 +39,13 @@ const Counter: React.FC<CounterProps> = ({
   // Actualiza localStorage cada vez que cantidad cambia
   useEffect(() => {
     localStorage.setItem(id, String(cantidad));
-    //console.log(`ID: ${id}, Cantidad: ${cantidad}`); // Imprime el id y la cantidad
     getData();
     // Imprime las variables kw1 a kw38
     for (let i = 1; i <= 38; i++) {
       const kw = localStorage.getItem(`kw${i}`);
       console.log(`KW${i}: ${kw}`);
     }
-  }, [cantidad, id]);
+  }, [cantidad, id]);*/}
 
   return (
     <div className=" flex items-center justify-center space-x-2 h-6">

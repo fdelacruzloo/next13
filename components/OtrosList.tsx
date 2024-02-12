@@ -1,6 +1,7 @@
 //HornosList.jsx
-import React, { useState } from 'react';
+import React, {useEffect, useState } from "react";
 import PhotoList from "@/components/Photos";
+import { getData } from "@/app/productos/data.js";
 
 type Otro = {
   id: string;
@@ -116,46 +117,73 @@ const OtrosComponent: React.FC<OtrosComponentProps> = ({ isHighPressureClicked, 
     }, 
 
   ]);
+ 
+ // CODIGO MODIFICADO
+const incrementarCantidad = (id: string) => {
+  setOtros(
+    otros.map((otro) => {
+      if (otro.id === id) {
+        const newCantidad = otro.cantidad + 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...otro, cantidad: newCantidad };
+      } else {
+        return otro;
+      }
+    })
+  );
+};
 
-  const incrementarCantidad = (id: string) => {
-    setOtros(
-      otros.map((otro) =>
-        otro.id === id
-          ? { ...otro, cantidad: otro.cantidad + 1 }
-          : otro
-      )
-    );
-  };
-  
-  // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
-  const filteredOtros = otros.filter((otro) => {
-    if (isHighPressureClicked && isLowPressureClicked) {
-      return true; // Mostrar todos los objetos
-    } else if (isHighPressureClicked) {
-      return !otro.regulador; // Mostrar solo los objetos con regulador=false
-    } else if (isLowPressureClicked) {
-      return otro.regulador; // Mostrar solo los objetos con regulador=true
-    } else {
-      return false; // No mostrar ningún objeto
-    }
-  });
-  
-  // Ahora puedes mapear tus datos filtrados a componentes PhotoList
-  const photoListItems = filteredOtros.map((otro) => (
-    <PhotoList
-      key={otro.id}
-      id={otro.id}
-      title={otro.title}
-      imageUrl={otro.imageUrl}
-      regulador={otro.regulador}
-      incrementarCantidad={() => incrementarCantidad(otro.id)}
-      cantidad={otro.cantidad}
-      setCantidad={(id, cantidad) => {}}
-    />
-  ));
-  
-  // Y luego renderizarlos en tu JSX
-  return <div className="flex flex-wrap">{photoListItems}</div>;
-  };
-  
-  export default OtrosComponent;
+useEffect(() => {
+  // Recupera la cantidad de localStorage cuando se carga la página
+  setOtros((prevOtros) =>
+    prevOtros.map((otro) => {
+      const storedCantidad = localStorage.getItem(otro.id);
+      if (storedCantidad) {
+        return { ...otro, cantidad: Number(storedCantidad) };
+      } else {
+        return otro;
+      }
+    })
+  );
+}, []); // Dependencias vacías para que se ejecute solo una vez al montar el componente
+
+// Resto del código...
+
+// Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
+const filteredOtros = otros.filter((otro) => {
+  if (isHighPressureClicked && isLowPressureClicked) {
+    return true; // Mostrar todos los objetos
+  } else if (isHighPressureClicked) {
+    return !otro.regulador; // Mostrar solo los objetos con regulador=false
+  } else if (isLowPressureClicked) {
+    return otro.regulador; // Mostrar solo los objetos con regulador=true
+  } else {
+    return false; // No mostrar ningún objeto
+  }
+});
+
+// Ahora puedes mapear tus datos filtrados a componentes PhotoList
+const photoListItems = filteredOtros.map((otro) => (
+  <PhotoList
+    key={otro.id}
+    id={otro.id}
+    title={otro.title}
+    imageUrl={otro.imageUrl}
+    regulador={otro.regulador}
+    incrementarCantidad={() => incrementarCantidad(otro.id)}
+    cantidad={otro.cantidad}
+    setCantidad={(id, cantidad) => {}}
+  />
+));
+
+// Y luego renderizarlos en tu JSX
+return <div className="flex flex-wrap">{photoListItems}</div>;
+};
+
+export default OtrosComponent;

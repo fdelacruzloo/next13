@@ -1,6 +1,7 @@
 // CocinasList.tsx
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PhotoList from "@/components/Photos"; // Asegúrate de importar PhotoList desde su ubicación correcta
+import { getData } from "@/app/productos/data.js";
 
 type Cocina = {
   id: string;
@@ -126,14 +127,42 @@ const CocinasComponent: React.FC<CocinasComponentProps> = ({
     },
   ]);
 
-  // CODIGO ORIGINAL OK
-  const incrementarCantidad = (id: string) => {
-    setCocinas(
-      cocinas.map((cocina) =>
-        cocina.id === id ? { ...cocina, cantidad: cocina.cantidad + 1 } : cocina
-      )
-    );
-  };
+// CODIGO MODIFICADO
+const incrementarCantidad = (id: string) => {
+  setCocinas(
+    cocinas.map((cocina) => {
+      if (cocina.id === id) {
+        const newCantidad = cocina.cantidad + 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...cocina, cantidad: newCantidad };
+      } else {
+        return cocina;
+      }
+    })
+  );
+};
+
+useEffect(() => {
+  // Recupera la cantidad de localStorage cuando se carga la página
+  setCocinas((prevCocinas) =>
+    prevCocinas.map((cocina) => {
+      const storedCantidad = localStorage.getItem(cocina.id);
+      if (storedCantidad) {
+        return { ...cocina, cantidad: Number(storedCantidad) };
+      } else {
+        return cocina;
+      }
+    })
+  );
+}, []); // Dependencias vacías para que se ejecute solo una vez al montar el componente
+
+// Resto del código...
 
   // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
   const filteredCocinas = cocinas.filter((cocina) => {
