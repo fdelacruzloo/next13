@@ -3,7 +3,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppProviders } from "@/components/AppProviders";
-import TwoCellComponent from "@/components/Fila1";
 
 const inter = Inter({ subsets: ["latin"] });
 
