@@ -1,14 +1,14 @@
 // cliente/page.tsx
+"use client";
 import { NavBar } from "@/components/NavBar";
-import React from "react";
+import React, { useState } from "react";
 import { ClientReg, GuardarBotton } from "@/components/FilasColumnas";
 
 export default function Page() {
-  const ruc = ""; // Define la variable ruc
-  const cel = ""; // Define la variable ruc
-  const correo = ""; // Define la variable ruc  
-  const direccion = ""; // Define la variable ruc 
-
+  const [ruc, setRuc] = useState(""); // Cambia ruc a un estado
+  const [cel, setCel] = useState(""); // Cambia cel a un estado
+  const [correo, setCorreo] = useState(""); // Cambia correo a un estado
+  const [direccion, setDireccion] = useState(""); // Cambia direccion a un estado
 
   return (
     <main className="container flex flex-col items-center justify-center min-h-screen font-sans text-sm">
@@ -18,10 +18,11 @@ export default function Page() {
         <NavBar />
 
         <div className="flex flex-col items-center mt-0.5">
-          <ClientReg 
+         <ClientReg 
             text1="RUC, DNI, CE:"
-            text2Name={ruc} // Usa text2Name en lugar de text2
-            text2InitialValue={ruc} // Pasa ruc como el valor inicial de text2
+            text2Name={ruc}
+            text2InitialValue={ruc}
+            onText2Change={setRuc} // Pasa setRuc a ClientReg
             rowHeightTextClass= "h-4"
             cellWidthTextClass= "w-32"
             rowHeightNumberClass= "h-4"
@@ -32,8 +33,9 @@ export default function Page() {
         <div className="flex flex-col items-center mt-0.5">
           <ClientReg 
             text1="Celular:"
-            text2Name={cel} // Usa text2Name en lugar de text2
-            text2InitialValue={cel} // Pasa ruc como el valor inicial de text2
+            text2Name={cel}
+            text2InitialValue={cel}
+            onText2Change={setCel} // Pasa setCel a ClientReg
             rowHeightTextClass= "h-4"
             cellWidthTextClass= "w-32"
             rowHeightNumberClass= "h-4"
@@ -44,8 +46,9 @@ export default function Page() {
         <div className="flex flex-col items-center mt-0.5">
           <ClientReg 
             text1="Correo:"
-            text2Name={correo} // Usa text2Name en lugar de text2
-            text2InitialValue={correo} // Pasa ruc como el valor inicial de text2
+            text2Name={correo}
+            text2InitialValue={correo}
+            onText2Change={setCorreo} // Pasa setCorreo a ClientReg
             rowHeightTextClass= "h-4"
             cellWidthTextClass= "w-32"
             rowHeightNumberClass= "h-4"
@@ -56,8 +59,9 @@ export default function Page() {
         <div className="flex flex-col items-center mt-0.5">
           <ClientReg 
             text1="Dirección:"
-            text2Name={direccion} // Usa text2Name en lugar de text2
-            text2InitialValue={direccion} // Pasa ruc como el valor inicial de text2
+            text2Name={direccion}
+            text2InitialValue={direccion}
+            onText2Change={setDireccion} // Pasa setDireccion a ClientReg
             rowHeightTextClass= "h-4"
             cellWidthTextClass= "w-32"
             rowHeightNumberClass= "h-4"
