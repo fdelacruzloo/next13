@@ -79,7 +79,7 @@ export default function Page() {
           </div>
 
           {/*Botón de guardar*/}
-          <div className="flex flex-col items-center mt-10">
+          <div className="flex flex-col items-center mt-2">
             <GuardarBotton
               text="Guardar"
               rowHeightTextBottonClass="h-4"

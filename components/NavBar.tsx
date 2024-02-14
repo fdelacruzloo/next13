@@ -8,30 +8,7 @@ export function NavBar() {
   const pathname = usePathname();
   return (
     <nav className=" bg-white h-10 flex justify-center items-center p-0.5 space-x-1">
-      <div
-        className={classNames(
-          "flex items-center",
-          pathname === "/cliente" && "rounded bg-gray-400"
-        )}
-      >
-        <Link href="/cliente">
-          <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
-            Cliente
-          </span>
-        </Link>
-      </div>
-      <div
-        className={classNames(
-          "flex items-center",
-          pathname === "/productos" && "rounded bg-gray-400"
-        )}
-      >
-        <Link href="/productos">
-          <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
-            Productos
-          </span>
-        </Link>
-      </div>
+      {/*Pestaña Cotización*/}
       <div
         className={classNames(
           "flex items-center",
@@ -44,6 +21,36 @@ export function NavBar() {
           </span>
         </Link>
       </div>
+
+      {/*Pestaña Productos*/}
+      <div
+        className={classNames(
+          "flex items-center",
+          pathname === "/productos" && "rounded bg-gray-400"
+        )}
+      >
+        <Link href="/productos">
+          <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
+            Productos
+          </span>
+        </Link>
+      </div>
+
+      {/*Pestaña Manuales*/}
+      <div
+        className={classNames(
+          "flex items-center",
+          pathname === "/cliente" && "rounded bg-gray-400"
+        )}
+      >
+        <Link href="/cliente">
+          <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
+            Manuales
+          </span>
+        </Link>
+      </div>
+
+      {/*Pestaña Retornar*/}
       <div>
         <a
           href="https://master.d17h195czic561.amplifyapp.com"
