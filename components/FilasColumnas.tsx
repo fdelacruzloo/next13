@@ -98,19 +98,19 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
   cellWidthMenuClass,
 }) => {
   return (
-    <div className="flex items-center">
+    <div className="flex justify-center">
       <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center`}
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} flex items-center flex-shrink-0`}
       >
         {text1}
       </div>
       <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthMenuClass} max-w-xs flex items-center justify-center w-full pl-0 pr-0`}
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthMenuClass} flex items-center justify-center pl-0 pr-0`}
       >
         <label htmlFor="selectMenu" className="sr-only">
           Select Menu
         </label>
-        <select id="selectMenu" className="text-black max-w-xs flex w-full h-8">
+        <select id="selectMenu" className="text-black w-full h-8">
           <option value="text2">{text2}</option>
           <option value="text3">{text3}</option>
         </select>
@@ -141,14 +141,14 @@ const CotRegDes3: React.FC<CotRegDes3Props> = ({
   cellWidthMenuClass,
 }) => {
   return (
-    <div className="flex items-center">
+    <div className="flex justify-center">
       <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center pr-0`}
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} flex items-center flex-shrink-0 pr-0`}
       >
         {text1}
       </div>
       <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthMenuClass} max-w-xs flex items-center justify-center w-full pl-0 pr-0`}
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthMenuClass} flex items-center justify-center pl-0 pr-0`}
       >
         <label htmlFor="selectMenu" className="sr-only">
           Select Menu

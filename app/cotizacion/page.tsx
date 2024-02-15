@@ -137,7 +137,7 @@ export default function Page() {
           </div>
 
           {/*Selección de Instalación*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <CotRegDes2
               text1="Instalación:"
               text2="A la vista"
@@ -149,7 +149,7 @@ export default function Page() {
           </div>
 
           {/*Selección de Murete*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <CotRegDes2
               text1="Murete"
               text2="Existente"
@@ -161,7 +161,7 @@ export default function Page() {
           </div>
 
           {/*Confguración*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <ClientReg
               text1="Configuración"
               text2Name={coordenada}
@@ -175,7 +175,7 @@ export default function Page() {
           </div>
 
           {/*Selección de Material Interna*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <CotRegDes3
               text1="Material Interna"
               text2="Pe-Al-Pe 2025-1216"
