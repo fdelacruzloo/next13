@@ -7,11 +7,19 @@ import {
   CotReg1,
   CotReg2,
   CotReg3,
+  CotReg4,
+  CotReg5,
+  CotReg6,
+  CotReg7,
+  CotReg8,
+  CotReg9,  
   GuardarBotton,
 } from "@/components/FilasColumnas";
 
 export default function Page() {
-  {/*Declaración de variables */}
+  {
+    /*Declaración de variables */
+  }
   const [ruc, setRuc] = useState(""); // Cambia ruc a un estado
   const [cel, setCel] = useState(""); // Cambia cel a un estado
   const [correo, setCorreo] = useState(""); // Cambia correo a un estado
@@ -100,13 +108,25 @@ export default function Page() {
             />
           </div>
 
-          {/*Botón de guardar*/}
-          <div className="flex flex-col items-center mt-2">
+          {/*Botones Calcular e Imprimir*/}
+          <div className="flex justify-center space-x-5">
+          {/*Botón de Guardar*/}
+          <div className="flex flex-col items-center mt-4">
             <GuardarBotton
               text="Guardar"
               rowHeightTextBottonClass="h-4"
               cellWidthTextBottonClass="w-26"
             />
+          </div>
+
+            {/*Boton Editar*/}
+            <div className="flex flex-col items-center mt-4">
+              <GuardarBotton
+                text="Editar"
+                rowHeightTextBottonClass="h-4"
+                cellWidthTextBottonClass="w-26"
+              />
+            </div>
           </div>
 
           {/*Calculo de la Potencia Presión del Gasodoméstico*/}
@@ -182,7 +202,8 @@ export default function Page() {
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-50"
             />
-          </div>        
+          </div>
+
           {/*Calculo de la Potencia Presión del Gasodoméstico*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Calculo de la Potencia</h1>
@@ -281,7 +302,7 @@ export default function Page() {
             </div>
 
             {/*Sub Tot. Potencia KW*/}
-            <div className="flex flex-col items-center mt-1">
+            <div className="flex flex-col items-center mt-3">
               <CotReg3
                 text="Sub Tot. Potencia KW"
                 number1={0}
@@ -296,7 +317,7 @@ export default function Page() {
             </div>
 
             {/*Total KW*/}
-            <div className="flex flex-col items-center mt-1">
+            <div className="flex flex-col items-center mt-3">
               <CotReg1
                 text="Total KW"
                 number1={0}
@@ -309,17 +330,365 @@ export default function Page() {
                 cellWidthNumber2Class="w-12"
               />
             </div>
-
           </div>
 
-          {/*Boton GuardarBotton*/}
-          <div className="flex flex-col items-center mt-10">
-            <GuardarBotton
-              text="Imprimir"
-              rowHeightTextBottonClass="h-4"
-              cellWidthTextBottonClass="w-26"
+          {/*Botones Calcular e Imprimir*/}
+          <div className="flex justify-center space-x-5">
+            {/*Boton Calcular*/}
+            <div className="flex flex-col items-center mt-4">
+              <GuardarBotton
+                text="Calcular"
+                rowHeightTextBottonClass="h-4"
+                cellWidthTextBottonClass="w-26"
+              />
+            </div>
+
+            {/*Boton Imprimir*/}
+            <div className="flex flex-col items-center mt-4">
+              <GuardarBotton
+                text="Imprimir"
+                rowHeightTextBottonClass="h-4"
+                cellWidthTextBottonClass="w-26"
+              />
+            </div>
+          </div>
+
+          {/*Costos*/}
+          <div className="flex flex-col items-center mt-4 mb-2">
+            <h1 className="text-base ">Costos en Soles</h1>
+          </div>
+
+          {/*Instalación interna*/}
+          <div className="flex flex-col items-center mt-0.5">
+            <CotReg4
+              text1="Instalación interna"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
             />
           </div>
+
+          {/*Medidor*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg4
+              text1="Medidor"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*Derecho de conexión*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg4
+              text1="Derecho de conexión"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*Valor línea montante*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg4
+              text1="Valor línea montante"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*Gasto de la inversión*/}
+          <div className="flex flex-col items-center mt-3">
+            <CotReg4
+              text1="Gasto de la inversión"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*Pago en cuotas*/}
+          <div className="flex flex-col items-center mt-4 mb-2">
+            <h1 className="text-base ">Pago en cuotas</h1>
+          </div>
+
+          {/*Cuotas y Pago mensual*/}
+          <div className="flex flex-col items-center mt-0.5">
+            <CotReg5
+              text1="Cuota"
+              text2="Pago Mensual"
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*6 meses*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg4
+              text1="6"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*12 meses*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg4
+              text1="12"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*24 meses*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg4
+              text1="24"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*36 meses*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg4
+              text1="36"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*48 meses*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg4
+              text1="48"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*60 meses*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg4
+              text1="60"
+              number1={0}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*Calculo referencial consumo mensual*/}
+          <div className="flex flex-col items-center mt-4 mb-2">
+            <h1 className="text-base">Calculo referencial</h1>
+            <h1 className="text-base">consumo y ahorro mensual</h1>
+          </div>
+
+          {/*Encabezados*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg6
+              text1="Volumen en"
+              text2="Ref."
+              text3="Cant."
+              text4="C. Act."
+              text5="E. GNV"
+              text6="Ahorro"
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-20"
+              cellWidthNumber1Class="w-12"
+              cellWidthNumber2Class="w-12"
+              cellWidthNumber3Class="w-12"
+              cellWidthNumber4Class="w-12"
+              cellWidthNumber5Class="w-12"
+            />
+          </div>
+
+          {/*Balón 10Kg*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg7
+              text="Balón 10Kg"
+              number1={0}
+              number2={0}
+              number3={0}
+              number4={0}
+              number5={0}
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-20"
+              cellWidthNumber1Class="w-12"
+              cellWidthNumber2Class="w-12"
+              cellWidthNumber3Class="w-12"
+              cellWidthNumber4Class="w-12"
+              cellWidthNumber5Class="w-12"
+            />
+          </div>
+
+          {/*Balón 45Kg*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg7
+              text="Balón 45Kg"
+              number1={0}
+              number2={0}
+              number3={0}
+              number4={0}
+              number5={0}
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-20"
+              cellWidthNumber1Class="w-12"
+              cellWidthNumber2Class="w-12"
+              cellWidthNumber3Class="w-12"
+              cellWidthNumber4Class="w-12"
+              cellWidthNumber5Class="w-12"
+            />
+          </div>
+
+          {/*Gl. GLP*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg7
+              text="GL GLP"
+              number1={0}
+              number2={0}
+              number3={0}
+              number4={0}
+              number5={0}
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-20"
+              cellWidthNumber1Class="w-12"
+              cellWidthNumber2Class="w-12"
+              cellWidthNumber3Class="w-12"
+              cellWidthNumber4Class="w-12"
+              cellWidthNumber5Class="w-12"
+            />
+          </div>
+
+          {/*Gl. Petroleo*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg7
+              text="G Petroleo"
+              number1={0}
+              number2={0}
+              number3={0}
+              number4={0}
+              number5={0}
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-20"
+              cellWidthNumber1Class="w-12"
+              cellWidthNumber2Class="w-12"
+              cellWidthNumber3Class="w-12"
+              cellWidthNumber4Class="w-12"
+              cellWidthNumber5Class="w-12"
+            />
+          </div>
+          
+          {/*Retorno de la inversión con el ahorro*/}
+          <div className="flex flex-col items-center mt-4 mb-2">
+            <h1 className="text-base">Retorno de la inversión</h1>
+            <h1 className="text-base">con el ahorro</h1>
+          </div>
+
+          {/*Gl. Petroleo*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg8
+              text1="Tipo"
+              text2="Año 1"
+              text3="Año 2"
+              text4="Año 3"
+              rowHeightClass="h-4"
+              cellWidthText1Class="w-20"
+              cellWidthText2Class="w-20"
+              cellWidthText3Class="w-20"
+              cellWidthText4Class="w-20"
+            />
+          </div>
+ 
+          {/*Retorno de inversión Balón 10Kg*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg9
+              text="Balón 10Kg"
+              number1={0}
+              number2={0}
+              number3={0}
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-20"
+              cellWidthNumber1Class="w-20"
+              cellWidthNumber2Class="w-20"
+              cellWidthNumber3Class="w-20"
+            />
+          </div>
+
+          {/*Retorno de inversión Balón 45Kg*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg9
+              text="Balón 45Kg"
+              number1={0}
+              number2={0}
+              number3={0}
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-20"
+              cellWidthNumber1Class="w-20"
+              cellWidthNumber2Class="w-20"
+              cellWidthNumber3Class="w-20"
+            />
+          </div>
+
+            {/*Retorno de inversión GL GLP*/}
+            <div className="flex flex-col items-center mt-0.25">
+            <CotReg9
+              text="GL GLP"
+              number1={0}
+              number2={0}
+              number3={0}
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-20"
+              cellWidthNumber1Class="w-20"
+              cellWidthNumber2Class="w-20"
+              cellWidthNumber3Class="w-20"
+            />
+          </div>
+
+            {/*Retorno de inversión G Petroleo*/}
+            <div className="flex flex-col items-center mt-0.25">
+            <CotReg9
+              text="G Petroleo"
+              number1={0}
+              number2={0}
+              number3={0}
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-20"
+              cellWidthNumber1Class="w-20"
+              cellWidthNumber2Class="w-20"
+              cellWidthNumber3Class="w-20"
+            />
+          </div>
+
         </div>
       </div>
     </main>

@@ -40,10 +40,10 @@ export function NavBar() {
       <div
         className={classNames(
           "flex items-center",
-          pathname === "/cliente" && "rounded bg-gray-400"
+          pathname === "/manuales" && "rounded bg-gray-400"
         )}
       >
-        <Link href="/cliente">
+        <Link href="/manuales">
           <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
             Manuales
           </span>
