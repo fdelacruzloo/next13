@@ -4,6 +4,8 @@ import { NavBar } from "@/components/NavBar";
 import React, { useState } from "react";
 import {
   ClientReg,
+  CotRegDes2,
+  CotRegDes3,
   CotReg1,
   CotReg2,
   CotReg3,
@@ -129,78 +131,59 @@ export default function Page() {
             </div>
           </div>
 
-          {/*Calculo de la Potencia Presión del Gasodoméstico*/}
+          {/*Suministro e Instalación*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Suministro e Instalación</h1>
           </div>
 
-          {/*Ingreso de coordenadas de direccion*/}
+          {/*Selección de Instalación*/}
           <div className="flex flex-col items-center mt-0.5">
-            <ClientReg
-              text1="Gabinete:"
-              text2Name={coordenada}
-              text2InitialValue={coordenada}
-              onText2Change={setCoordenada} // Pasa setCoordenada a ClientReg
-              rowHeightTextClass="h-4"
-              cellWidthTextClass="w-32"
-              rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
-            />
-          </div>
-
-          {/*Ingreso de coordenadas de direccion*/}
-          <div className="flex flex-col items-center mt-0.5">
-            <ClientReg
+            <CotRegDes2
               text1="Instalación:"
-              text2Name={coordenada}
-              text2InitialValue={coordenada}
-              onText2Change={setCoordenada} // Pasa setCoordenada a ClientReg
-              rowHeightTextClass="h-4"
+              text2="A la vista"
+              text3="Empotrada"
+              rowHeightClass="h-4"
               cellWidthTextClass="w-32"
-              rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthMenuClass="w-48"
             />
           </div>
 
-          {/*Ingreso de coordenadas de direccion*/}
+          {/*Selección de Murete*/}
           <div className="flex flex-col items-center mt-0.5">
-            <ClientReg
-              text1="Murete:"
-              text2Name={coordenada}
-              text2InitialValue={coordenada}
-              onText2Change={setCoordenada} // Pasa setCoordenada a ClientReg
-              rowHeightTextClass="h-4"
+            <CotRegDes2
+              text1="Murete"
+              text2="Existente"
+              text3="Construido"
+              rowHeightClass="h-4"
               cellWidthTextClass="w-32"
-              rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthMenuClass="w-48"
             />
           </div>
 
-          {/*Ingreso de coordenadas de direccion*/}
+          {/*Confguración*/}
           <div className="flex flex-col items-center mt-0.5">
             <ClientReg
-              text1="Mat. Interno:"
+              text1="Configuración"
               text2Name={coordenada}
               text2InitialValue={coordenada}
               onText2Change={setCoordenada} // Pasa setCoordenada a ClientReg
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthNumberClass="w-48"
             />
           </div>
 
-          {/*Ingreso de coordenadas de direccion*/}
+          {/*Selección de Material Interna*/}
           <div className="flex flex-col items-center mt-0.5">
-            <ClientReg
-              text1="Confguración:"
-              text2Name={coordenada}
-              text2InitialValue={coordenada}
-              onText2Change={setCoordenada} // Pasa setCoordenada a ClientReg
-              rowHeightTextClass="h-4"
+            <CotRegDes3
+              text1="Material Interna"
+              text2="Pe-Al-Pe 2025-1216"
+              text3="Pe-Al-Pe 2025"
+              text4="Cobre"              
+              rowHeightClass="h-4"
               cellWidthTextClass="w-32"
-              rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthMenuClass="w-48"
             />
           </div>
 

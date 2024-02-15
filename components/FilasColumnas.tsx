@@ -79,6 +79,91 @@ const GuardarBotton: React.FC<GuardarBottonProps> = ({
 };
 //Fin Componente GuardarBotton
 
+//Componente CotRegDes2 1 Fila, un columna con texto y un menu desplegable 2 textos
+type CotRegDes2Props = {
+  text1: string;
+  text2: string;
+  text3: string;
+  rowHeightClass: string;
+  cellWidthTextClass: string;
+  cellWidthMenuClass: string;
+};
+
+const CotRegDes2: React.FC<CotRegDes2Props> = ({
+  text1,
+  text2,
+  text3,
+  rowHeightClass,
+  cellWidthTextClass,
+  cellWidthMenuClass,
+}) => {
+  return (
+    <div className="flex items-center">
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center`}
+      >
+        {text1}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthMenuClass} max-w-xs flex items-center justify-center w-full pl-0 pr-0`}
+      >
+        <label htmlFor="selectMenu" className="sr-only">
+          Select Menu
+        </label>
+        <select id="selectMenu" className="text-black w-full h-8">
+          <option value="text2">{text2}</option>
+          <option value="text3">{text3}</option>
+        </select>
+      </div>
+    </div>
+  );
+};
+//Fin Componente CotRegDes2
+
+//Componente CotRegDes3 1 Fila, un columna con texto y un menu desplegable 3 textos
+type CotRegDes3Props = {
+  text1: string;
+  text2: string;
+  text3: string;
+  text4: string;  
+  rowHeightClass: string;
+  cellWidthTextClass: string;
+  cellWidthMenuClass: string;
+};
+
+const CotRegDes3: React.FC<CotRegDes3Props> = ({
+  text1,
+  text2,
+  text3,
+  text4,
+  rowHeightClass,
+  cellWidthTextClass,
+  cellWidthMenuClass,
+}) => {
+  return (
+    <div className="flex items-center">
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center pr-0`}
+      >
+        {text1}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthMenuClass} max-w-xs flex items-center justify-center w-full pl-0 pr-0`}
+      >
+        <label htmlFor="selectMenu" className="sr-only">
+          Select Menu
+        </label>
+        <select id="selectMenu" className="text-black w-full h-8">
+          <option value="text2">{text2}</option>
+          <option value="text3">{text3}</option>
+          <option value="text3">{text4}</option>
+        </select>
+      </div>
+    </div>
+  );
+};
+//Fin Componente CotRegDes3
+
 //Componente CotReg1 Fila con texto y un número
 type CotReg1Props = {
   text: string;
@@ -296,73 +381,71 @@ const CotReg5: React.FC<CotReg5Props> = ({
 
 //Componente CotReg6 1 Fila y 6 Columnas con un texto y 5 números
 type CotReg6Props = {
-    text1: string;
-    text2: string;
-    text3: string;
-    text4: string;
-    text5: string;
-    text6: string;   
-    rowHeightClass: string;
-    cellWidthTextClass: string;
-    cellWidthNumber1Class: string;
-    cellWidthNumber2Class: string;
-    cellWidthNumber3Class: string;
-    cellWidthNumber4Class: string;
-    cellWidthNumber5Class: string;
-  };
-  
-  const CotReg6: React.FC<CotReg6Props> = ({
-    text1,
-    text2,
-    text3,
-    text4,
-    text5,
-    text6,
-    rowHeightClass,
-    cellWidthTextClass,
-    cellWidthNumber1Class,
-    cellWidthNumber2Class,
-    cellWidthNumber3Class,
-    cellWidthNumber4Class,
-    cellWidthNumber5Class,
-  }) => {
-    return (
-      <div className="flex items-center">
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center pl-0 pr-0`}
-        >
-          {text1}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber1Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {text2}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber2Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {text3}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber3Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {text4}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber4Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {text5}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber5Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {text6}
-        </div>
-  
+  text1: string;
+  text2: string;
+  text3: string;
+  text4: string;
+  text5: string;
+  text6: string;
+  rowHeightClass: string;
+  cellWidthTextClass: string;
+  cellWidthNumber1Class: string;
+  cellWidthNumber2Class: string;
+  cellWidthNumber3Class: string;
+  cellWidthNumber4Class: string;
+  cellWidthNumber5Class: string;
+};
+
+const CotReg6: React.FC<CotReg6Props> = ({
+  text1,
+  text2,
+  text3,
+  text4,
+  text5,
+  text6,
+  rowHeightClass,
+  cellWidthTextClass,
+  cellWidthNumber1Class,
+  cellWidthNumber2Class,
+  cellWidthNumber3Class,
+  cellWidthNumber4Class,
+  cellWidthNumber5Class,
+}) => {
+  return (
+    <div className="flex items-center">
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text1}
       </div>
-    );
-  };
-  
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber1Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text2}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber2Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text3}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber3Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text4}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber4Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text5}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber5Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text6}
+      </div>
+    </div>
+  );
+};
 
 //Componente CotReg7 1 Fila y 6 Columnas con un texto y 5 números
 type CotReg7Props = {
@@ -399,7 +482,7 @@ const CotReg7: React.FC<CotReg7Props> = ({
   return (
     <div className="flex items-center">
       <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center pl-0 pr-0`}
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center justify-center pl-0 pr-0`}
       >
         {text}
       </div>
@@ -428,7 +511,6 @@ const CotReg7: React.FC<CotReg7Props> = ({
       >
         {number5}
       </div>
-
     </div>
   );
 };
@@ -436,119 +518,117 @@ const CotReg7: React.FC<CotReg7Props> = ({
 
 //Componente CotReg8 1 Fila y 6 Columnas con un texto y 5 números
 type CotReg8Props = {
-    text1: string;
-    text2: string;
-    text3: string;
-    text4: string;    
-    rowHeightClass: string;
-    cellWidthText1Class: string;
-    cellWidthText2Class: string;
-    cellWidthText3Class: string;
-    cellWidthText4Class: string;
-  };
+  text1: string;
+  text2: string;
+  text3: string;
+  text4: string;
+  rowHeightClass: string;
+  cellWidthText1Class: string;
+  cellWidthText2Class: string;
+  cellWidthText3Class: string;
+  cellWidthText4Class: string;
+};
 const CotReg8: React.FC<CotReg8Props> = ({
-    text1,
-    text2,
-    text3,
-    text4,
-    rowHeightClass,
-    cellWidthText1Class,
-    cellWidthText2Class,
-    cellWidthText3Class,
-    cellWidthText4Class,
-
-  }) => {
-    return (
-      <div className="flex items-center">
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthText1Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {text1}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthText2Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {text2}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthText3Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {text3}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthText4Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-            {text4}
-        </div>  
+  text1,
+  text2,
+  text3,
+  text4,
+  rowHeightClass,
+  cellWidthText1Class,
+  cellWidthText2Class,
+  cellWidthText3Class,
+  cellWidthText4Class,
+}) => {
+  return (
+    <div className="flex items-center">
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthText1Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text1}
       </div>
-    );
-  };
-  //Fin Componente CotReg8
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthText2Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text2}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthText3Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text3}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthText4Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text4}
+      </div>
+    </div>
+  );
+};
+//Fin Componente CotReg8
 
 //Componente CotReg9 1 Fila y 6 Columnas con un texto y 5 números
 type CotReg9Props = {
-    text: string;  
-    number1: number;
-    number2: number;
-    number3: number;
-    rowHeightClass: string;
-    cellWidthTextClass: string;
-    cellWidthNumber1Class: string;
-    cellWidthNumber2Class: string;
-    cellWidthNumber3Class: string;
-
-  };
+  text: string;
+  number1: number;
+  number2: number;
+  number3: number;
+  rowHeightClass: string;
+  cellWidthTextClass: string;
+  cellWidthNumber1Class: string;
+  cellWidthNumber2Class: string;
+  cellWidthNumber3Class: string;
+};
 const CotReg9: React.FC<CotReg9Props> = ({
-    text,
-    number1,
-    number2,
-    number3,
+  text,
+  number1,
+  number2,
+  number3,
 
-    rowHeightClass,
-    cellWidthTextClass,
-    cellWidthNumber1Class,
-    cellWidthNumber2Class,
-    cellWidthNumber3Class,
-
-
-  }) => {
-    return (
-      <div className="flex items-center">
-                <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {text}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber1Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {number1}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber2Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {number2}
-        </div>
-        <div
-          className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber3Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-        >
-          {number3}
-        </div>
+  rowHeightClass,
+  cellWidthTextClass,
+  cellWidthNumber1Class,
+  cellWidthNumber2Class,
+  cellWidthNumber3Class,
+}) => {
+  return (
+    <div className="flex items-center">
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text}
       </div>
-    );
-  };
-  //Fin Componente CotReg9
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber1Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {number1}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber2Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {number2}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber3Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {number3}
+      </div>
+    </div>
+  );
+};
+//Fin Componente CotReg9
 
 export {
-    ClientReg,
-    GuardarBotton,
-    CotReg1,
-    CotReg2,
-    CotReg3,
-    CotReg4,
-    CotReg5,
-    CotReg6,
-    CotReg7,
-    CotReg8,
-    CotReg9
+  ClientReg,
+  GuardarBotton,
+  CotRegDes2,
+  CotRegDes3,  
+  CotReg1,
+  CotReg2,
+  CotReg3,
+  CotReg4,
+  CotReg5,
+  CotReg6,
+  CotReg7,
+  CotReg8,
+  CotReg9,
 };
