@@ -110,7 +110,7 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
         <label htmlFor="selectMenu" className="sr-only">
           Select Menu
         </label>
-        <select id="selectMenu" className="text-black w-full h-8">
+        <select id="selectMenu" className="text-black max-w-xs flex w-full h-8">
           <option value="text2">{text2}</option>
           <option value="text3">{text3}</option>
         </select>
