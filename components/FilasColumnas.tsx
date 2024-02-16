@@ -87,6 +87,10 @@ type CotRegDes2Props = {
   rowHeightClass: string;
   cellWidthTextClass: string;
   cellWidthMenuClass: string;
+  boolean1: boolean;
+  setText1: React.Dispatch<React.SetStateAction<boolean>>;
+  boolean2: boolean;
+  setText2: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const CotRegDes2: React.FC<CotRegDes2Props> = ({
@@ -96,7 +100,21 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
   rowHeightClass,
   cellWidthTextClass,
   cellWidthMenuClass,
+  boolean1,
+  setText1,
+  boolean2,
+  setText2,
 }) => {
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (event.target.value === text2) {
+      setText1(true);
+      setText2(false);
+    } else if (event.target.value === text3) {
+      setText1(false);
+      setText2(true);
+    }
+  };
+
   return (
     <div className="flex justify-center">
       <div
@@ -110,9 +128,9 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
         <label htmlFor="selectMenu" className="sr-only">
           Select Menu
         </label>
-        <select id="selectMenu" className="text-black w-full h-8">
-          <option value="text2">{text2}</option>
-          <option value="text3">{text3}</option>
+        <select id="selectMenu" className="text-black w-full h-8" onChange={handleSelectChange}>
+          <option value={text2}>{text2}</option>
+          <option value={text3}>{text3}</option>
         </select>
       </div>
     </div>
@@ -125,10 +143,16 @@ type CotRegDes3Props = {
   text1: string;
   text2: string;
   text3: string;
-  text4: string;  
+  text4: string;
   rowHeightClass: string;
   cellWidthTextClass: string;
   cellWidthMenuClass: string;
+  boolean1: boolean;
+  setText1: React.Dispatch<React.SetStateAction<boolean>>;
+  boolean2: boolean;
+  setText2: React.Dispatch<React.SetStateAction<boolean>>;
+  boolean3: boolean;
+  setText3: React.Dispatch<React.SetStateAction<boolean>>; 
 };
 
 const CotRegDes3: React.FC<CotRegDes3Props> = ({
@@ -139,7 +163,29 @@ const CotRegDes3: React.FC<CotRegDes3Props> = ({
   rowHeightClass,
   cellWidthTextClass,
   cellWidthMenuClass,
+  boolean1,
+  setText1,
+  boolean2,
+  setText2,
+  boolean3,
+  setText3, 
 }) => {
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (event.target.value === text2) {
+      setText1(true);
+      setText2(false);
+      setText3(false);      
+    } else if (event.target.value === text3) {
+      setText1(false);
+      setText2(true);
+      setText3(false);
+    } else if (event.target.value === text4) {
+      setText1(false);
+      setText2(false);
+      setText3(true);
+    }
+  };
+
   return (
     <div className="flex justify-center">
       <div
@@ -153,10 +199,10 @@ const CotRegDes3: React.FC<CotRegDes3Props> = ({
         <label htmlFor="selectMenu" className="sr-only">
           Select Menu
         </label>
-        <select id="selectMenu" className="text-black w-full h-8">
-          <option value="text2">{text2}</option>
-          <option value="text3">{text3}</option>
-          <option value="text3">{text4}</option>
+        <select id="selectMenu" className="text-black w-full h-8" onChange={handleSelectChange}>
+          <option value={text2}>{text2}</option>
+          <option value={text3}>{text3}</option>
+          <option value={text4}>{text4}</option>
         </select>
       </div>
     </div>

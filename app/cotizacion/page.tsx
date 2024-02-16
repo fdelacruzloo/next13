@@ -19,14 +19,24 @@ import {
 } from "@/components/FilasColumnas";
 
 export default function Page() {
-  {
-    /*Declaración de variables */
-  }
+  
+  {/*Declaración de variables del registro del cliente */}
   const [ruc, setRuc] = useState(""); // Cambia ruc a un estado
   const [cel, setCel] = useState(""); // Cambia cel a un estado
   const [correo, setCorreo] = useState(""); // Cambia correo a un estado
   const [direccion, setDireccion] = useState(""); // Cambia direccion a un estado
   const [coordenada, setCoordenada] = useState(""); // Cambia direccion a un estado
+
+   {/*Declaración de variables de Suministro e Instalación */}
+  const [alaVista, setAlaVista] = useState(false);
+  const [empotrada, setEmpotrada] = useState(false);
+
+  const [existente, setExistente] = useState(false);
+  const [construido, setConstruido] = useState(false);
+
+  const [peAlPe20251216, setPeAlPe20251216] = useState(false);
+  const [peAlPe2025, setPeAlPe2025] = useState(false);
+  const [cobre, setCobre] = useState(false);
 
   return (
     <main className="container w-[320px]  flex flex-col items-center justify-center min-h-screen font-sans text-sm">
@@ -41,7 +51,7 @@ export default function Page() {
           </div>
 
           {/*Ingreso de RUC, DNI, CE en registro ruc*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <ClientReg
               text1="RUC, DNI, CE:"
               text2Name={ruc}
@@ -55,7 +65,7 @@ export default function Page() {
           </div>
 
           {/*Ingreso de celular en registro cel*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <ClientReg
               text1="Celular:"
               text2Name={cel}
@@ -69,7 +79,7 @@ export default function Page() {
           </div>
 
           {/*Ingreso de correo en registro correo*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <ClientReg
               text1="Correo:"
               text2Name={correo}
@@ -83,7 +93,7 @@ export default function Page() {
           </div>
 
           {/*Ingreso de dirección en registro direccion*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <ClientReg
               text1="Dirección:"
               text2Name={direccion}
@@ -97,7 +107,7 @@ export default function Page() {
           </div>
 
           {/*Ingreso de coordenadas de direccion*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <ClientReg
               text1="Coordenada:"
               text2Name={coordenada}
@@ -138,14 +148,18 @@ export default function Page() {
 
           {/*Selección de Instalación*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotRegDes2
-              text1="Instalación:"
-              text2="A la vista"
-              text3="Empotrada"
-              rowHeightClass="h-4"
-              cellWidthTextClass="w-32"
-              cellWidthMenuClass="w-48"
-            />
+          <CotRegDes2
+            text1="Instalación:"
+            text2="A la vista"
+            text3="Empotrada"
+            rowHeightClass="h-4"
+            cellWidthTextClass="w-32"
+            cellWidthMenuClass="w-48"
+            boolean1={alaVista}
+            setText1={setAlaVista}
+            boolean2={empotrada}
+            setText2={setEmpotrada}
+          />
           </div>
 
           {/*Selección de Murete*/}
@@ -157,6 +171,10 @@ export default function Page() {
               rowHeightClass="h-4"
               cellWidthTextClass="w-32"
               cellWidthMenuClass="w-48"
+              boolean1={existente}
+              setText1={setExistente}
+              boolean2={construido}
+              setText2={setConstruido}
             />
           </div>
 
@@ -184,6 +202,12 @@ export default function Page() {
               rowHeightClass="h-4"
               cellWidthTextClass="w-32"
               cellWidthMenuClass="w-48"
+              boolean1={peAlPe20251216}
+              setText1={setPeAlPe20251216}
+              boolean2={peAlPe2025}
+              setText2={setPeAlPe2025}
+              boolean3={cobre}
+              setText3={setCobre}              
             />
           </div>
 
