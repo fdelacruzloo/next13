@@ -212,9 +212,9 @@ const CotRegDes3: React.FC<CotRegDes3Props> = ({
 
 //Componente CotReg1 Fila con texto y un número
 type CotReg1Props = {
-  text: string;
+  text1: string;
   number1: number;
-  number2: string;
+  text2: string;
   rowHeightTextClass: string;
   rowHeightNumber1Class: string;
   rowHeightNumber2Class: string;
@@ -224,9 +224,9 @@ type CotReg1Props = {
 };
 
 const CotReg1: React.FC<CotReg1Props> = ({
-  text,
+  text1,
   number1,
-  number2,
+  text2,
   rowHeightTextClass,
   rowHeightNumber1Class,
   rowHeightNumber2Class,
@@ -239,7 +239,7 @@ const CotReg1: React.FC<CotReg1Props> = ({
       <div
         className={`p-4 border border-gray-800 ${rowHeightTextClass} ${cellWidthTextClass} max-w-xs flex items-center`}
       >
-        {text}
+        {text1}
       </div>
       <div
         className={`p-4 border border-gray-800 ${rowHeightNumber1Class} ${cellWidthNumber1Class} max-w-xs flex items-center justify-center`}
@@ -249,7 +249,7 @@ const CotReg1: React.FC<CotReg1Props> = ({
       <div
         className={`${rowHeightNumber2Class} ${cellWidthNumber2Class} max-w-xs flex items-center justify-center`}
       >
-        {number2}
+        {text2}
       </div>
     </div>
   );
@@ -661,9 +661,9 @@ const CotReg9: React.FC<CotReg9Props> = ({
     </div>
   );
 };
-//Fin Componente CotReg10
+//Fin Componente CotReg9
 
-//Componente CotReg4 1 Fila y 2 Columnas con un texto y un número
+//Componente CotReg10 1 Fila y 2 Columnas con dos textos
 type CotReg10Props = {
   text1: string;
   text2: string;

@@ -28,16 +28,101 @@ export default function Page() {
   const [direccion, setDireccion] = useState(""); // Cambia direccion a un estado
   const [coordenada, setCoordenada] = useState(""); // Cambia direccion a un estado
 
-   {/*Declaración de variables de Suministro e Instalación */}
+   {/*Declaración de variables de Suministro e Instalación*/}
   const [alaVista, setAlaVista] = useState(false);
   const [empotrada, setEmpotrada] = useState(false);
 
   const [existente, setExistente] = useState(false);
   const [construido, setConstruido] = useState(false);
 
+  const configuracion = "";
+
   const [peAlPe20251216, setPeAlPe20251216] = useState(false);
   const [peAlPe2025, setPeAlPe2025] = useState(false);
   const [cobre, setCobre] = useState(false);
+
+  {/*Declaración de variables de Calculo de la Potencia Presión del Gasodoméstico*/}
+  const puntosConexion: number = 0;
+  
+  const cantEquiposAlta: number = 0;
+  const cantEquiposBaja: number = 0;
+
+  const gasodomestico1Alta: number = 0;
+  const gasodomestico1Baja: number = 0;
+
+  const gasodomestico2Alta: number = 0;
+  const gasodomestico2Baja: number = 0;
+
+  const gasodomestico3Alta: number = 0;
+  const gasodomestico3Baja: number = 0;
+
+  const gasodomesticoPersonalisadoAlta: number = 0;
+  const gasodomesticoPeronalizadoBaja: number = 0;
+
+  const subPotenciaAlta: number = 0;
+  const subPotenciaBlta: number = 0;
+
+  const potenciaTotal: number = 0;
+
+  {/*Declaración de variables de Costos en Soles*/}
+  const instalacionInterna: number = 0;
+  const medidor: number = 0;
+  const derechoConexion: number = 0;
+  const lineaMontante: number = 0;
+  const gastoInversion: number = 0;
+
+  {/*Declaración de variables de Pago en cuotas*/}
+
+  const cuota6meses: number = 0;
+  const cuota12meses: number = 0;
+  const cuota24meses: number = 0;
+  const cuota36meses: number = 0;
+  const cuota48meses: number = 0;
+  const cuota60meses: number = 0;
+
+  {/*Declaración de variables de Calculo referencial consumo mensual*/}
+
+  const balon10KgReferencial: number = 0;
+  const balon10KgCantidad: number = 0;
+  const balon10KgCActual: number = 0;
+  const balon10KgGnv: number = 0;
+  const balon10KgAhorro: number = 0;
+
+  const balon45KgReferencial: number = 0;
+  const balon45KgCantidad: number = 0;
+  const balon45KgCActual: number = 0;
+  const balon45KgGnv: number = 0;
+  const balon45KgAhorro: number = 0;
+
+  const GlpReferencial: number = 0;
+  const GlpCantidad: number = 0;
+  const GlpCActual: number = 0;
+  const GlpGnv: number = 0;
+  const GlpAhorro: number = 0;
+
+  const petroleoReferencial: number = 0;
+  const petroleoCantidad: number = 0;
+  const petroleoCActual: number = 0;
+  const petroleoGnv: number = 0;
+  const petroleoAhorro: number = 0;
+
+  {/*Declaración de variables de Retorno de la inversión con el ahorro*/}
+
+  const retornoInversionBalon10KgAño1: number = 0;
+  const retornoInversionBalon10KgAño2: number = 0;
+  const retornoInversionBalon10KgAño3: number = 0;
+
+  const retornoInversionBalon45KgAño1: number = 0;
+  const retornoInversionBalon45KgAño2: number = 0;
+  const retornoInversionBalon45KgAño3: number = 0;
+
+  const retornoInversionGlpAño1: number = 0;
+  const retornoInversionGlpAño2: number = 0;
+  const retornoInversionGlpAño3: number = 0;
+
+  const retornoInversionPetroleoAño1: number = 0;
+  const retornoInversionPetroleoAño2: number = 0;
+  const retornoInversionPetroleoAño3: number = 0;
 
   return (
     <main className="container w-[320px]  flex flex-col items-center justify-center min-h-screen font-sans text-sm">
@@ -183,7 +268,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg10
               text1="Configuración"
-              text2=""
+              text2={configuracion}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
@@ -216,30 +301,24 @@ export default function Page() {
             <h1 className="text-base">Presión del Gasodoméstico</h1>
           </div>
 
-          {/*Contenedor de la tabla container w-[320px] h-screen*/}
           <div className="flex flex-col items-center">
             {/*Cantidad de puntos de conexión*/}
-            <div className="flex flex-col items-center mt-0.25">
-              <CotReg1
-                text="Puntos de conexión"
-                number1={0}
-                number2=" "
-                rowHeightTextClass="h-4"
-                cellWidthTextClass="w-56"
-                rowHeightNumber1Class="h-4"
-                cellWidthNumber1Class="w-12"
-                rowHeightNumber2Class="h-4"
-                cellWidthNumber2Class="w-12"
-              />
-            </div>
+            <CotReg4
+              text1="Puntos de conexión"
+              number1={puntosConexion}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
 
             {/*Cantidad de equipos de alta y baja*/}
             <div className="flex justify-end w-[320px] mt-2">
               <CotReg2
                 text1="Alta"
                 text2="Baja"
-                number1={0}
-                number2={0}
+                number1={cantEquiposAlta}
+                number2={cantEquiposBaja}
                 rowHeightTextClass="h-4"
                 cellWidthTextClass="w-12"
                 rowHeightNumberClass="h-4"
@@ -251,8 +330,8 @@ export default function Page() {
             <div className="flex flex-col items-center mt-0.25">
               <CotReg3
                 text="Gasodoméstico 1"
-                number1={0}
-                number2={0}
+                number1={gasodomestico1Alta}
+                number2={gasodomestico1Baja}
                 rowHeightTextClass="h-4"
                 cellWidthTextClass="w-56"
                 rowHeightNumber1Class="h-4"
@@ -266,8 +345,8 @@ export default function Page() {
             <div className="flex flex-col items-center mt-0.25">
               <CotReg3
                 text="Gasodoméstico 2"
-                number1={0}
-                number2={0}
+                number1={gasodomestico2Alta}
+                number2={gasodomestico2Baja}
                 rowHeightTextClass="h-4"
                 cellWidthTextClass="w-56"
                 rowHeightNumber1Class="h-4"
@@ -281,8 +360,8 @@ export default function Page() {
             <div className="flex flex-col items-center mt-0.25">
               <CotReg3
                 text="Gasodoméstico 3"
-                number1={0}
-                number2={0}
+                number1={gasodomestico3Alta}
+                number2={gasodomestico3Baja}
                 rowHeightTextClass="h-4"
                 cellWidthTextClass="w-56"
                 rowHeightNumber1Class="h-4"
@@ -296,8 +375,8 @@ export default function Page() {
             <div className="flex flex-col items-center mt-0.25">
               <CotReg3
                 text="Gasodoméstico Especial"
-                number1={0}
-                number2={0}
+                number1={gasodomesticoPersonalisadoAlta}
+                number2={gasodomesticoPeronalizadoBaja}
                 rowHeightTextClass="h-4"
                 cellWidthTextClass="w-56"
                 rowHeightNumber1Class="h-4"
@@ -311,8 +390,8 @@ export default function Page() {
             <div className="flex flex-col items-center mt-3">
               <CotReg3
                 text="Sub Tot. Potencia KW"
-                number1={0}
-                number2={0}
+                number1={subPotenciaAlta}
+                number2={subPotenciaBlta}
                 rowHeightTextClass="h-4"
                 cellWidthTextClass="w-56"
                 rowHeightNumber1Class="h-4"
@@ -325,9 +404,9 @@ export default function Page() {
             {/*Total KW*/}
             <div className="flex flex-col items-center mt-3">
               <CotReg1
-                text="Total KW"
-                number1={0}
-                number2="KW"
+                text1="Total KW"
+                number1={potenciaTotal}
+                text2="KW"
                 rowHeightTextClass="h-4"
                 cellWidthTextClass="w-56"
                 rowHeightNumber1Class="h-4"
@@ -359,7 +438,7 @@ export default function Page() {
             </div>
           </div>
 
-          {/*Costos*/}
+          {/*Costos en Soles*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Costos en Soles</h1>
           </div>
@@ -368,7 +447,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="Instalación interna"
-              number1={0}
+              number1={instalacionInterna}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -380,7 +459,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="Medidor"
-              number1={0}
+              number1={medidor}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -392,7 +471,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="Derecho de conexión"
-              number1={0}
+              number1={derechoConexion}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -404,7 +483,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="Valor línea montante"
-              number1={0}
+              number1={lineaMontante}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -416,7 +495,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-3">
             <CotReg4
               text1="Gasto de la inversión"
-              number1={0}
+              number1={gastoInversion}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -445,7 +524,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="6"
-              number1={0}
+              number1={cuota6meses}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -457,7 +536,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="12"
-              number1={0}
+              number1={cuota12meses}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -469,7 +548,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="24"
-              number1={0}
+              number1={cuota24meses}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -481,7 +560,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="36"
-              number1={0}
+              number1={cuota36meses}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -493,7 +572,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="48"
-              number1={0}
+              number1={cuota48meses}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -505,7 +584,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="60"
-              number1={0}
+              number1={cuota60meses}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -542,11 +621,11 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg7
               text="Balón 10Kg"
-              number1={0}
-              number2={0}
-              number3={0}
-              number4={0}
-              number5={0}
+              number1={balon10KgReferencial}
+              number2={balon10KgCantidad}
+              number3={balon10KgCActual}
+              number4={balon10KgGnv}
+              number5={balon10KgAhorro}
               rowHeightClass="h-4"
               cellWidthTextClass="w-20"
               cellWidthNumber1Class="w-12"
@@ -561,11 +640,11 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg7
               text="Balón 45Kg"
-              number1={0}
-              number2={0}
-              number3={0}
-              number4={0}
-              number5={0}
+              number1={balon45KgReferencial}
+              number2={balon45KgCantidad}
+              number3={balon45KgCActual}
+              number4={balon45KgGnv}
+              number5={balon45KgAhorro}
               rowHeightClass="h-4"
               cellWidthTextClass="w-20"
               cellWidthNumber1Class="w-12"
@@ -580,11 +659,11 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg7
               text="GL GLP"
-              number1={0}
-              number2={0}
-              number3={0}
-              number4={0}
-              number5={0}
+              number1={GlpReferencial}
+              number2={GlpCantidad}
+              number3={GlpCActual}
+              number4={GlpGnv}
+              number5={GlpAhorro}
               rowHeightClass="h-4"
               cellWidthTextClass="w-20"
               cellWidthNumber1Class="w-12"
@@ -599,11 +678,11 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg7
               text="G Petroleo"
-              number1={0}
-              number2={0}
-              number3={0}
-              number4={0}
-              number5={0}
+              number1={petroleoReferencial}
+              number2={petroleoCantidad}
+              number3={petroleoCActual}
+              number4={petroleoGnv}
+              number5={petroleoAhorro}
               rowHeightClass="h-4"
               cellWidthTextClass="w-20"
               cellWidthNumber1Class="w-12"
@@ -639,9 +718,9 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg9
               text="Balón 10Kg"
-              number1={0}
-              number2={0}
-              number3={0}
+              number1={retornoInversionBalon10KgAño1}
+              number2={retornoInversionBalon10KgAño2}
+              number3={retornoInversionBalon10KgAño3}
               rowHeightClass="h-4"
               cellWidthTextClass="w-20"
               cellWidthNumber1Class="w-20"
@@ -654,9 +733,9 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg9
               text="Balón 45Kg"
-              number1={0}
-              number2={0}
-              number3={0}
+              number1={retornoInversionBalon45KgAño1}
+              number2={retornoInversionBalon45KgAño2}
+              number3={retornoInversionBalon45KgAño3}
               rowHeightClass="h-4"
               cellWidthTextClass="w-20"
               cellWidthNumber1Class="w-20"
@@ -669,9 +748,9 @@ export default function Page() {
             <div className="flex flex-col items-center mt-0.25">
             <CotReg9
               text="GL GLP"
-              number1={0}
-              number2={0}
-              number3={0}
+              number1={retornoInversionGlpAño1}
+              number2={retornoInversionGlpAño2}
+              number3={retornoInversionGlpAño3}
               rowHeightClass="h-4"
               cellWidthTextClass="w-20"
               cellWidthNumber1Class="w-20"
@@ -684,9 +763,9 @@ export default function Page() {
             <div className="flex flex-col items-center mt-0.25">
             <CotReg9
               text="G Petroleo"
-              number1={0}
-              number2={0}
-              number3={0}
+              number1={retornoInversionPetroleoAño1}
+              number2={retornoInversionPetroleoAño2}
+              number3={retornoInversionPetroleoAño3}
               rowHeightClass="h-4"
               cellWidthTextClass="w-20"
               cellWidthNumber1Class="w-20"
