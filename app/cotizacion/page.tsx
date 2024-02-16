@@ -15,6 +15,7 @@ import {
   CotReg7,
   CotReg8,
   CotReg9,  
+  CotReg10,
   GuardarBotton,
 } from "@/components/FilasColumnas";
 
@@ -180,11 +181,9 @@ export default function Page() {
 
           {/*Confguración*/}
           <div className="flex flex-col items-center mt-0.25">
-            <ClientReg
+            <CotReg10
               text1="Configuración"
-              text2Name={coordenada}
-              text2InitialValue={coordenada}
-              onText2Change={setCoordenada} // Pasa setCoordenada a ClientReg
+              text2=""
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
@@ -366,7 +365,7 @@ export default function Page() {
           </div>
 
           {/*Instalación interna*/}
-          <div className="flex flex-col items-center mt-0.5">
+          <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="Instalación interna"
               number1={0}

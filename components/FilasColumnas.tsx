@@ -661,7 +661,42 @@ const CotReg9: React.FC<CotReg9Props> = ({
     </div>
   );
 };
-//Fin Componente CotReg9
+//Fin Componente CotReg10
+
+//Componente CotReg4 1 Fila y 2 Columnas con un texto y un número
+type CotReg10Props = {
+  text1: string;
+  text2: string;
+  rowHeightTextClass: string;
+  rowHeightNumberClass: string;
+  cellWidthTextClass: string;
+  cellWidthNumberClass: string;
+};
+
+const CotReg10: React.FC<CotReg10Props> = ({
+  text1,
+  text2,
+  rowHeightTextClass,
+  cellWidthTextClass,
+  rowHeightNumberClass,
+  cellWidthNumberClass,
+}) => {
+  return (
+    <div className={`flex  items-center`}>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightTextClass} ${cellWidthTextClass} flex items-center font-sans text-sm`}
+      >
+        {text1}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center font-sans text-sm justify-center`}
+      >
+        {text2}
+      </div>
+    </div>
+  );
+};
+//Fin Componente CotReg10
 
 export {
   ClientReg,
@@ -677,4 +712,5 @@ export {
   CotReg7,
   CotReg8,
   CotReg9,
+  CotReg10,
 };
