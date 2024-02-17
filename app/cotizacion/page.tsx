@@ -216,13 +216,13 @@ export default function Page() {
             <h1 className="text-base">Registro de Cliente</h1>
           </div>
 
-          {/*Ingreso de Razón social, nombre*/}
+          {/*Ingreso de RUC, DNI, CE en registro ruc*/}
           <div className="flex flex-col items-center mt-0.25">
             <ClientReg
-              text1="Razón, nombre"
-              text2Name={razonNombre}
-              text2InitialValue={razonNombre}
-              onText2Change={setRazonNombre} // Pasa setRazonNombre a ClientReg
+              text1="RUC, DNI, CE"
+              text2Name={ruc}
+              text2InitialValue={ruc}
+              onText2Change={setRuc} // Pasa setRuc a ClientReg
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
@@ -231,13 +231,13 @@ export default function Page() {
             />
           </div>
 
-          {/*Ingreso de RUC, DNI, CE en registro ruc*/}
+          {/*Ingreso de Razón social, nombre*/}
           <div className="flex flex-col items-center mt-0.25">
             <ClientReg
-              text1="RUC, DNI, CE"
-              text2Name={ruc}
-              text2InitialValue={ruc}
-              onText2Change={setRuc} // Pasa setRuc a ClientReg
+              text1="Razón, nombre"
+              text2Name={razonNombre}
+              text2InitialValue={razonNombre}
+              onText2Change={setRazonNombre} // Pasa setRazonNombre a ClientReg
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
