@@ -1,7 +1,9 @@
 // cotizacion/page.tsx
 "use client";
 import { NavBar } from "@/components/NavBar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import classNames from "classnames"; // Asegúrate de importar la biblioteca classnames
+import { getData } from "@/app/productos/data.js";
 import {
   ClientReg,
   CotRegDes2,
@@ -14,21 +16,25 @@ import {
   CotReg6,
   CotReg7,
   CotReg8,
-  CotReg9,  
+  CotReg9,
   CotReg10,
   GuardarBotton,
 } from "@/components/FilasColumnas";
 
 export default function Page() {
-  
-  {/*Declaración de variables del registro del cliente */}
+  {
+    /*Declaración de variables del registro del cliente */
+  }
+  const [razonNombre, setRazonNombre] = useState(""); // Cambia razonNombre a un estado
   const [ruc, setRuc] = useState(""); // Cambia ruc a un estado
   const [cel, setCel] = useState(""); // Cambia cel a un estado
   const [correo, setCorreo] = useState(""); // Cambia correo a un estado
   const [direccion, setDireccion] = useState(""); // Cambia direccion a un estado
-  const [coordenada, setCoordenada] = useState(""); // Cambia direccion a un estado
-
-   {/*Declaración de variables de Suministro e Instalación*/}
+  const [coordenada, setCoordenada] = useState(""); // Cambia coordenada a un estado
+  const [isSaved, setIsSaved] = useState(false); // Añade un nuevo estado para saber si los valores han sido guardados
+  {
+    /*Declaración de variables de Suministro e Instalación*/
+  }
   const [alaVista, setAlaVista] = useState(false);
   const [empotrada, setEmpotrada] = useState(false);
 
@@ -41,37 +47,42 @@ export default function Page() {
   const [peAlPe2025, setPeAlPe2025] = useState(false);
   const [cobre, setCobre] = useState(false);
 
-  {/*Declaración de variables de Calculo de la Potencia Presión del Gasodoméstico*/}
-  const puntosConexion: number = 0;
-  
+  {
+    /*Declaración de variables de Calculo de la Potencia Presión del Gasodoméstico*/
+  }
+
   const cantEquiposAlta: number = 0;
   const cantEquiposBaja: number = 0;
 
-  const gasodomestico1Alta: number = 0;
+  const gasodomestico1Alta: number = 30;
   const gasodomestico1Baja: number = 0;
 
-  const gasodomestico2Alta: number = 0;
+  const gasodomestico2Alta: number = 25;
   const gasodomestico2Baja: number = 0;
 
   const gasodomestico3Alta: number = 0;
-  const gasodomestico3Baja: number = 0;
+  const gasodomestico3Baja: number = 11;
 
   const gasodomesticoPersonalisadoAlta: number = 0;
-  const gasodomesticoPeronalizadoBaja: number = 0;
+  const gasodomesticoPersonalizadoBaja: number = 0;
 
   const subPotenciaAlta: number = 0;
-  const subPotenciaBlta: number = 0;
+  const subPotenciaBaja: number = 0;
 
   const potenciaTotal: number = 0;
 
-  {/*Declaración de variables de Costos en Soles*/}
+  {
+    /*Declaración de variables de Costos en Soles*/
+  }
   const instalacionInterna: number = 0;
   const medidor: number = 0;
   const derechoConexion: number = 0;
   const lineaMontante: number = 0;
   const gastoInversion: number = 0;
 
-  {/*Declaración de variables de Pago en cuotas*/}
+  {
+    /*Declaración de variables de Pago en cuotas*/
+  }
 
   const cuota6meses: number = 0;
   const cuota12meses: number = 0;
@@ -80,7 +91,9 @@ export default function Page() {
   const cuota48meses: number = 0;
   const cuota60meses: number = 0;
 
-  {/*Declaración de variables de Calculo referencial consumo mensual*/}
+  {
+    /*Declaración de variables de Calculo referencial consumo mensual*/
+  }
 
   const balon10KgReferencial: number = 0;
   const balon10KgCantidad: number = 0;
@@ -106,7 +119,9 @@ export default function Page() {
   const petroleoGnv: number = 0;
   const petroleoAhorro: number = 0;
 
-  {/*Declaración de variables de Retorno de la inversión con el ahorro*/}
+  {
+    /*Declaración de variables de Retorno de la inversión con el ahorro*/
+  }
 
   const retornoInversionBalon10KgAño1: number = 0;
   const retornoInversionBalon10KgAño2: number = 0;
@@ -124,6 +139,71 @@ export default function Page() {
   const retornoInversionPetroleoAño2: number = 0;
   const retornoInversionPetroleoAño3: number = 0;
 
+  {
+    /*Función para guardar los valores de los estados*/
+  }
+  const guardarValores = () => {
+    const valores = {
+      razonNombre,
+      ruc,
+      cel,
+      correo,
+      direccion,
+      coordenada,
+    };
+
+    console.log(valores); // Aquí puedes hacer lo que necesites con los valores, por ejemplo, guardarlos en una base de datos
+
+    setIsSaved(true); // Cambia el estado isSaved a true
+  };
+
+  {
+    /*Función para editar los valores de los estados*/
+  }
+  const editarValores = () => {
+    setIsSaved(false); // Establece isSaved en false cuando se hace clic en el botón "Editar"
+  };
+
+  {
+    /*Función para ver los valores de los estados en Suministro e Instalación*/
+  }
+  useEffect(() => {
+    console.log(`alaVista: ${alaVista}, empotrada: ${empotrada}`);
+    console.log(
+      `existente: ${existente}, construido: ${construido}, peAlPe20251216: ${peAlPe20251216}, peAlPe2025: ${peAlPe2025}, cobre: ${cobre}`
+    );
+  }, [
+    alaVista,
+    empotrada,
+    existente,
+    construido,
+    peAlPe20251216,
+    peAlPe2025,
+    cobre,
+  ]);
+
+  {
+    /*Función para limpiar localStorage la primera vez que carga cotización*/
+  }
+  useEffect(() => {
+    if (!localStorage.getItem('pageLoadedBefore')) {
+      localStorage.clear();
+      localStorage.setItem('pageLoadedBefore', 'true');
+    }
+  }, []);
+
+  {
+    /*Función para imprimir KW*/
+  }
+  useEffect(() => {
+    getData();
+    for (let i = 1; i <= 38; i++) {
+      const kw = localStorage.getItem(`kw${i}`);
+      console.log(`KW${i}: ${kw}`);
+    }
+  }, []);
+
+  {/*RETURN PRINCIPAL*/}
   return (
     <main className="container w-[320px]  flex flex-col items-center justify-center min-h-screen font-sans text-sm">
       <div className="flex-grow w-full flex flex-col items-center">
@@ -131,15 +211,30 @@ export default function Page() {
           {/*Punto de inserción NavBar*/}
           <NavBar />
 
-          {/*Registro de Cliente*/}
+          {/*TÍTULO: REGISTRO DE CLIENTE*/}
           <div className="flex flex-col items-center mt-0.25 mb-1.5">
             <h1 className="text-base">Registro de Cliente</h1>
+          </div>
+
+          {/*Ingreso de Razón social, nombre*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <ClientReg
+              text1="Razón, nombre"
+              text2Name={razonNombre}
+              text2InitialValue={razonNombre}
+              onText2Change={setRazonNombre} // Pasa setRazonNombre a ClientReg
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-32"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-50"
+              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
+            />
           </div>
 
           {/*Ingreso de RUC, DNI, CE en registro ruc*/}
           <div className="flex flex-col items-center mt-0.25">
             <ClientReg
-              text1="RUC, DNI, CE:"
+              text1="RUC, DNI, CE"
               text2Name={ruc}
               text2InitialValue={ruc}
               onText2Change={setRuc} // Pasa setRuc a ClientReg
@@ -147,13 +242,14 @@ export default function Page() {
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-50"
+              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
 
           {/*Ingreso de celular en registro cel*/}
           <div className="flex flex-col items-center mt-0.25">
             <ClientReg
-              text1="Celular:"
+              text1="Celular"
               text2Name={cel}
               text2InitialValue={cel}
               onText2Change={setCel} // Pasa setCel a ClientReg
@@ -161,13 +257,14 @@ export default function Page() {
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-50"
+              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
 
           {/*Ingreso de correo en registro correo*/}
           <div className="flex flex-col items-center mt-0.25">
             <ClientReg
-              text1="Correo:"
+              text1="Correo"
               text2Name={correo}
               text2InitialValue={correo}
               onText2Change={setCorreo} // Pasa setCorreo a ClientReg
@@ -175,13 +272,14 @@ export default function Page() {
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-50"
+              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
 
           {/*Ingreso de dirección en registro direccion*/}
           <div className="flex flex-col items-center mt-0.25">
             <ClientReg
-              text1="Dirección:"
+              text1="Dirección"
               text2Name={direccion}
               text2InitialValue={direccion}
               onText2Change={setDireccion} // Pasa setDireccion a ClientReg
@@ -189,13 +287,14 @@ export default function Page() {
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-50"
+              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
 
           {/*Ingreso de coordenadas de direccion*/}
           <div className="flex flex-col items-center mt-0.25">
             <ClientReg
-              text1="Coordenada:"
+              text1="Coordenada"
               text2Name={coordenada}
               text2InitialValue={coordenada}
               onText2Change={setCoordenada} // Pasa setCoordenada a ClientReg
@@ -203,52 +302,59 @@ export default function Page() {
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-50"
+              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
 
-          {/*Botones Calcular e Imprimir*/}
+          {/*BOTONES GUARDAR Y EDITAR*/}
           <div className="flex justify-center space-x-5">
-          {/*Botón de Guardar*/}
-          <div className="flex flex-col items-center mt-4">
-            <GuardarBotton
-              text="Guardar"
-              rowHeightTextBottonClass="h-4"
-              cellWidthTextBottonClass="w-26"
-            />
-          </div>
-
+            {/*Botón de Guardar*/}
+            <div
+              className={classNames(
+                "flex flex-col items-center mt-4",
+                isSaved && "rounded-lg bg-gray-400"
+              )}
+            >
+              <GuardarBotton
+                text={isSaved ? "Guardado" : "Guardar"} // Cambia el texto en función de isSaved
+                rowHeightTextBottonClass="h-4"
+                cellWidthTextBottonClass="w-26"
+                onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
+              />
+            </div>
             {/*Boton Editar*/}
             <div className="flex flex-col items-center mt-4">
               <GuardarBotton
                 text="Editar"
                 rowHeightTextBottonClass="h-4"
                 cellWidthTextBottonClass="w-26"
+                onClick={editarValores} // Llama a la función guardarValores cuando se hace clic en el botón
               />
             </div>
           </div>
 
-          {/*Suministro e Instalación*/}
+          {/*TÍTULO: SUMINISTRO E INSTALACIÓN*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Suministro e Instalación</h1>
           </div>
 
-          {/*Selección de Instalación*/}
+          {/*Menú de Selección de Instalación*/}
           <div className="flex flex-col items-center mt-0.25">
-          <CotRegDes2
-            text1="Instalación:"
-            text2="A la vista"
-            text3="Empotrada"
-            rowHeightClass="h-4"
-            cellWidthTextClass="w-32"
-            cellWidthMenuClass="w-48"
-            boolean1={alaVista}
-            setText1={setAlaVista}
-            boolean2={empotrada}
-            setText2={setEmpotrada}
-          />
+            <CotRegDes2
+              text1="Instalación"
+              text2="A la vista"
+              text3="Empotrada"
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-32"
+              cellWidthMenuClass="w-48"
+              boolean1={alaVista}
+              setText1={setAlaVista}
+              boolean2={empotrada}
+              setText2={setEmpotrada}
+            />
           </div>
 
-          {/*Selección de Murete*/}
+          {/*Menú de Selección de Murete*/}
           <div className="flex flex-col items-center mt-0.25">
             <CotRegDes2
               text1="Murete"
@@ -276,13 +382,13 @@ export default function Page() {
             />
           </div>
 
-          {/*Selección de Material Interna*/}
+          {/*Menú de Selección de Material Interna*/}
           <div className="flex flex-col items-center mt-0.25">
             <CotRegDes3
               text1="Material Interna"
               text2="Pe-Al-Pe 2025-1216"
               text3="Pe-Al-Pe 2025"
-              text4="Cobre"              
+              text4="Cobre"
               rowHeightClass="h-4"
               cellWidthTextClass="w-32"
               cellWidthMenuClass="w-48"
@@ -291,130 +397,132 @@ export default function Page() {
               boolean2={peAlPe2025}
               setText2={setPeAlPe2025}
               boolean3={cobre}
-              setText3={setCobre}              
+              setText3={setCobre}
             />
           </div>
 
-          {/*Calculo de la Potencia Presión del Gasodoméstico*/}
+          {/*TÍTULO: CALCULO DE LA POTENCIA PRESIÓN DEL GASODOMÉSTICO*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Calculo de la Potencia</h1>
             <h1 className="text-base">Presión del Gasodoméstico</h1>
           </div>
 
+          {/*Puntos de conexión*/}
           <div className="flex flex-col items-center">
-            {/*Cantidad de puntos de conexión*/}
             <CotReg4
               text1="Puntos de conexión"
-              number1={puntosConexion}
+              number1={cantEquiposAlta + (gasodomestico1Alta !== 0 ? 1 : 0) + (gasodomestico2Alta !== 0 ? 1 : 0) + (gasodomestico3Alta !== 0 ? 1 : 0) + (gasodomesticoPersonalisadoAlta !== 0 ? 1 : 0) + (gasodomestico1Baja !== 0 ? 1 : 0) + (gasodomestico2Baja !== 0 ? 1 : 0) + (gasodomestico3Baja !== 0 ? 1 : 0) + (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0)}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-24"
             />
+          </div>
 
-            {/*Cantidad de equipos de alta y baja*/}
+          {/*Cantidad de equipos de alta y baja*/}
+          <div className="flex flex-col items-center">
             <div className="flex justify-end w-[320px] mt-2">
               <CotReg2
                 text1="Alta"
                 text2="Baja"
-                number1={cantEquiposAlta}
-                number2={cantEquiposBaja}
+                number1={cantEquiposAlta + (gasodomestico1Alta !== 0 ? 1 : 0) + (gasodomestico2Alta !== 0 ? 1 : 0) + (gasodomestico3Alta !== 0 ? 1 : 0) + (gasodomesticoPersonalisadoAlta !== 0 ? 1 : 0)}
+                number2={cantEquiposBaja + (gasodomestico1Baja !== 0 ? 1 : 0) + (gasodomestico2Baja !== 0 ? 1 : 0) + (gasodomestico3Baja !== 0 ? 1 : 0) + (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0)}
                 rowHeightTextClass="h-4"
                 cellWidthTextClass="w-12"
                 rowHeightNumberClass="h-4"
                 cellWidthNumberClass="w-12"
               />
             </div>
+          </div>
 
-            {/*Gasodomesticos 1*/}
-            <div className="flex flex-col items-center mt-0.25">
-              <CotReg3
-                text="Gasodoméstico 1"
-                number1={gasodomestico1Alta}
-                number2={gasodomestico1Baja}
-                rowHeightTextClass="h-4"
-                cellWidthTextClass="w-56"
-                rowHeightNumber1Class="h-4"
-                cellWidthNumber1Class="w-12"
-                rowHeightNumber2Class="h-4"
-                cellWidthNumber2Class="w-12"
-              />
-            </div>
+          {/*Gasodomesticos 1*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg3
+              text="Gasodoméstico 1"
+              number1={gasodomestico1Alta}
+              number2={gasodomestico1Baja}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumber1Class="h-4"
+              cellWidthNumber1Class="w-12"
+              rowHeightNumber2Class="h-4"
+              cellWidthNumber2Class="w-12"
+            />
+          </div>
 
-            {/*Gasodomesticos 2*/}
-            <div className="flex flex-col items-center mt-0.25">
-              <CotReg3
-                text="Gasodoméstico 2"
-                number1={gasodomestico2Alta}
-                number2={gasodomestico2Baja}
-                rowHeightTextClass="h-4"
-                cellWidthTextClass="w-56"
-                rowHeightNumber1Class="h-4"
-                cellWidthNumber1Class="w-12"
-                rowHeightNumber2Class="h-4"
-                cellWidthNumber2Class="w-12"
-              />
-            </div>
+          {/*Gasodomesticos 2*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg3
+              text="Gasodoméstico 2"
+              number1={gasodomestico2Alta}
+              number2={gasodomestico2Baja}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumber1Class="h-4"
+              cellWidthNumber1Class="w-12"
+              rowHeightNumber2Class="h-4"
+              cellWidthNumber2Class="w-12"
+            />
+          </div>
 
-            {/*Gasodomesticos 3*/}
-            <div className="flex flex-col items-center mt-0.25">
-              <CotReg3
-                text="Gasodoméstico 3"
-                number1={gasodomestico3Alta}
-                number2={gasodomestico3Baja}
-                rowHeightTextClass="h-4"
-                cellWidthTextClass="w-56"
-                rowHeightNumber1Class="h-4"
-                cellWidthNumber1Class="w-12"
-                rowHeightNumber2Class="h-4"
-                cellWidthNumber2Class="w-12"
-              />
-            </div>
+          {/*Gasodomesticos 3*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg3
+              text="Gasodoméstico 3"
+              number1={gasodomestico3Alta}
+              number2={gasodomestico3Baja}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumber1Class="h-4"
+              cellWidthNumber1Class="w-12"
+              rowHeightNumber2Class="h-4"
+              cellWidthNumber2Class="w-12"
+            />
+          </div>
 
-            {/*Gasodomesticos Personalizado*/}
-            <div className="flex flex-col items-center mt-0.25">
-              <CotReg3
-                text="Gasodoméstico Especial"
-                number1={gasodomesticoPersonalisadoAlta}
-                number2={gasodomesticoPeronalizadoBaja}
-                rowHeightTextClass="h-4"
-                cellWidthTextClass="w-56"
-                rowHeightNumber1Class="h-4"
-                cellWidthNumber1Class="w-12"
-                rowHeightNumber2Class="h-4"
-                cellWidthNumber2Class="w-12"
-              />
-            </div>
+          {/*Gasodomesticos Personalizado*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotReg3
+              text="Gasodoméstico Especial"
+              number1={gasodomesticoPersonalisadoAlta}
+              number2={gasodomesticoPersonalizadoBaja}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumber1Class="h-4"
+              cellWidthNumber1Class="w-12"
+              rowHeightNumber2Class="h-4"
+              cellWidthNumber2Class="w-12"
+            />
+          </div>
 
-            {/*Sub Tot. Potencia KW*/}
-            <div className="flex flex-col items-center mt-3">
-              <CotReg3
-                text="Sub Tot. Potencia KW"
-                number1={subPotenciaAlta}
-                number2={subPotenciaBlta}
-                rowHeightTextClass="h-4"
-                cellWidthTextClass="w-56"
-                rowHeightNumber1Class="h-4"
-                cellWidthNumber1Class="w-12"
-                rowHeightNumber2Class="h-4"
-                cellWidthNumber2Class="w-12"
-              />
-            </div>
+          {/*Sub Tot. Potencia KW*/}
+          <div className="flex flex-col items-center mt-3">
+            <CotReg3
+              text="Sub Tot. Potencia KW"
+              number1={gasodomestico1Alta+gasodomestico2Alta+gasodomestico3Alta+gasodomesticoPersonalisadoAlta}
+              number2={gasodomestico1Baja+gasodomestico2Baja+gasodomestico3Baja+gasodomesticoPersonalizadoBaja}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumber1Class="h-4"
+              cellWidthNumber1Class="w-12"
+              rowHeightNumber2Class="h-4"
+              cellWidthNumber2Class="w-12"
+            />
+          </div>
 
-            {/*Total KW*/}
-            <div className="flex flex-col items-center mt-3">
-              <CotReg1
-                text1="Total KW"
-                number1={potenciaTotal}
-                text2="KW"
-                rowHeightTextClass="h-4"
-                cellWidthTextClass="w-56"
-                rowHeightNumber1Class="h-4"
-                cellWidthNumber1Class="w-12"
-                rowHeightNumber2Class="h-4"
-                cellWidthNumber2Class="w-12"
-              />
-            </div>
+          {/*Total KW*/}
+          <div className="flex flex-col items-center mt-3">
+            <CotReg1
+              text1="Total KW"
+              number1={gasodomestico1Alta+gasodomestico2Alta+gasodomestico3Alta+gasodomesticoPersonalisadoAlta+gasodomestico1Baja+gasodomestico2Baja+gasodomestico3Baja+gasodomesticoPersonalizadoBaja}
+              text2="KW"
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumber1Class="h-4"
+              cellWidthNumber1Class="w-12"
+              rowHeightNumber2Class="h-4"
+              cellWidthNumber2Class="w-12"
+            />
           </div>
 
           {/*Botones Calcular e Imprimir*/}
@@ -425,6 +533,7 @@ export default function Page() {
                 text="Calcular"
                 rowHeightTextBottonClass="h-4"
                 cellWidthTextBottonClass="w-26"
+                onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
               />
             </div>
 
@@ -434,11 +543,12 @@ export default function Page() {
                 text="Imprimir"
                 rowHeightTextBottonClass="h-4"
                 cellWidthTextBottonClass="w-26"
+                onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
               />
             </div>
           </div>
 
-          {/*Costos en Soles*/}
+          {/*TÍTULO: COSTOS EN SOLES*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Costos en Soles</h1>
           </div>
@@ -503,7 +613,7 @@ export default function Page() {
             />
           </div>
 
-          {/*Pago en cuotas*/}
+          {/*TITULO: PAGO EN CUOTAS*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Pago en cuotas</h1>
           </div>
@@ -592,7 +702,7 @@ export default function Page() {
             />
           </div>
 
-          {/*Calculo referencial consumo mensual*/}
+          {/*TÍTULO: CALCULO REFERENCIAL CONSUMO MENSUAL*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base">Calculo referencial</h1>
             <h1 className="text-base">consumo y ahorro mensual</h1>
@@ -692,8 +802,8 @@ export default function Page() {
               cellWidthNumber5Class="w-12"
             />
           </div>
-          
-          {/*Retorno de la inversión con el ahorro*/}
+
+          {/*TÍTULO: RETORNO DE LA INVERSIÓN CON EL AHORRO*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base">Retorno de la inversión</h1>
             <h1 className="text-base">con el ahorro</h1>
@@ -713,7 +823,7 @@ export default function Page() {
               cellWidthText4Class="w-20"
             />
           </div>
- 
+
           {/*Retorno de inversión Balón 10Kg*/}
           <div className="flex flex-col items-center mt-0.25">
             <CotReg9
@@ -744,8 +854,8 @@ export default function Page() {
             />
           </div>
 
-            {/*Retorno de inversión GL GLP*/}
-            <div className="flex flex-col items-center mt-0.25">
+          {/*Retorno de inversión GL GLP*/}
+          <div className="flex flex-col items-center mt-0.25">
             <CotReg9
               text="GL GLP"
               number1={retornoInversionGlpAño1}
@@ -759,8 +869,8 @@ export default function Page() {
             />
           </div>
 
-            {/*Retorno de inversión G Petroleo*/}
-            <div className="flex flex-col items-center mt-0.25">
+          {/*Retorno de inversión G Petroleo*/}
+          <div className="flex flex-col items-center mt-0.25">
             <CotReg9
               text="G Petroleo"
               number1={retornoInversionPetroleoAño1}
@@ -773,7 +883,6 @@ export default function Page() {
               cellWidthNumber3Class="w-20"
             />
           </div>
-
         </div>
       </div>
     </main>

@@ -7,13 +7,13 @@ type ClientRegProps = {
   text1: string;
   text2Name: string;
   text2InitialValue: string;
-  onText2Change: (value: string) => void; // Agrega onText2Change a las props
+  onText2Change: (value: string) => void;
   rowHeightTextClass: string;
   rowHeightNumberClass: string;
   cellWidthTextClass: string;
   cellWidthNumberClass: string;
+  isDisabled: boolean; // Añade isDisabled a las props
 };
-
 const ClientReg: React.FC<ClientRegProps> = ({
   text1,
   text2Name,
@@ -23,6 +23,7 @@ const ClientReg: React.FC<ClientRegProps> = ({
   rowHeightNumberClass,
   cellWidthTextClass,
   cellWidthNumberClass,
+  isDisabled, // Añade isDisabled a las props del componente
 }) => {
   const [text2, setText2] = useState(text2InitialValue);
 
@@ -48,6 +49,7 @@ const ClientReg: React.FC<ClientRegProps> = ({
           onChange={handleText2Change}
           className="outline-none"
           placeholder="Enter text"
+          disabled={isDisabled} // Usa isDisabled para deshabilitar el campo de entrada de texto
         />
       </div>
     </div>
@@ -60,20 +62,23 @@ type GuardarBottonProps = {
   text: string;
   rowHeightTextBottonClass: string;
   cellWidthTextBottonClass: string;
+  onClick: () => void; // Añade la prop onClick
 };
-
 const GuardarBotton: React.FC<GuardarBottonProps> = ({
   text,
   rowHeightTextBottonClass,
   cellWidthTextBottonClass,
+  onClick, // Desestructura la prop onClick
 }) => {
   return (
     <div className={`flex  items-center`}>
-      <div
+      <button
+        type="button" // Añade el atributo type
         className={`p-4 border border-gray-800 rounded-lg ${rowHeightTextBottonClass} ${cellWidthTextBottonClass} flex items-center`}
+        onClick={onClick} // Usa la prop onClick aquí
       >
         {text}
-      </div>
+      </button>
     </div>
   );
 };
@@ -92,7 +97,6 @@ type CotRegDes2Props = {
   boolean2: boolean;
   setText2: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
 const CotRegDes2: React.FC<CotRegDes2Props> = ({
   text1,
   text2,
@@ -128,7 +132,8 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
         <label htmlFor="selectMenu" className="sr-only">
           Select Menu
         </label>
-        <select id="selectMenu" className="text-black w-full h-8" onChange={handleSelectChange}>
+        <select id="selectMenu" value="" className="text-black w-full h-8" onChange={handleSelectChange}>
+          <option value="" disabled>Seleccionar</option> {/* Opción "Seleccionar" deshabilitada y seleccionada por defecto */}
           <option value={text2}>{text2}</option>
           <option value={text3}>{text3}</option>
         </select>
@@ -152,9 +157,8 @@ type CotRegDes3Props = {
   boolean2: boolean;
   setText2: React.Dispatch<React.SetStateAction<boolean>>;
   boolean3: boolean;
-  setText3: React.Dispatch<React.SetStateAction<boolean>>; 
+  setText3: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
 const CotRegDes3: React.FC<CotRegDes3Props> = ({
   text1,
   text2,
@@ -168,13 +172,13 @@ const CotRegDes3: React.FC<CotRegDes3Props> = ({
   boolean2,
   setText2,
   boolean3,
-  setText3, 
+  setText3,
 }) => {
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     if (event.target.value === text2) {
       setText1(true);
       setText2(false);
-      setText3(false);      
+      setText3(false);
     } else if (event.target.value === text3) {
       setText1(false);
       setText2(true);
@@ -199,7 +203,8 @@ const CotRegDes3: React.FC<CotRegDes3Props> = ({
         <label htmlFor="selectMenu" className="sr-only">
           Select Menu
         </label>
-        <select id="selectMenu" className="text-black w-full h-8" onChange={handleSelectChange}>
+        <select id="selectMenu" value="" className="text-black w-full h-8" onChange={handleSelectChange}>
+          <option value="" disabled>Seleccionar</option> {/* Opción "Seleccionar" deshabilitada y seleccionada por defecto */}
           <option value={text2}>{text2}</option>
           <option value={text3}>{text3}</option>
           <option value={text4}>{text4}</option>
@@ -222,7 +227,6 @@ type CotReg1Props = {
   cellWidthNumber1Class: string;
   cellWidthNumber2Class: string;
 };
-
 const CotReg1: React.FC<CotReg1Props> = ({
   text1,
   number1,
@@ -267,7 +271,6 @@ type CotReg2Props = {
   cellWidthTextClass: string;
   cellWidthNumberClass: string;
 };
-
 const CotReg2: React.FC<CotReg2Props> = ({
   text1,
   text2,
@@ -321,7 +324,6 @@ type CotReg3Props = {
   cellWidthNumber1Class: string;
   cellWidthNumber2Class: string;
 };
-
 const CotReg3: React.FC<CotReg3Props> = ({
   text,
   number1,
@@ -364,7 +366,6 @@ type CotReg4Props = {
   cellWidthTextClass: string;
   cellWidthNumberClass: string;
 };
-
 const CotReg4: React.FC<CotReg4Props> = ({
   text1,
   number1,
@@ -399,7 +400,6 @@ type CotReg5Props = {
   cellWidthTextClass: string;
   cellWidthNumberClass: string;
 };
-
 const CotReg5: React.FC<CotReg5Props> = ({
   text1,
   text2,
@@ -441,7 +441,6 @@ type CotReg6Props = {
   cellWidthNumber4Class: string;
   cellWidthNumber5Class: string;
 };
-
 const CotReg6: React.FC<CotReg6Props> = ({
   text1,
   text2,
@@ -509,7 +508,6 @@ type CotReg7Props = {
   cellWidthNumber4Class: string;
   cellWidthNumber5Class: string;
 };
-
 const CotReg7: React.FC<CotReg7Props> = ({
   text,
   number1,
@@ -672,7 +670,6 @@ type CotReg10Props = {
   cellWidthTextClass: string;
   cellWidthNumberClass: string;
 };
-
 const CotReg10: React.FC<CotReg10Props> = ({
   text1,
   text2,
