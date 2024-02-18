@@ -40,7 +40,7 @@ const ClientReg: React.FC<ClientRegProps> = ({
         {text1}
       </div>
       <div
-        className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center font-sans text-sm`}
+        className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center font-sans text-sm overflow-hidden`}
       >
         <input
           type="text"
@@ -56,6 +56,61 @@ const ClientReg: React.FC<ClientRegProps> = ({
   );
 };
 //Fin Componente ClientReg filas con ingreso texto
+
+//Componente ClientReg1 filas con ingreso texto
+type ClientReg1Props = {
+  text1: string;
+  text2Name: string;
+  text2InitialValue: string;
+  onText2Change: (value: string) => void;
+  rowHeightTextClass: string;
+  rowHeightNumberClass: string;
+  cellWidthTextClass: string;
+  cellWidthNumberClass: string;
+  isDisabled: boolean; // Añade isDisabled a las props
+};
+const ClientReg1: React.FC<ClientReg1Props> = ({
+  text1,
+  text2Name,
+  text2InitialValue,
+  onText2Change,
+  rowHeightTextClass,
+  rowHeightNumberClass,
+  cellWidthTextClass,
+  cellWidthNumberClass,
+  isDisabled, // Añade isDisabled a las props del componente
+}) => {
+  const [text2, setText2] = useState(text2InitialValue);
+
+  const handleText2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText2(e.target.value);
+    onText2Change(e.target.value); // Llama a onText2Change cuando el valor del campo de entrada cambia
+  };
+
+  return (
+    <div className={`flex  items-center`}>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightTextClass} ${cellWidthTextClass} flex items-center font-sans text-sm`}
+      >
+        {text1}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center justify-center font-sans text-sm overflow-hidden`}
+      >
+        <input
+          type="text"
+          id="text2Input"
+          value={text2}
+          onChange={handleText2Change}
+          className="outline-none w-12"
+          placeholder="Enter text"
+          disabled={isDisabled} // Usa isDisabled para deshabilitar el campo de entrada de texto
+        />
+      </div>
+    </div>
+  );
+};
+//Fin Componente ClientReg1 filas con ingreso texto
 
 //Componente GuardarBotton
 type GuardarBottonProps = {
@@ -119,6 +174,14 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
     }
   };
 
+  // Determinar el valor del select basado en los estados boolean1 y boolean2
+  let selectValue = "";
+  if (boolean1) {
+    selectValue = text2;
+  } else if (boolean2) {
+    selectValue = text3;
+  }
+
   return (
     <div className="flex justify-center">
       <div
@@ -132,8 +195,16 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
         <label htmlFor="selectMenu" className="sr-only">
           Select Menu
         </label>
-        <select id="selectMenu" value="" className="text-black w-full h-8" onChange={handleSelectChange}>
-          <option value="" disabled>Seleccionar</option> {/* Opción "Seleccionar" deshabilitada y seleccionada por defecto */}
+        <select
+          id="selectMenu"
+          value={selectValue}
+          className="text-black w-full h-8"
+          onChange={handleSelectChange}
+        >
+          <option value="" disabled>
+            Seleccionar
+          </option>{" "}
+          {/* Opción "Seleccionar" deshabilitada y seleccionada por defecto */}
           <option value={text2}>{text2}</option>
           <option value={text3}>{text3}</option>
         </select>
@@ -190,6 +261,16 @@ const CotRegDes3: React.FC<CotRegDes3Props> = ({
     }
   };
 
+  // Determinar el valor del select basado en los estados boolean1, boolean2 y boolean3
+  let selectValue = "";
+  if (boolean1) {
+    selectValue = text2;
+  } else if (boolean2) {
+    selectValue = text3;
+  } else if (boolean3) {
+    selectValue = text4;
+  }
+
   return (
     <div className="flex justify-center">
       <div
@@ -203,8 +284,16 @@ const CotRegDes3: React.FC<CotRegDes3Props> = ({
         <label htmlFor="selectMenu" className="sr-only">
           Select Menu
         </label>
-        <select id="selectMenu" value="" className="text-black w-full h-8" onChange={handleSelectChange}>
-          <option value="" disabled>Seleccionar</option> {/* Opción "Seleccionar" deshabilitada y seleccionada por defecto */}
+        <select
+          id="selectMenu"
+          value={selectValue}
+          className="text-black w-full h-8"
+          onChange={handleSelectChange}
+        >
+          <option value="" disabled>
+            Seleccionar
+          </option>{" "}
+          {/* Opción "Seleccionar" deshabilitada y seleccionada por defecto */}
           <option value={text2}>{text2}</option>
           <option value={text3}>{text3}</option>
           <option value={text4}>{text4}</option>
@@ -214,6 +303,113 @@ const CotRegDes3: React.FC<CotRegDes3Props> = ({
   );
 };
 //Fin Componente CotRegDes3
+
+//Componente CotRegDes4 1 Fila, un columna con texto y un menu desplegable 4 textos
+type CotRegDes4Props = {
+  text1: string;
+  text2: string;
+  text3: string;
+  text4: string;
+  text5: string;
+  rowHeightClass: string;
+  cellWidthTextClass: string;
+  cellWidthMenuClass: string;
+  boolean1: boolean;
+  setText1: React.Dispatch<React.SetStateAction<boolean>>;
+  boolean2: boolean;
+  setText2: React.Dispatch<React.SetStateAction<boolean>>;
+  boolean3: boolean;
+  setText3: React.Dispatch<React.SetStateAction<boolean>>;
+  boolean4: boolean;
+  setText4: React.Dispatch<React.SetStateAction<boolean>>;
+};
+const CotRegDes4: React.FC<CotRegDes4Props> = ({
+  text1,
+  text2,
+  text3,
+  text4,
+  text5,
+  rowHeightClass,
+  cellWidthTextClass,
+  cellWidthMenuClass,
+  boolean1,
+  setText1,
+  boolean2,
+  setText2,
+  boolean3,
+  setText3,
+  boolean4,
+  setText4,
+}) => {
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    if (event.target.value === text2) {
+      setText1(true);
+      setText2(false);
+      setText3(false);
+      setText4(false);
+    } else if (event.target.value === text3) {
+      setText1(false);
+      setText2(true);
+      setText3(false);
+      setText4(false);
+    } else if (event.target.value === text4) {
+      setText1(false);
+      setText2(false);
+      setText3(true);
+      setText4(false);
+    } else if (event.target.value === text5) {
+      setText1(false);
+      setText2(false);
+      setText3(false);
+      setText4(true);
+    }
+  };
+
+  // Determinar el valor del select basado en los estados boolean1, boolean2, boolean3 y boolean4
+  let selectValue = "";
+  if (boolean1) {
+    selectValue = text2;
+  } else if (boolean2) {
+    selectValue = text3;
+  } else if (boolean3) {
+    selectValue = text4;
+  } else if (boolean4) {
+    selectValue = text5;
+  }
+
+  return (
+    <div className="flex justify-center">
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} flex items-center flex-shrink-0 pr-0`}
+      >
+        {text1}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthMenuClass} flex items-center justify-center pl-0 pr-0`}
+      >
+        <label htmlFor="selectMenu" className="sr-only">
+          Select Menu
+        </label>
+        <select
+          id="selectMenu"
+          value={selectValue}
+          className="text-black w-full h-8"
+          onChange={handleSelectChange}
+        >
+          <option value="" disabled>
+            Seleccionar
+          </option>{" "}
+          {/* Opción "Seleccionar" deshabilitada y seleccionada por defecto */}
+          <option value={text2}>{text2}</option>
+          <option value={text3}>{text3}</option>
+          <option value={text4}>{text4}</option>
+          <option value={text5}>{text5}</option>
+        </select>
+      </div>
+    </div>
+  );
+};
+//Fin Componente CotRegDes4
 
 //Componente CotReg1 Fila con texto y un número
 type CotReg1Props = {
@@ -697,9 +893,11 @@ const CotReg10: React.FC<CotReg10Props> = ({
 
 export {
   ClientReg,
+  ClientReg1,
   GuardarBotton,
   CotRegDes2,
-  CotRegDes3,  
+  CotRegDes3,
+  CotRegDes4,
   CotReg1,
   CotReg2,
   CotReg3,

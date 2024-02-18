@@ -6,8 +6,10 @@ import classNames from "classnames"; // Asegúrate de importar la biblioteca cla
 import { getData } from "@/app/productos/data.js";
 import {
   ClientReg,
+  ClientReg1,
   CotRegDes2,
   CotRegDes3,
+  CotRegDes4,
   CotReg1,
   CotReg2,
   CotReg3,
@@ -35,6 +37,11 @@ export default function Page() {
   {
     /*Declaración de variables de Suministro e Instalación*/
   }
+  const [usoIndividual, setUsoIndividual] = useState(false);
+  const [doble, setDoble] = useState(false);  
+  const [triple, setTriple] = useState(false);  
+  const [cuadruple, setCuadruple] = useState(false);  
+  
   const [alaVista, setAlaVista] = useState(false);
   const [empotrada, setEmpotrada] = useState(false);
 
@@ -66,18 +73,26 @@ export default function Page() {
   const gasodomesticoPersonalisadoAlta: number = 0;
   const gasodomesticoPersonalizadoBaja: number = 0;
 
-  const subPotenciaAlta: number = 0;
-  const subPotenciaBaja: number = 0;
+  const potenciaTotal = gasodomestico1Alta + gasodomestico2Alta + gasodomestico3Alta + gasodomesticoPersonalisadoAlta + gasodomestico1Baja + gasodomestico2Baja + gasodomestico3Baja + gasodomesticoPersonalizadoBaja;
+  const medidor: string = potenciaTotal === 0 ? "" :
+                        potenciaTotal < 30.09 ? "G1.6" :
+                        potenciaTotal < 72.1 ? "G4" :
+                        potenciaTotal < 120.16 ? "G6" :
+                        potenciaTotal < 192.26 ? "G10" : "";
 
-  const potenciaTotal: number = 0;
 
+  const regulador: string = "";                       
   {
     /*Declaración de variables de Costos en Soles*/
   }
-  const instalacionInterna: number = 0;
-  const medidor: number = 0;
-  const derechoConexion: number = 0;
-  const lineaMontante: number = 0;
+
+  const [costoMedidor, setCostoMedidor] = useState(0);
+
+  const [instalacionInternaText, setInstalacionInternaText] = useState("");
+  const instalacionInterna = Number(instalacionInternaText);
+
+  const [lineaMontanteText, setLineaMontanteText] = useState("");
+  const lineaMontante = Number(lineaMontanteText);
   const gastoInversion: number = 0;
 
   {
@@ -202,6 +217,30 @@ export default function Page() {
       console.log(`KW${i}: ${kw}`);
     }
   }, []);
+
+
+    /*Función para calcular costo del medidor*/  
+  useEffect(() => {
+    let costo: number = 0;
+  
+    if (medidor === "G4") {
+      if (usoIndividual) {
+        costo = 484.65;
+      } else if (doble) {
+        costo = 409.48;
+      } else if (triple) {
+        costo = 377.46;
+      } else if (cuadruple) {
+        costo = 358.45;
+      }
+    } else if (medidor === "G6") {
+      costo = 1139.30;
+    } else if (medidor === "G10") {
+      costo = 2538.15;
+    }
+  
+    setCostoMedidor(costo);
+  }, [medidor, usoIndividual, doble, triple, cuadruple]);
 
   {/*RETURN PRINCIPAL*/}
   return (
@@ -336,6 +375,28 @@ export default function Page() {
           {/*TÍTULO: SUMINISTRO E INSTALACIÓN*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Suministro e Instalación</h1>
+          </div>
+
+          {/*Tipo de gabiente*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <CotRegDes4
+              text1="Tipo de gabiente"
+              text2="Uso individual"
+              text3="Doble"
+              text4="Triple"
+              text5="Cuadruple"
+              rowHeightClass="h-4"
+              cellWidthTextClass="w-32"
+              cellWidthMenuClass="w-48"
+              boolean1={usoIndividual}
+              setText1={setUsoIndividual}
+              boolean2={doble}
+              setText2={setDoble}
+              boolean3={triple}
+              setText3={setTriple}
+              boolean4={cuadruple}
+              setText4={setCuadruple}              
+            />
           </div>
 
           {/*Menú de Selección de Instalación*/}
@@ -514,7 +575,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-3">
             <CotReg1
               text1="Total KW"
-              number1={gasodomestico1Alta+gasodomestico2Alta+gasodomestico3Alta+gasodomesticoPersonalisadoAlta+gasodomestico1Baja+gasodomestico2Baja+gasodomestico3Baja+gasodomesticoPersonalizadoBaja}
+              number1={potenciaTotal}
               text2="KW"
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
@@ -522,6 +583,33 @@ export default function Page() {
               cellWidthNumber1Class="w-12"
               rowHeightNumber2Class="h-4"
               cellWidthNumber2Class="w-12"
+            />
+          </div>
+
+          {/*Medidor*/}
+          <div className="flex flex-col items-center mt-3">
+            <CotReg10
+              text1="Medidor"
+              text2={medidor}
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+            />
+          </div>
+
+          {/*Regulador*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <ClientReg1
+              text1="Regulador"
+              text2Name={regulador}
+              text2InitialValue={regulador}
+              onText2Change={setCoordenada} // Pasa setCoordenada a ClientReg
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
 
@@ -555,21 +643,23 @@ export default function Page() {
 
           {/*Instalación interna*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg4
+            <ClientReg1
               text1="Instalación interna"
-              number1={instalacionInterna}
+              text2Name={instalacionInternaText}
+              text2InitialValue={instalacionInternaText}
+              onText2Change={setInstalacionInternaText} // Pasa setLineaMontante a ClientReg
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-24"
+              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
-
           {/*Medidor*/}
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
-              text1="Medidor"
-              number1={medidor}
+              text1="Costo medidor"
+              number1={costoMedidor}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -581,7 +671,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="Derecho de conexión"
-              number1={derechoConexion}
+              number1={costoMedidor !== 0 ? 230.97 : 0}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -591,13 +681,16 @@ export default function Page() {
 
           {/*Valor línea montante*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg4
+            <ClientReg1
               text1="Valor línea montante"
-              number1={lineaMontante}
+              text2Name={lineaMontanteText}
+              text2InitialValue={lineaMontanteText}
+              onText2Change={setLineaMontanteText} // Pasa setLineaMontante a ClientReg
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-24"
+              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
 
@@ -605,7 +698,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-3">
             <CotReg4
               text1="Gasto de la inversión"
-              number1={gastoInversion}
+              number1={instalacionInterna+costoMedidor+(costoMedidor !== 0 ? 230.97 : 0)+lineaMontante}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
