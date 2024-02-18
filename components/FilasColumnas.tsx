@@ -1,6 +1,6 @@
 //FilasColumnas.tsx
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 //Componente ClientReg filas con ingreso texto
 type ClientRegProps = {
@@ -173,6 +173,11 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
       setText2(true);
     }
   };
+
+    useEffect(() => {
+    console.log('boolean1:', boolean1);
+    console.log('boolean2:', boolean2);
+  }, [boolean1, boolean2]);
 
   // Determinar el valor del select basado en los estados boolean1 y boolean2
   let selectValue = "";

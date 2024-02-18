@@ -265,7 +265,7 @@ export default function Page() {
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthNumberClass="w-48"
               isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
@@ -280,7 +280,7 @@ export default function Page() {
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthNumberClass="w-48"
               isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
@@ -295,7 +295,7 @@ export default function Page() {
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthNumberClass="w-48"
               isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
@@ -310,7 +310,7 @@ export default function Page() {
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthNumberClass="w-48"
               isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
@@ -325,7 +325,7 @@ export default function Page() {
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthNumberClass="w-48"
               isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
@@ -340,7 +340,7 @@ export default function Page() {
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-32"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-50"
+              cellWidthNumberClass="w-48"
               isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
@@ -613,29 +613,6 @@ export default function Page() {
             />
           </div>
 
-          {/*Botones Calcular e Imprimir*/}
-          <div className="flex justify-center space-x-5">
-            {/*Boton Calcular*/}
-            <div className="flex flex-col items-center mt-4">
-              <GuardarBotton
-                text="Calcular"
-                rowHeightTextBottonClass="h-4"
-                cellWidthTextBottonClass="w-26"
-                onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
-              />
-            </div>
-
-            {/*Boton Imprimir*/}
-            <div className="flex flex-col items-center mt-4">
-              <GuardarBotton
-                text="Imprimir"
-                rowHeightTextBottonClass="h-4"
-                cellWidthTextBottonClass="w-26"
-                onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
-              />
-            </div>
-          </div>
-
           {/*TÍTULO: COSTOS EN SOLES*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Costos en Soles</h1>
@@ -704,6 +681,29 @@ export default function Page() {
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-24"
             />
+          </div>
+
+          {/*BOTONES CALCULAR E IMPRIMIR*/}
+          <div className="flex justify-center space-x-5">
+            {/*Boton Calcular*/}
+            <div className="flex flex-col items-center mt-4">
+              <GuardarBotton
+                text="Calcular"
+                rowHeightTextBottonClass="h-4"
+                cellWidthTextBottonClass="w-26"
+                onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
+              />
+            </div>
+
+            {/*Boton Imprimir*/}
+            <div className="flex flex-col items-center mt-4">
+              <GuardarBotton
+                text="Imprimir"
+                rowHeightTextBottonClass="h-4"
+                cellWidthTextBottonClass="w-26"
+                onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
+              />
+            </div>
           </div>
 
           {/*TITULO: PAGO EN CUOTAS*/}
