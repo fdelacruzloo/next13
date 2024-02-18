@@ -40,7 +40,7 @@ const ClientReg: React.FC<ClientRegProps> = ({
         {text1}
       </div>
       <div
-        className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center font-sans text-sm `}
+        className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center font-sans text-sm overflow-hidden`}
       >
         <input
           type="text"
