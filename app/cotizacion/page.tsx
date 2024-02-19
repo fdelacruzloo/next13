@@ -38,10 +38,10 @@ export default function Page() {
     /*Declaración de variables de Suministro e Instalación*/
   }
   const [usoIndividual, setUsoIndividual] = useState(false);
-  const [doble, setDoble] = useState(false);  
-  const [triple, setTriple] = useState(false);  
-  const [cuadruple, setCuadruple] = useState(false);  
-  
+  const [doble, setDoble] = useState(false);
+  const [triple, setTriple] = useState(false);
+  const [cuadruple, setCuadruple] = useState(false);
+
   const [alaVista, setAlaVista] = useState(false);
   const [empotrada, setEmpotrada] = useState(false);
 
@@ -58,9 +58,6 @@ export default function Page() {
     /*Declaración de variables de Calculo de la Potencia Presión del Gasodoméstico*/
   }
 
-  const cantEquiposAlta: number = 0;
-  const cantEquiposBaja: number = 0;
-
   const gasodomestico1Alta: number = 30;
   const gasodomestico1Baja: number = 0;
 
@@ -73,38 +70,66 @@ export default function Page() {
   const gasodomesticoPersonalisadoAlta: number = 0;
   const gasodomesticoPersonalizadoBaja: number = 0;
 
-  const potenciaTotal = gasodomestico1Alta + gasodomestico2Alta + gasodomestico3Alta + gasodomesticoPersonalisadoAlta + gasodomestico1Baja + gasodomestico2Baja + gasodomestico3Baja + gasodomesticoPersonalizadoBaja;
-  const medidor: string = potenciaTotal === 0 ? "" :
-                        potenciaTotal < 30.09 ? "G1.6" :
-                        potenciaTotal < 72.1 ? "G4" :
-                        potenciaTotal < 120.16 ? "G6" :
-                        potenciaTotal < 192.26 ? "G10" : "";
+  const cantEquiposAlta =
+    (gasodomestico1Alta !== 0 ? 1 : 0) +
+    (gasodomestico2Alta !== 0 ? 1 : 0) +
+    (gasodomestico3Alta !== 0 ? 1 : 0) +
+    (gasodomesticoPersonalisadoAlta !== 0 ? 1 : 0);
+  const cantEquiposBaja =
+    (gasodomestico1Baja !== 0 ? 1 : 0) +
+    (gasodomestico2Baja !== 0 ? 1 : 0) +
+    (gasodomestico3Baja !== 0 ? 1 : 0) +
+    (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0);
 
+  const potenciaTotal =
+    gasodomestico1Alta +
+    gasodomestico2Alta +
+    gasodomestico3Alta +
+    gasodomesticoPersonalisadoAlta +
+    gasodomestico1Baja +
+    gasodomestico2Baja +
+    gasodomestico3Baja +
+    gasodomesticoPersonalizadoBaja;
+  const medidor: string =
+    potenciaTotal === 0
+      ? ""
+      : potenciaTotal < 30.09
+      ? "G1.6"
+      : potenciaTotal < 72.1
+      ? "G4"
+      : potenciaTotal < 120.16
+      ? "G6"
+      : potenciaTotal < 192.26
+      ? "G10"
+      : "";
 
-  const regulador: string = "";                       
   {
     /*Declaración de variables de Costos en Soles*/
   }
 
   const [costoMedidor, setCostoMedidor] = useState(0);
-
-  const [instalacionInternaText, setInstalacionInternaText] = useState("");
-  const instalacionInterna = Number(instalacionInternaText);
-
+  const [instalacionInterna, setInstalacionInterna] = useState<number>(0);
+  const [reguladorText, setReguladorText] = useState("");
+  const regulador = Number(reguladorText);
   const [lineaMontanteText, setLineaMontanteText] = useState("");
   const lineaMontante = Number(lineaMontanteText);
-  const gastoInversion: number = 0;
+  const gastoInversion =
+    instalacionInterna +
+    costoMedidor +
+    (costoMedidor !== 0 ? 230.97 : 0) +
+    lineaMontante;
 
+  const [isSavedCosto, setIsSavedCosto] = useState(false); // Añade un nuevo estado para saber si los valores han sido guardados
   {
     /*Declaración de variables de Pago en cuotas*/
   }
 
-  const cuota6meses: number = 0;
-  const cuota12meses: number = 0;
-  const cuota24meses: number = 0;
-  const cuota36meses: number = 0;
-  const cuota48meses: number = 0;
-  const cuota60meses: number = 0;
+  const cuota6meses = parseFloat((gastoInversion / 6).toFixed(1));
+  const cuota12meses = parseFloat((gastoInversion / 12).toFixed(1));
+  const cuota24meses = parseFloat((gastoInversion / 24).toFixed(1));
+  const cuota36meses = parseFloat((gastoInversion / 36).toFixed(1));
+  const cuota48meses = parseFloat((gastoInversion / 48).toFixed(1));
+  const cuota60meses = parseFloat((gastoInversion / 60).toFixed(1));
 
   {
     /*Declaración de variables de Calculo referencial consumo mensual*/
@@ -155,7 +180,7 @@ export default function Page() {
   const retornoInversionPetroleoAño3: number = 0;
 
   {
-    /*Función para guardar los valores de los estados*/
+    /*Función para guardar los valores en registro de clientes*/
   }
   const guardarValores = () => {
     const valores = {
@@ -171,7 +196,20 @@ export default function Page() {
 
     setIsSaved(true); // Cambia el estado isSaved a true
   };
+  {
+    /*Función para guardar los valores en costos*/
+  }
+  const guardarValoresCosto = () => {
+    const valoresCosto = {
+      regulador,
+      instalacionInterna,
+      lineaMontanteText,
+    };
 
+    console.log(valoresCosto); // Aquí puedes hacer lo que necesites con los valores, por ejemplo, guardarlos en una base de datos
+
+    setIsSavedCosto(true); // Cambia el estado isSaved a true
+  };
   {
     /*Función para editar los valores de los estados*/
   }
@@ -201,9 +239,9 @@ export default function Page() {
     /*Función para limpiar localStorage la primera vez que carga cotización*/
   }
   useEffect(() => {
-    if (!localStorage.getItem('pageLoadedBefore')) {
+    if (!localStorage.getItem("pageLoadedBefore")) {
       localStorage.clear();
-      localStorage.setItem('pageLoadedBefore', 'true');
+      localStorage.setItem("pageLoadedBefore", "true");
     }
   }, []);
 
@@ -218,11 +256,10 @@ export default function Page() {
     }
   }, []);
 
-
-    /*Función para calcular costo del medidor*/  
+  /*Función para calcular costo del medidor*/
   useEffect(() => {
     let costo: number = 0;
-  
+
     if (medidor === "G4") {
       if (usoIndividual) {
         costo = 484.65;
@@ -234,15 +271,349 @@ export default function Page() {
         costo = 358.45;
       }
     } else if (medidor === "G6") {
-      costo = 1139.30;
+      costo = 1139.3;
     } else if (medidor === "G10") {
       costo = 2538.15;
     }
-  
+
     setCostoMedidor(costo);
   }, [medidor, usoIndividual, doble, triple, cuadruple]);
 
-  {/*RETURN PRINCIPAL*/}
+  /*Función para calcular costo instalacion interna*/
+  useEffect(() => {
+    let costoInstalacion = 0;
+
+    if (cantEquiposAlta === 1 && cantEquiposBaja === 0) {
+      if (peAlPe20251216 === true) {
+        if (alaVista) {
+          if (medidor === "G4") {
+            costoInstalacion = existente ? 1541.85 : 1744.38;
+          } else if (medidor === "G6") {
+            costoInstalacion = existente ? 1553.28 : 1755.83;
+          }
+        } else if (empotrada) {
+          if (medidor === "G4") {
+            costoInstalacion = existente ? 1838.81 : 2041.34;
+          } else if (medidor === "G6") {
+            costoInstalacion = existente ? 1850.24 : 2052.79;
+          }
+        }
+      } else if (peAlPe2025 === true) {
+        if (alaVista) {
+          if (medidor === "G4") {
+            costoInstalacion = existente ? 1868.58 : 2071.11;
+          } else if (medidor === "G6") {
+            costoInstalacion = existente ? 1880.01 : 2082.56;
+          }
+        } else if (empotrada) {
+          if (medidor === "G4") {
+            costoInstalacion = existente ? 2397.75 : 2600.28;
+          } else if (medidor === "G6") {
+            costoInstalacion = existente ? 2409.18 : 2611.73;
+          }
+        }
+      }
+    } else if (cantEquiposAlta === 0 && cantEquiposBaja === 1) {
+      if (peAlPe20251216 === true) {
+        if (alaVista) {
+          if (medidor === "G4") {
+            costoInstalacion = existente ? 1938.59 : 2141.13;
+          } else if (medidor === "G6") {
+            costoInstalacion = existente ? 1950.03 : 2152.57;
+          }
+        } else if (empotrada) {
+          if (medidor === "G4") {
+            costoInstalacion = existente ? 2186.69 : 2389.24;
+          } else if (medidor === "G6") {
+            costoInstalacion = existente ? 2198.14 : 2400.67;
+          }
+        }
+      } else if (peAlPe2025 === true) {
+        if (alaVista) {
+          if (medidor === "G4") {
+            costoInstalacion = existente ? 2331.36 : 2533.91;
+          } else if (medidor === "G6") {
+            costoInstalacion = existente ? 2342.81 : 2545.34;
+          }
+        } else if (empotrada) {
+          if (medidor === "G4") {
+            costoInstalacion = existente ? 2680.11 : 2882.65;
+          } else if (medidor === "G6") {
+            costoInstalacion = existente ? 2691.54 : 2894.09;
+          }
+        }
+      }
+    } else if (
+      cantEquiposAlta === 2 &&
+      cantEquiposBaja === 0 &&
+      peAlPe20251216 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2135.67 : 2338.22;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2147.12 : 2349.65;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2400.27 : 2602.81;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2411.71 : 2614.25;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 1 &&
+      cantEquiposBaja === 1 &&
+      peAlPe20251216 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2503.58 : 2706.12;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2515.02 : 2717.56;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2761.72 : 2964.25;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2773.15 : 2975.7;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 0 &&
+      cantEquiposBaja === 2 &&
+      peAlPe20251216 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2503.58 : 2706.12;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2515.02 : 2717.56;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2761.72 : 2964.25;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2773.15 : 2975.7;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 2 &&
+      cantEquiposBaja === 0 &&
+      peAlPe2025 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2520.79 : 2723.33;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2532.23 : 2734.77;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3036.23 : 3238.78;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3047.68 : 3250.22;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 1 &&
+      cantEquiposBaja === 1 &&
+      peAlPe2025 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2946.54 : 3149.09;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2957.99 : 3160.52;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3384.5 : 3587.03;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3395.93 : 3598.48;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 0 &&
+      cantEquiposBaja === 2 &&
+      peAlPe2025 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2946.54 : 3149.09;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2957.99 : 3160.52;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3384.5 : 3587.03;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3395.93 : 3598.48;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 3 &&
+      cantEquiposBaja === 0 &&
+      peAlPe20251216 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2711.59 : 2914.14;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2723.04 : 2925.57;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3104.0 : 3306.54;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3115.44 : 3317.98;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 2 &&
+      cantEquiposBaja === 1 &&
+      peAlPe20251216 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3067.75 : 3270.3;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3079.2 : 3281.73;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3504.05 : 3706.59;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3515.49 : 3718.03;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 1 &&
+      cantEquiposBaja === 2 &&
+      peAlPe20251216 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3067.75 : 3270.3;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3079.2 : 3281.73;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3504.05 : 3706.59;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3515.49 : 3718.03;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 0 &&
+      cantEquiposBaja === 3 &&
+      peAlPe20251216 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3067.75 : 3270.3;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3079.2 : 3281.73;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3504.05 : 3706.59;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3515.49 : 3718.03;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 3 &&
+      cantEquiposBaja === 0 &&
+      peAlPe2025 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 2981.35 : 3183.9;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 2992.8 : 3195.33;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3667.62 : 3870.16;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3679.05 : 3881.6;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 2 &&
+      cantEquiposBaja === 1 &&
+      peAlPe2025 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3428.48 : 3631.03;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3439.92 : 3642.46;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 4073.84 : 4276.39;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 4085.29 : 4287.83;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 1 &&
+      cantEquiposBaja === 3 &&
+      peAlPe2025 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3428.48 : 3631.03;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3439.92 : 3642.46;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 4073.84 : 4276.39;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 4085.29 : 4287.83;
+        }
+      }
+    } else if (
+      cantEquiposAlta === 1 &&
+      cantEquiposBaja === 3 &&
+      peAlPe2025 === true
+    ) {
+      if (alaVista) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 3428.48 : 3631.03;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 3439.92 : 3642.46;
+        }
+      } else if (empotrada) {
+        if (medidor === "G4") {
+          costoInstalacion = existente ? 4073.84 : 4276.39;
+        } else if (medidor === "G6") {
+          costoInstalacion = existente ? 4085.29 : 4287.83;
+        }
+      }
+    }
+
+    // Move the following line outside of the callback function
+    setInstalacionInterna(costoInstalacion);
+  }, [
+    cantEquiposAlta,
+    cantEquiposBaja,
+    peAlPe20251216,
+    peAlPe2025,
+    alaVista,
+    empotrada,
+    medidor,
+    existente,
+    construido,
+  ]);
+
+  {
+    /*RETURN PRINCIPAL*/
+  }
   return (
     <main className="container w-[320px]  flex flex-col items-center justify-center min-h-screen font-sans text-sm">
       <div className="flex-grow w-full flex flex-col items-center">
@@ -395,7 +766,7 @@ export default function Page() {
               boolean3={triple}
               setText3={setTriple}
               boolean4={cuadruple}
-              setText4={setCuadruple}              
+              setText4={setCuadruple}
             />
           </div>
 
@@ -431,7 +802,7 @@ export default function Page() {
             />
           </div>
 
-          {/*Confguración*/}
+          {/*Configuración*/}
           <div className="flex flex-col items-center mt-0.25">
             <CotReg10
               text1="Configuración"
@@ -472,7 +843,7 @@ export default function Page() {
           <div className="flex flex-col items-center">
             <CotReg4
               text1="Puntos de conexión"
-              number1={cantEquiposAlta + (gasodomestico1Alta !== 0 ? 1 : 0) + (gasodomestico2Alta !== 0 ? 1 : 0) + (gasodomestico3Alta !== 0 ? 1 : 0) + (gasodomesticoPersonalisadoAlta !== 0 ? 1 : 0) + (gasodomestico1Baja !== 0 ? 1 : 0) + (gasodomestico2Baja !== 0 ? 1 : 0) + (gasodomestico3Baja !== 0 ? 1 : 0) + (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0)}
+              number1={cantEquiposAlta + cantEquiposBaja}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -486,8 +857,8 @@ export default function Page() {
               <CotReg2
                 text1="Alta"
                 text2="Baja"
-                number1={cantEquiposAlta + (gasodomestico1Alta !== 0 ? 1 : 0) + (gasodomestico2Alta !== 0 ? 1 : 0) + (gasodomestico3Alta !== 0 ? 1 : 0) + (gasodomesticoPersonalisadoAlta !== 0 ? 1 : 0)}
-                number2={cantEquiposBaja + (gasodomestico1Baja !== 0 ? 1 : 0) + (gasodomestico2Baja !== 0 ? 1 : 0) + (gasodomestico3Baja !== 0 ? 1 : 0) + (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0)}
+                number1={cantEquiposAlta}
+                number2={cantEquiposBaja}
                 rowHeightTextClass="h-4"
                 cellWidthTextClass="w-12"
                 rowHeightNumberClass="h-4"
@@ -560,8 +931,18 @@ export default function Page() {
           <div className="flex flex-col items-center mt-3">
             <CotReg3
               text="Sub Tot. Potencia KW"
-              number1={gasodomestico1Alta+gasodomestico2Alta+gasodomestico3Alta+gasodomesticoPersonalisadoAlta}
-              number2={gasodomestico1Baja+gasodomestico2Baja+gasodomestico3Baja+gasodomesticoPersonalizadoBaja}
+              number1={
+                gasodomestico1Alta +
+                gasodomestico2Alta +
+                gasodomestico3Alta +
+                gasodomesticoPersonalisadoAlta
+              }
+              number2={
+                gasodomestico1Baja +
+                gasodomestico2Baja +
+                gasodomestico3Baja +
+                gasodomesticoPersonalizadoBaja
+              }
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumber1Class="h-4"
@@ -586,7 +967,7 @@ export default function Page() {
             />
           </div>
 
-          {/*Medidor*/}
+          {/*Tipo de Medidor*/}
           <div className="flex flex-col items-center mt-3">
             <CotReg10
               text1="Medidor"
@@ -598,41 +979,24 @@ export default function Page() {
             />
           </div>
 
-          {/*Regulador*/}
-          <div className="flex flex-col items-center mt-0.25">
-            <ClientReg1
-              text1="Regulador"
-              text2Name={regulador}
-              text2InitialValue={regulador}
-              onText2Change={setCoordenada} // Pasa setCoordenada a ClientReg
-              rowHeightTextClass="h-4"
-              cellWidthTextClass="w-56"
-              rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-24"
-              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
-            />
-          </div>
-
           {/*TÍTULO: COSTOS EN SOLES*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base ">Costos en Soles</h1>
           </div>
 
-          {/*Instalación interna*/}
+          {/*Costo de Instalación interna*/}
           <div className="flex flex-col items-center mt-0.25">
-            <ClientReg1
+            <CotReg4
               text1="Instalación interna"
-              text2Name={instalacionInternaText}
-              text2InitialValue={instalacionInternaText}
-              onText2Change={setInstalacionInternaText} // Pasa setLineaMontante a ClientReg
+              number1={instalacionInterna}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-24"
-              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
-          {/*Medidor*/}
+
+          {/*Costo de Medidor*/}
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="Costo medidor"
@@ -644,7 +1008,21 @@ export default function Page() {
             />
           </div>
 
-          {/*Derecho de conexión*/}
+          {/*Costo de Regulador*/}
+          <div className="flex flex-col items-center mt-0.25">
+            <ClientReg1
+              text1="Costo Regulador"
+              text2Name={reguladorText}
+              text2InitialValue={reguladorText}
+              onText2Change={setReguladorText} // Pasa setCoordenada a ClientReg
+              rowHeightTextClass="h-4"
+              cellWidthTextClass="w-56"
+              rowHeightNumberClass="h-4"
+              cellWidthNumberClass="w-24"
+              isDisabled={isSavedCosto} // Pasa isSaved a ClientReg como isDisabled
+            />
+          </div>
+          {/*Costo de Derecho de conexión*/}
           <div className="flex flex-col items-center mt-0.25">
             <CotReg4
               text1="Derecho de conexión"
@@ -656,7 +1034,7 @@ export default function Page() {
             />
           </div>
 
-          {/*Valor línea montante*/}
+          {/*Costo de línea montante*/}
           <div className="flex flex-col items-center mt-0.25">
             <ClientReg1
               text1="Valor línea montante"
@@ -667,7 +1045,7 @@ export default function Page() {
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
               cellWidthNumberClass="w-24"
-              isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
+              isDisabled={isSavedCosto} // Pasa isSaved a ClientReg como isDisabled
             />
           </div>
 
@@ -675,7 +1053,7 @@ export default function Page() {
           <div className="flex flex-col items-center mt-3">
             <CotReg4
               text1="Gasto de la inversión"
-              number1={instalacionInterna+costoMedidor+(costoMedidor !== 0 ? 230.97 : 0)+lineaMontante}
+              number1={gastoInversion}
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
               rowHeightNumberClass="h-4"
@@ -686,12 +1064,17 @@ export default function Page() {
           {/*BOTONES CALCULAR E IMPRIMIR*/}
           <div className="flex justify-center space-x-5">
             {/*Boton Calcular*/}
-            <div className="flex flex-col items-center mt-4">
+            <div
+              className={classNames(
+                "flex flex-col items-center mt-4",
+                isSavedCosto && "rounded-lg bg-gray-400"
+              )}
+            >
               <GuardarBotton
                 text="Calcular"
                 rowHeightTextBottonClass="h-4"
                 cellWidthTextBottonClass="w-26"
-                onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
+                onClick={guardarValoresCosto} // Llama a la función guardarValores cuando se hace clic en el botón
               />
             </div>
 
@@ -714,7 +1097,7 @@ export default function Page() {
           {/*Cuotas y Pago mensual*/}
           <div className="flex flex-col items-center mt-0.5">
             <CotReg5
-              text1="Cuota"
+              text1="Cuotas"
               text2="Pago Mensual"
               rowHeightTextClass="h-4"
               cellWidthTextClass="w-56"
