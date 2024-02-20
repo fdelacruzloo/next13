@@ -276,9 +276,9 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
     }
   };
 
-    useEffect(() => {
-    console.log('boolean1:', boolean1);
-    console.log('boolean2:', boolean2);
+  useEffect(() => {
+    console.log("boolean1:", boolean1);
+    console.log("boolean2:", boolean2);
   }, [boolean1, boolean2]);
 
   // Determinar el valor del select basado en los estados boolean1 y boolean2
@@ -698,6 +698,7 @@ const CotReg4: React.FC<CotReg4Props> = ({
 type CotReg5Props = {
   text1: string;
   text2: string;
+  text3: string;
   rowHeightTextClass: string;
   rowHeightNumberClass: string;
   cellWidthTextClass: string;
@@ -706,6 +707,7 @@ type CotReg5Props = {
 const CotReg5: React.FC<CotReg5Props> = ({
   text1,
   text2,
+  text3,
   rowHeightTextClass,
   cellWidthTextClass,
   rowHeightNumberClass,
@@ -714,7 +716,7 @@ const CotReg5: React.FC<CotReg5Props> = ({
   return (
     <div className={`flex  items-center`}>
       <div
-        className={`p-4 border border-gray-800 ${rowHeightTextClass} ${cellWidthTextClass} flex items-center font-sans text-sm`}
+        className={`p-4 border border-gray-800 ${rowHeightTextClass} ${cellWidthTextClass} flex items-center font-sans text-sm justify-center`}
       >
         {text1}
       </div>
@@ -722,6 +724,11 @@ const CotReg5: React.FC<CotReg5Props> = ({
         className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center font-sans text-sm justify-center pl-0 pr-0`}
       >
         {text2}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightTextClass} ${cellWidthTextClass} flex items-center font-sans text-sm justify-center pl-0 pr-0`}
+      >
+        {text3}
       </div>
     </div>
   );
@@ -863,7 +870,7 @@ const CotReg7: React.FC<CotReg7Props> = ({
 };
 //Fin Componente CotReg7
 
-//Componente CotReg8 1 Fila y 4 Columnas con 4 textos
+//Componente CotReg8 1 Fila y 6 Columnas con un texto y 5 números
 type CotReg8Props = {
   text1: string;
   text2: string;
@@ -913,7 +920,7 @@ const CotReg8: React.FC<CotReg8Props> = ({
 };
 //Fin Componente CotReg8
 
-//Componente CotReg9 1 Fila y 4 Columnas con un texto y 3 números
+//Componente CotReg9 1 Fila y  Columnas con un texto y 5 números
 type CotReg9Props = {
   text: string;
   number1: number;
@@ -998,6 +1005,47 @@ const CotReg10: React.FC<CotReg10Props> = ({
 };
 //Fin Componente CotReg10
 
+//Componente CotReg11 1 Fila y 2 Columnas con dos textos y número
+type CotReg11Props = {
+  text1: string;
+  text2: string;
+  number1: number;
+  rowHeightTextClass: string;
+  rowHeightNumberClass: string;
+  cellWidthTextClass: string;
+  cellWidthNumberClass: string;
+};
+const CotReg11: React.FC<CotReg11Props> = ({
+  text1,
+  text2,
+  number1,
+  rowHeightTextClass,
+  cellWidthTextClass,
+  rowHeightNumberClass,
+  cellWidthNumberClass,
+}) => {
+  return (
+    <div className={`flex  items-center`}>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightTextClass} ${cellWidthTextClass} flex items-center font-sans text-sm justify-center`}
+      >
+        {text1}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center font-sans text-sm justify-center pl-0 pr-0`}
+      >
+        {number1}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightTextClass} ${cellWidthTextClass} flex items-center font-sans text-sm justify-center pl-0 pr-0`}
+      >
+        {text2}
+      </div>
+    </div>
+  );
+};
+//Fin Componente CotReg11
+
 export {
   ClientReg,
   ClientReg1,
@@ -1016,4 +1064,5 @@ export {
   CotReg8,
   CotReg9,
   CotReg10,
+  CotReg11,
 };

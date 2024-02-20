@@ -21,6 +21,7 @@ import {
   CotReg8,
   CotReg9,
   CotReg10,
+  CotReg11,
   GuardarBotton,
 } from "@/components/FilasColumnas";
 
@@ -118,6 +119,7 @@ export default function Page() {
     (
       instalacionInterna +
       costoMedidor +
+      regulador +
       (costoMedidor !== 0 ? 230.97 : 0) +
       lineaMontante
     ).toFixed(2)
@@ -1145,87 +1147,134 @@ export default function Page() {
             <h1 className="text-base ">Pago en cuotas</h1>
           </div>
 
-          {/*Cuotas y Pago mensual*/}
+          {/*Encabezados Cuotas y Pago mensual*/}
           <div className="flex flex-col items-center mt-0.5">
             <CotReg5
               text1="Cuotas"
               text2="Pago Mensual"
+              text3="Pago Ahorro"
               rowHeightTextClass="h-4"
-              cellWidthTextClass="w-56"
+              cellWidthTextClass="w-24"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-24"
+              cellWidthNumberClass="w-32"
             />
           </div>
 
           {/*6 meses*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg4
+            <CotReg11
               text1="6"
               number1={cuota6meses}
+              text2=""
               rowHeightTextClass="h-4"
-              cellWidthTextClass="w-56"
+              cellWidthTextClass="w-24"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-24"
+              cellWidthNumberClass="w-32"
             />
           </div>
 
           {/*12 meses*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg4
+            <CotReg11
               text1="12"
               number1={cuota12meses}
+              text2={
+                retornoInversionBalon10KgAño1 +
+                  retornoInversionBalon45KgAño1 +
+                  retornoInversionGlpAño1 +
+                  retornoInversionPetroleoAño1 >
+                gastoInversion
+                  ? "pagado"
+                  : ""
+              }
               rowHeightTextClass="h-4"
-              cellWidthTextClass="w-56"
+              cellWidthTextClass="w-24"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-24"
+              cellWidthNumberClass="w-32"
             />
           </div>
 
           {/*24 meses*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg4
+            <CotReg11
               text1="24"
               number1={cuota24meses}
+              text2={
+                retornoInversionBalon10KgAño2 +
+                  retornoInversionBalon45KgAño2 +
+                  retornoInversionGlpAño2 +
+                  retornoInversionPetroleoAño2 >
+                gastoInversion
+                  ? "pagado"
+                  : ""
+              }
               rowHeightTextClass="h-4"
-              cellWidthTextClass="w-56"
+              cellWidthTextClass="w-24"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-24"
+              cellWidthNumberClass="w-32"
             />
           </div>
 
           {/*36 meses*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg4
+            <CotReg11
               text1="36"
               number1={cuota36meses}
+              text2={
+                retornoInversionBalon10KgAño3 +
+                  retornoInversionBalon45KgAño3 +
+                  retornoInversionGlpAño3 +
+                  retornoInversionPetroleoAño3 >
+                gastoInversion
+                  ? "pagado"
+                  : ""
+              }
               rowHeightTextClass="h-4"
-              cellWidthTextClass="w-56"
+              cellWidthTextClass="w-24"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-24"
+              cellWidthNumberClass="w-32"
             />
           </div>
 
           {/*48 meses*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg4
+            <CotReg11
               text1="48"
               number1={cuota48meses}
+              text2={
+                retornoInversionBalon10KgAño3 +
+                  retornoInversionBalon45KgAño3 +
+                  retornoInversionGlpAño3 +
+                  retornoInversionPetroleoAño3 >
+                gastoInversion
+                  ? "pagado"
+                  : ""
+              }
               rowHeightTextClass="h-4"
-              cellWidthTextClass="w-56"
+              cellWidthTextClass="w-24"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-24"
+              cellWidthNumberClass="w-32"
             />
           </div>
 
           {/*60 meses*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg4
+            <CotReg11
               text1="60"
               number1={cuota60meses}
+              text2={
+                retornoInversionBalon10KgAño3 +
+                  retornoInversionBalon45KgAño3 +
+                  retornoInversionGlpAño3 +
+                  retornoInversionPetroleoAño3 >
+                gastoInversion
+                  ? "pagado"
+                  : ""
+              }
               rowHeightTextClass="h-4"
-              cellWidthTextClass="w-56"
+              cellWidthTextClass="w-24"
               rowHeightNumberClass="h-4"
-              cellWidthNumberClass="w-24"
+              cellWidthNumberClass="w-32"
             />
           </div>
 
