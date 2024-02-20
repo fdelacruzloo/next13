@@ -7,6 +7,7 @@ import { getData } from "@/app/productos/data.js";
 import {
   ClientReg,
   ClientReg1,
+  ClientReg2,
   CotRegDes2,
   CotRegDes3,
   CotRegDes4,
@@ -113,71 +114,121 @@ export default function Page() {
   const regulador = Number(reguladorText);
   const [lineaMontanteText, setLineaMontanteText] = useState("");
   const lineaMontante = Number(lineaMontanteText);
-  const gastoInversion =
-    instalacionInterna +
-    costoMedidor +
-    (costoMedidor !== 0 ? 230.97 : 0) +
-    lineaMontante;
+  const gastoInversion = parseFloat(
+    (
+      instalacionInterna +
+      costoMedidor +
+      (costoMedidor !== 0 ? 230.97 : 0) +
+      lineaMontante
+    ).toFixed(2)
+  );
 
   const [isSavedCosto, setIsSavedCosto] = useState(false); // Añade un nuevo estado para saber si los valores han sido guardados
   {
     /*Declaración de variables de Pago en cuotas*/
   }
 
-  const cuota6meses = parseFloat((gastoInversion / 6).toFixed(1));
-  const cuota12meses = parseFloat((gastoInversion / 12).toFixed(1));
-  const cuota24meses = parseFloat((gastoInversion / 24).toFixed(1));
-  const cuota36meses = parseFloat((gastoInversion / 36).toFixed(1));
-  const cuota48meses = parseFloat((gastoInversion / 48).toFixed(1));
-  const cuota60meses = parseFloat((gastoInversion / 60).toFixed(1));
+  const cuota6meses = parseFloat((gastoInversion / 6).toFixed(2));
+  const cuota12meses = parseFloat((gastoInversion / 12).toFixed(2));
+  const cuota24meses = parseFloat((gastoInversion / 24).toFixed(2));
+  const cuota36meses = parseFloat((gastoInversion / 36).toFixed(2));
+  const cuota48meses = parseFloat((gastoInversion / 48).toFixed(2));
+  const cuota60meses = parseFloat((gastoInversion / 60).toFixed(2));
 
   {
     /*Declaración de variables de Calculo referencial consumo mensual*/
   }
 
-  const balon10KgReferencial: number = 0;
-  const balon10KgCantidad: number = 0;
-  const balon10KgCActual: number = 0;
-  const balon10KgGnv: number = 0;
-  const balon10KgAhorro: number = 0;
+  const [balon10KgReferencialText, SetBalon10KgReferencialText] =
+    useState("45");
+  const balon10KgReferencial = Number(balon10KgReferencialText);
+  const [balon10KgCantidadText, SetBalon10KgCantidadText] = useState("");
+  const balon10KgCantidad = Number(balon10KgCantidadText);
+  const balon10KgCActual = parseFloat(
+    (balon10KgReferencial * balon10KgCantidad).toFixed(2)
+  );
+  const balon10KgGnv = parseFloat(
+    (balon10KgCantidad * 10 * 1.34 * 1.98).toFixed(2)
+  );
+  const balon10KgAhorro = parseFloat(
+    (Number(balon10KgCActual) - Number(balon10KgGnv)).toFixed(2)
+  );
 
-  const balon45KgReferencial: number = 0;
-  const balon45KgCantidad: number = 0;
-  const balon45KgCActual: number = 0;
-  const balon45KgGnv: number = 0;
-  const balon45KgAhorro: number = 0;
+  const [balon45KgReferencialText, SetBalon45KgReferencialText] =
+    useState("250");
+  const balon45KgReferencial = Number(balon45KgReferencialText);
+  const [balon45KgCantidadText, SetBalon45KgCantidadText] = useState("");
+  const balon45KgCantidad = Number(balon45KgCantidadText);
+  const balon45KgCActual = parseFloat(
+    (balon45KgReferencial * balon45KgCantidad).toFixed(2)
+  );
+  const balon45KgGnv = parseFloat(
+    (balon45KgCantidad * 45 * 1.34 * 1.98).toFixed(2)
+  );
+  const balon45KgAhorro = parseFloat(
+    (Number(balon45KgCActual) - Number(balon45KgGnv)).toFixed(2)
+  );
 
-  const GlpReferencial: number = 0;
-  const GlpCantidad: number = 0;
-  const GlpCActual: number = 0;
-  const GlpGnv: number = 0;
-  const GlpAhorro: number = 0;
+  const [GlpReferencialText, SetGlpReferencialText] = useState("11");
+  const GlpReferencial = Number(GlpReferencialText);
+  const [GlpCantidadText, SetGlpCantidadText] = useState("");
+  const GlpCantidad = Number(GlpCantidadText);
+  const GlpCActual = parseFloat((GlpReferencial * GlpCantidad).toFixed(2));
+  const GlpGnv = parseFloat((GlpCantidad * 1.34 * 1.98).toFixed(2));
+  const GlpAhorro = parseFloat(
+    (Number(GlpCActual) - Number(GlpGnv)).toFixed(2)
+  );
 
-  const petroleoReferencial: number = 0;
-  const petroleoCantidad: number = 0;
-  const petroleoCActual: number = 0;
-  const petroleoGnv: number = 0;
-  const petroleoAhorro: number = 0;
+  const [petroleoReferencialText, SetPetroleoReferencialText] =
+    useState("18.5");
+  const petroleoReferencial = Number(petroleoReferencialText);
+  const [petroleoCantidadText, SetPetroleoCantidadText] = useState("");
+  const petroleoCantidad = Number(petroleoCantidadText);
+  const petroleoCActual = parseFloat(
+    (petroleoReferencial * petroleoCantidad).toFixed(2)
+  );
+  const petroleoGnv = parseFloat((petroleoCantidad * 1.34 * 1.98).toFixed(2));
+  const petroleoAhorro = parseFloat(
+    (Number(petroleoCActual) - Number(petroleoGnv)).toFixed(2)
+  );
 
   {
     /*Declaración de variables de Retorno de la inversión con el ahorro*/
   }
 
-  const retornoInversionBalon10KgAño1: number = 0;
-  const retornoInversionBalon10KgAño2: number = 0;
-  const retornoInversionBalon10KgAño3: number = 0;
+  const retornoInversionBalon10KgAño1 = parseFloat(
+    (balon10KgAhorro * 12).toFixed(2)
+  );
+  const retornoInversionBalon10KgAño2 = parseFloat(
+    (balon10KgAhorro * 24).toFixed(2)
+  );
+  const retornoInversionBalon10KgAño3 = parseFloat(
+    (balon10KgAhorro * 36).toFixed(2)
+  );
 
-  const retornoInversionBalon45KgAño1: number = 0;
-  const retornoInversionBalon45KgAño2: number = 0;
-  const retornoInversionBalon45KgAño3: number = 0;
+  const retornoInversionBalon45KgAño1 = parseFloat(
+    (balon45KgAhorro * 12).toFixed(2)
+  );
+  const retornoInversionBalon45KgAño2 = parseFloat(
+    (balon45KgAhorro * 24).toFixed(2)
+  );
+  const retornoInversionBalon45KgAño3 = parseFloat(
+    (balon45KgAhorro * 36).toFixed(2)
+  );
 
-  const retornoInversionGlpAño1: number = 0;
-  const retornoInversionGlpAño2: number = 0;
-  const retornoInversionGlpAño3: number = 0;
+  const retornoInversionGlpAño1 = parseFloat((GlpAhorro * 12).toFixed(2));
+  const retornoInversionGlpAño2 = parseFloat((GlpAhorro * 24).toFixed(2));
+  const retornoInversionGlpAño3 = parseFloat((GlpAhorro * 36).toFixed(2));
 
-  const retornoInversionPetroleoAño1: number = 0;
-  const retornoInversionPetroleoAño2: number = 0;
-  const retornoInversionPetroleoAño3: number = 0;
+  const retornoInversionPetroleoAño1 = parseFloat(
+    (petroleoAhorro * 12).toFixed(2)
+  );
+  const retornoInversionPetroleoAño2 = parseFloat(
+    (petroleoAhorro * 24).toFixed(2)
+  );
+  const retornoInversionPetroleoAño3 = parseFloat(
+    (petroleoAhorro * 36).toFixed(2)
+  );
 
   {
     /*Función para guardar los valores en registro de clientes*/
@@ -1205,10 +1256,12 @@ export default function Page() {
 
           {/*Balón 10Kg*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg7
+            <ClientReg2
               text="Balón 10Kg"
-              number1={balon10KgReferencial}
-              number2={balon10KgCantidad}
+              text1InitialValue={balon10KgReferencialText}
+              onText1Change={SetBalon10KgReferencialText}
+              text2InitialValue={balon10KgCantidadText}
+              onText2Change={SetBalon10KgCantidadText}
               number3={balon10KgCActual}
               number4={balon10KgGnv}
               number5={balon10KgAhorro}
@@ -1219,15 +1272,18 @@ export default function Page() {
               cellWidthNumber3Class="w-12"
               cellWidthNumber4Class="w-12"
               cellWidthNumber5Class="w-12"
+              isDisabled={isSavedCosto} // Añade isDisabled a las props
             />
           </div>
 
           {/*Balón 45Kg*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg7
+            <ClientReg2
               text="Balón 45Kg"
-              number1={balon45KgReferencial}
-              number2={balon45KgCantidad}
+              text1InitialValue={balon45KgReferencialText}
+              onText1Change={SetBalon45KgReferencialText}
+              text2InitialValue={balon45KgCantidadText}
+              onText2Change={SetBalon45KgCantidadText}
               number3={balon45KgCActual}
               number4={balon45KgGnv}
               number5={balon45KgAhorro}
@@ -1238,15 +1294,18 @@ export default function Page() {
               cellWidthNumber3Class="w-12"
               cellWidthNumber4Class="w-12"
               cellWidthNumber5Class="w-12"
+              isDisabled={isSavedCosto} // Añade isDisabled a las props
             />
           </div>
 
           {/*Gl. GLP*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg7
+            <ClientReg2
               text="GL GLP"
-              number1={GlpReferencial}
-              number2={GlpCantidad}
+              text1InitialValue={GlpReferencialText}
+              onText1Change={SetGlpReferencialText}
+              text2InitialValue={GlpCantidadText}
+              onText2Change={SetGlpCantidadText}
               number3={GlpCActual}
               number4={GlpGnv}
               number5={GlpAhorro}
@@ -1257,15 +1316,18 @@ export default function Page() {
               cellWidthNumber3Class="w-12"
               cellWidthNumber4Class="w-12"
               cellWidthNumber5Class="w-12"
+              isDisabled={isSavedCosto} // Añade isDisabled a las props
             />
           </div>
 
           {/*Gl. Petroleo*/}
           <div className="flex flex-col items-center mt-0.25">
-            <CotReg7
+            <ClientReg2
               text="G Petroleo"
-              number1={petroleoReferencial}
-              number2={petroleoCantidad}
+              text1InitialValue={petroleoReferencialText}
+              onText1Change={SetPetroleoReferencialText}
+              text2InitialValue={petroleoCantidadText}
+              onText2Change={SetPetroleoCantidadText}
               number3={petroleoCActual}
               number4={petroleoGnv}
               number5={petroleoAhorro}
@@ -1276,22 +1338,23 @@ export default function Page() {
               cellWidthNumber3Class="w-12"
               cellWidthNumber4Class="w-12"
               cellWidthNumber5Class="w-12"
+              isDisabled={isSavedCosto} // Añade isDisabled a las props
             />
           </div>
 
           {/*TÍTULO: RETORNO DE LA INVERSIÓN CON EL AHORRO*/}
           <div className="flex flex-col items-center mt-4 mb-2">
             <h1 className="text-base">Retorno de la inversión</h1>
-            <h1 className="text-base">con el ahorro</h1>
+            <h1 className="text-base">por año con el ahorro</h1>
           </div>
 
-          {/*Gl. Petroleo*/}
+          {/*Encabezados*/}
           <div className="flex flex-col items-center mt-0.25">
             <CotReg8
-              text1="Tipo"
-              text2="Año 1"
-              text3="Año 2"
-              text4="Año 3"
+              text1="Comb."
+              text2="Año1"
+              text3="Año2"
+              text4="Año3"
               rowHeightClass="h-4"
               cellWidthText1Class="w-20"
               cellWidthText2Class="w-20"

@@ -57,7 +57,7 @@ const ClientReg: React.FC<ClientRegProps> = ({
 };
 //Fin Componente ClientReg filas con ingreso texto
 
-//Componente ClientReg1 filas con ingreso texto
+//Componente ClientReg1 filas con un ingreso texto
 type ClientReg1Props = {
   text1: string;
   text2Name: string;
@@ -111,6 +111,108 @@ const ClientReg1: React.FC<ClientReg1Props> = ({
   );
 };
 //Fin Componente ClientReg1 filas con ingreso texto
+
+//Componente ClientReg2 5 columnas con dos ingresos de texto
+type ClientReg2Props = {
+  text: string;
+  text1InitialValue: string;
+  onText1Change: (value: string) => void;
+  text2InitialValue: string;
+  onText2Change: (value: string) => void;
+  number3: number;
+  number4: number;
+  number5: number;
+  rowHeightClass: string;
+  cellWidthTextClass: string;
+  cellWidthNumber1Class: string;
+  cellWidthNumber2Class: string;
+  cellWidthNumber3Class: string;
+  cellWidthNumber4Class: string;
+  cellWidthNumber5Class: string;
+  isDisabled: boolean;
+};
+
+const ClientReg2: React.FC<ClientReg2Props> = ({
+  text,
+  text1InitialValue,
+  onText1Change,
+  text2InitialValue,
+  onText2Change,
+  number3,
+  number4,
+  number5,
+  rowHeightClass,
+  cellWidthTextClass,
+  cellWidthNumber1Class,
+  cellWidthNumber2Class,
+  cellWidthNumber3Class,
+  cellWidthNumber4Class,
+  cellWidthNumber5Class,
+  isDisabled,
+}) => {
+  const [text1, setText1] = useState(text1InitialValue);
+  const [text2, setText2] = useState(text2InitialValue);
+
+  const handleText1Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText1(e.target.value);
+    onText1Change(e.target.value);
+  };
+
+  const handleText2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText2(e.target.value);
+    onText2Change(e.target.value);
+  };
+
+  return (
+    <div className="flex items-center">
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {text}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber1Class} max-w-xs flex items-center justify-center pr-1`}
+      >
+        <input
+          type="text"
+          value={text1}
+          onChange={handleText1Change}
+          className="outline-none w-8"
+          placeholder="Enter text"
+          disabled={isDisabled}
+        />
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber2Class} max-w-xs flex items-center justify-center pr-1`}
+      >
+        <input
+          type="text"
+          value={text2}
+          onChange={handleText2Change}
+          className="outline-none w-8"
+          placeholder="Enter text"
+          disabled={isDisabled}
+        />
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber3Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {number3}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber4Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {number4}
+      </div>
+      <div
+        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber5Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
+      >
+        {number5}
+      </div>
+    </div>
+  );
+};
+//Fin Componente ClientReg2 5 columnas con dos ingresos de texto
 
 //Componente GuardarBotton
 type GuardarBottonProps = {
@@ -761,7 +863,7 @@ const CotReg7: React.FC<CotReg7Props> = ({
 };
 //Fin Componente CotReg7
 
-//Componente CotReg8 1 Fila y 6 Columnas con un texto y 5 números
+//Componente CotReg8 1 Fila y 4 Columnas con 4 textos
 type CotReg8Props = {
   text1: string;
   text2: string;
@@ -811,7 +913,7 @@ const CotReg8: React.FC<CotReg8Props> = ({
 };
 //Fin Componente CotReg8
 
-//Componente CotReg9 1 Fila y 6 Columnas con un texto y 5 números
+//Componente CotReg9 1 Fila y 4 Columnas con un texto y 3 números
 type CotReg9Props = {
   text: string;
   number1: number;
@@ -899,6 +1001,7 @@ const CotReg10: React.FC<CotReg10Props> = ({
 export {
   ClientReg,
   ClientReg1,
+  ClientReg2,
   GuardarBotton,
   CotRegDes2,
   CotRegDes3,
