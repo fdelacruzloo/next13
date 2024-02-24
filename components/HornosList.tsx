@@ -115,6 +115,27 @@ const incrementarCantidad = (id: string) => {
   );
 };
 
+// Función decrementar cantidad
+const decrementarCantidad = (id: string) => {
+  setHornos(
+    hornos.map((horno) => {
+      if (horno.id === id && horno.cantidad > 0) {
+        const newCantidad = horno.cantidad - 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...horno, cantidad: newCantidad };
+      } else {
+        return horno;
+      }
+    })
+  );
+};
+
 useEffect(() => {
   // Recupera la cantidad de localStorage cuando se carga la página
   setHornos((prevHornos) =>
@@ -153,6 +174,7 @@ const photoListItems = filteredHornos.map((horno) => (
     imageUrl={horno.imageUrl}
     regulador={horno.regulador}
     incrementarCantidad={() => incrementarCantidad(horno.id)}
+    decrementarCantidad={() => decrementarCantidad(horno.id)}
     cantidad={horno.cantidad}
     setCantidad={(id, cantidad) => {}}
   />

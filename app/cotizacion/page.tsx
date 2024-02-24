@@ -59,15 +59,98 @@ export default function Page() {
   {
     /*Declaración de variables de Calculo de la Potencia Presión del Gasodoméstico*/
   }
+  /*Asignación de gasodomestico1Alta y gasodomestico1Baja*/
+{/*let gasodomestico1Alta = 0;
+let gasodomestico1Baja = 0;
 
-  const gasodomestico1Alta: number = 30;
-  const gasodomestico1Baja: number = 0;
+for (let i = 1; i <= 38; i++) {
+  let kwItem = localStorage.getItem(`kw${i}`);
+  let reguladorItem = localStorage.getItem(`Regulador${i}`);
+  
+  console.log(`kw${i}:`, kwItem);
+  console.log(`Regulador${i}:`, reguladorItem);
 
-  const gasodomestico2Alta: number = 25;
-  const gasodomestico2Baja: number = 0;
+  if (kwItem && reguladorItem) {
+    let kwValue = Number(kwItem);
+    let reguladorValue = reguladorItem === 'true';
 
-  const gasodomestico3Alta: number = 0;
-  const gasodomestico3Baja: number = 11;
+    if (kwValue !== 0 && reguladorValue) {
+      gasodomestico1Baja = Number(kwValue);
+    }
+
+    reguladorValue = reguladorItem === 'false';
+
+    if (kwValue !== 0 && reguladorValue) {
+      gasodomestico1Alta = Number(kwValue);
+    }
+
+    if (gasodomestico1Alta !== 0 && gasodomestico1Baja !== 0) {
+      break;
+    }
+  }
+}*/}
+
+let kwList = [];
+
+for (let i = 1; i <= 38; i++) {
+  let kwItem = localStorage.getItem(`kw${i}`);
+  let reguladorItem = localStorage.getItem(`Regulador${i}`);
+  
+  console.log(`kw${i}:`, kwItem);
+  console.log(`Regulador${i}:`, reguladorItem);
+
+  if (kwItem) {
+    let kwValue = Number(kwItem);
+
+    if (kwValue !== 0) {
+      kwList.push({[`kw${i}`]: kwValue, [`Regulador${i}`]: reguladorItem});
+    }
+  }
+}
+
+console.log('kwList after sort:', kwList); // Agrega esta línea
+
+
+let gasodomestico1Alta = 0;
+let gasodomestico1Baja = 0;
+let gasodomestico2Alta = 0;
+let gasodomestico2Baja = 0;
+let gasodomestico3Alta = 0;
+let gasodomestico3Baja = 0;
+
+for (let i = 0; i < 3; i++) {
+  let kwItem = kwList[i];
+  if (kwItem) {
+    let kwKey = Object.keys(kwItem)[0];
+    let kwValue = kwItem[kwKey];
+    let reguladorValue = kwItem[`Regulador${kwKey.slice(2)}`];
+
+    if (i === 0) {
+      if (reguladorValue === 'true') {
+        gasodomestico1Baja = Number(kwValue);
+      } else if (reguladorValue === 'false') {
+        gasodomestico1Alta = Number(kwValue);
+      }
+    } else if (i === 1) {
+      if (reguladorValue === 'true') {
+        gasodomestico2Baja = Number(kwValue);
+      } else if (reguladorValue === 'false') {
+        gasodomestico2Alta = Number(kwValue);
+      }
+    } else if (i === 2) {
+      if (reguladorValue === 'true') {
+        gasodomestico3Baja = Number(kwValue);
+      } else if (reguladorValue === 'false') {
+        gasodomestico3Alta = Number(kwValue);
+      }
+    }
+  }
+}
+  //const gasodomestico2Alta: number = 0;
+  //const gasodomestico2Baja: number = 0;
+
+ // const gasodomestico3Alta: number = 0;
+ // const gasodomestico3Baja: number = 0;
 
   const gasodomesticoPersonalisadoAlta: number = 0;
   const gasodomesticoPersonalizadoBaja: number = 0;
@@ -84,7 +167,7 @@ export default function Page() {
     (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0);
 
   const potenciaTotal =
-    gasodomestico1Alta +
+    (gasodomestico1Alta) +
     gasodomestico2Alta +
     gasodomestico3Alta +
     gasodomesticoPersonalisadoAlta +
@@ -305,7 +388,9 @@ export default function Page() {
     getData();
     for (let i = 1; i <= 38; i++) {
       const kw = localStorage.getItem(`kw${i}`);
-      console.log(`KW${i}: ${kw}`);
+      console.log(`KWt${i}: ${kw}`);
+      const Regulador = localStorage.getItem(`kw${i}`);
+      console.log(`REGULADOR${i}: ${Regulador}`);
     }
   }, []);
 
@@ -664,9 +749,8 @@ export default function Page() {
     construido,
   ]);
 
-  {
     /*RETURN PRINCIPAL*/
-  }
+ 
   return (
     <main className="container w-[320px]  flex flex-col items-center justify-center min-h-screen font-sans text-sm">
       <div className="flex-grow w-full flex flex-col items-center">

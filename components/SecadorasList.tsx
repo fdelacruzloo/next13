@@ -39,12 +39,33 @@ const SecadorasPage: React.FC<SecadorasPageProps> = ({ isHighPressureClicked, is
 
   ]);
 
-// CODIGO MODIFICADO
+// Función incrementar cantidad
 const incrementarCantidad = (id: string) => {
   setSecadoras(
     secadoras.map((secadora) => {
       if (secadora.id === id) {
         const newCantidad = secadora.cantidad + 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...secadora, cantidad: newCantidad };
+      } else {
+        return secadora;
+      }
+    })
+  );
+};
+
+// Función decrementar cantidad
+const decrementarCantidad = (id: string) => {
+  setSecadoras(
+    secadoras.map((secadora) => {
+      if (secadora.id === id && secadora.cantidad > 0) {
+        const newCantidad = secadora.cantidad - 1;
         localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
         getData();
         // Imprime las variables kw1 a kw38
@@ -98,6 +119,7 @@ const photoListItems = filteredSecadoras.map((secadora) => (
     imageUrl={secadora.imageUrl}
     regulador={secadora.regulador}
     incrementarCantidad={() => incrementarCantidad(secadora.id)}
+    decrementarCantidad={() => decrementarCantidad(secadora.id)}
     cantidad={secadora.cantidad}
     setCantidad={(id, cantidad) => {}}
   />

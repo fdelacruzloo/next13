@@ -118,12 +118,33 @@ const OtrosComponent: React.FC<OtrosComponentProps> = ({ isHighPressureClicked, 
 
   ]);
  
- // CODIGO MODIFICADO
+ // Función incrementar cantidad
 const incrementarCantidad = (id: string) => {
   setOtros(
     otros.map((otro) => {
       if (otro.id === id) {
         const newCantidad = otro.cantidad + 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...otro, cantidad: newCantidad };
+      } else {
+        return otro;
+      }
+    })
+  );
+};
+
+// Función decrementar cantidad
+const decrementarCantidad = (id: string) => {
+  setOtros(
+    otros.map((otro) => {
+      if (otro.id === id && otro.cantidad > 0) {
+        const newCantidad = otro.cantidad - 1;
         localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
         getData();
         // Imprime las variables kw1 a kw38
@@ -177,6 +198,7 @@ const photoListItems = filteredOtros.map((otro) => (
     imageUrl={otro.imageUrl}
     regulador={otro.regulador}
     incrementarCantidad={() => incrementarCantidad(otro.id)}
+    decrementarCantidad={() => decrementarCantidad(otro.id)}
     cantidad={otro.cantidad}
     setCantidad={(id, cantidad) => {}}
   />

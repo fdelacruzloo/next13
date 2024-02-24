@@ -39,12 +39,33 @@ const FreidorasComponent: React.FC<FreidorasComponentProps> = ({
     },
   ]);
 
-  // CODIGO MODIFICADO
+  // Función incrementar cantidad
 const incrementarCantidad = (id: string) => {
   setFreidoras(
     freidoras.map((freidora) => {
       if (freidora.id === id) {
         const newCantidad = freidora.cantidad + 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...freidora, cantidad: newCantidad };
+      } else {
+        return freidora;
+      }
+    })
+  );
+};
+
+// Función decrementar cantidad
+const decrementarCantidad = (id: string) => {
+  setFreidoras(
+    freidoras.map((freidora) => {
+      if (freidora.id === id && freidora.cantidad > 0) {
+        const newCantidad = freidora.cantidad - 1;
         localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
         getData();
         // Imprime las variables kw1 a kw38
@@ -98,6 +119,7 @@ const photoListItems = filteredFreidoras.map((freidora) => (
     imageUrl={freidora.imageUrl}
     regulador={freidora.regulador}
     incrementarCantidad={() => incrementarCantidad(freidora.id)}
+    decrementarCantidad={() => decrementarCantidad(freidora.id)}
     cantidad={freidora.cantidad}
     setCantidad={(id, cantidad) => {}}
   />

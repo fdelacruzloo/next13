@@ -46,12 +46,56 @@ const idToMultiplier = {
   'p38': 36.00
 };
 
+// Mapeo de ids a sus valores de regulador correspondientes
+const idToRegulator = {
+  'p1': true,
+  'p2': false,
+  'p3': false,
+  'p4': false,
+  'p5': false,
+  'p6': false,
+  'p7': false,
+  'p8': false,
+  'p9': false,
+  'p10': false,
+  'p11': false,
+  'p12': false,
+  'p13': false,
+  'p14': false,
+  'p15': true,
+  'p16': false,
+  'p17': false,
+  'p18': false,
+  'p19': true,
+  'p20': true,
+  'p21': true,
+  'p22': true,
+  'p23': true,
+  'p24': true,
+  'p25': true,
+  'p26': true,
+  'p27': false,
+  'p28': false,
+  'p29': false,
+  'p30': true,
+  'p31': true,
+  'p32': true,
+  'p33': true,
+  'p34': true,
+  'p35': false,
+  'p36': false,
+  'p37': false,
+  'p38': false
+};
+
 export const getData = () => {
   const data = ids.map(id => {
     const cantidad = localStorage.getItem(id);
+    const regulador = idToRegulator[id]; // obtiene el valor de regulador para este id
     return {
       id,
-      cantidad: cantidad ? Number(cantidad) : 0 // convierte la cantidad a un número, o usa 0 si no hay un valor almacenado
+      cantidad: cantidad ? Number(cantidad) : 0, // convierte la cantidad a un número, o usa 0 si no hay un valor almacenado
+      regulador // agrega el valor de regulador a cada objeto
     };
   });
 
@@ -61,6 +105,8 @@ export const getData = () => {
     if (obj) {
       const kwValue = obj.cantidad * multiplier;
       localStorage.setItem(`kw${id.slice(1)}`, String(kwValue));
+      localStorage.setItem(`Regulador${id.slice(1)}`, String(obj.regulador)); // guarda el valor de regulador para este id en localStorage
+      console.log(`Regulador${id.slice(1)}: ${obj.regulador}`); // imprime el valor de regulador para este id
     }
   }
 

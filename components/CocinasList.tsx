@@ -127,12 +127,33 @@ const CocinasComponent: React.FC<CocinasComponentProps> = ({
     },
   ]);
 
-// CODIGO MODIFICADO
+// Función incrementar cantidad
 const incrementarCantidad = (id: string) => {
   setCocinas(
     cocinas.map((cocina) => {
       if (cocina.id === id) {
         const newCantidad = cocina.cantidad + 1;
+        localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
+        getData();
+        // Imprime las variables kw1 a kw38
+        for (let i = 1; i <= 38; i++) {
+          const kw = localStorage.getItem(`kw${i}`);
+          console.log(`KW${i}: ${kw}`);
+        }
+        return { ...cocina, cantidad: newCantidad };
+      } else {
+        return cocina;
+      }
+    })
+  );
+};
+
+// Función decrementar cantidad
+const decrementarCantidad = (id: string) => {
+  setCocinas(
+    cocinas.map((cocina) => {
+      if (cocina.id === id && cocina.cantidad > 0) {
+        const newCantidad = cocina.cantidad - 1;
         localStorage.setItem(id, String(newCantidad)); // Actualiza localStorage cada vez que cantidad cambia
         getData();
         // Imprime las variables kw1 a kw38
@@ -186,6 +207,7 @@ useEffect(() => {
       imageUrl={cocina.imageUrl}
       regulador={cocina.regulador}
       incrementarCantidad={() => incrementarCantidad(cocina.id)}
+      decrementarCantidad={() => decrementarCantidad(cocina.id)}
       cantidad={cocina.cantidad}
       setCantidad={(id, cantidad) => {}}
     />
