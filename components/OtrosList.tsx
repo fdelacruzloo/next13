@@ -115,7 +115,7 @@ const OtrosComponent: React.FC<OtrosComponentProps> = ({ isHighPressureClicked, 
       cantidad: 0,
       regulador: false, // Valor para el nuevo campo
     }, 
-
+ 
   ]);
  
  // Función incrementar cantidad

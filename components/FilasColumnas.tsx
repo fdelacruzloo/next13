@@ -98,7 +98,7 @@ const ClientReg1: React.FC<ClientReg1Props> = ({
         className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center justify-center font-sans text-sm overflow-hidden`}
       >
         <input
-          type="text"
+          type="number"
           id="text2Input"
           value={text2}
           onChange={handleText2Change}
@@ -804,68 +804,104 @@ const CotReg6: React.FC<CotReg6Props> = ({
 
 //Componente CotReg7 1 Fila y 6 Columnas con un texto y 5 números
 type CotReg7Props = {
-  text: string;
-  number1: number;
-  number2: number;
-  number3: number;
-  number4: number;
-  number5: number;
-  rowHeightClass: string;
+  text1InitialValue: string;
+  onText1Change: (value: string) => void;
+  
+  text2Name: number;
+  text2InitialValue: string;
+  onText2Change: (value: number) => void;
+  
+  text3Name: number;
+  text3InitialValue: string;
+  onText3Change: (value: number) => void;
+
+  rowHeightTextClass: string;
+  rowHeightNumberClass: string;
   cellWidthTextClass: string;
-  cellWidthNumber1Class: string;
+  cellWidthNumberClass: string;
   cellWidthNumber2Class: string;
-  cellWidthNumber3Class: string;
-  cellWidthNumber4Class: string;
-  cellWidthNumber5Class: string;
+  isDisabled: boolean;
 };
 const CotReg7: React.FC<CotReg7Props> = ({
-  text,
-  number1,
-  number2,
-  number3,
-  number4,
-  number5,
-  rowHeightClass,
+  text1InitialValue,
+  onText1Change,
+
+  //text2Name,
+  text2InitialValue,
+  onText2Change,
+
+  //text3Name,
+  text3InitialValue,
+  onText3Change,
+
+  rowHeightTextClass,
+  rowHeightNumberClass,
   cellWidthTextClass,
-  cellWidthNumber1Class,
+  cellWidthNumberClass,
   cellWidthNumber2Class,
-  cellWidthNumber3Class,
-  cellWidthNumber4Class,
-  cellWidthNumber5Class,
+  isDisabled,
 }) => {
+  const [text1, setText1] = useState(text1InitialValue);
+  const [text2, setText2] = useState(text2InitialValue);
+  const [text3, setText3] = useState(text3InitialValue);
+
+  const handleText1Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText1(e.target.value);
+    onText1Change(e.target.value);
+  };
+
+  const handleText2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText2(e.target.value);
+    onText2Change(parseInt(e.target.value));
+  };
+
+  const handleText3Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setText3(e.target.value);
+    onText3Change(parseInt(e.target.value));
+  };
+
   return (
-    <div className="flex items-center">
-      <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthTextClass} max-w-xs flex items-center justify-center pl-0 pr-0`}
-      >
-        {text}
-      </div>
-      <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber1Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-      >
-        {number1}
-      </div>
-      <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber2Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-      >
-        {number2}
-      </div>
-      <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber3Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-      >
-        {number3}
-      </div>
-      <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber4Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-      >
-        {number4}
-      </div>
-      <div
-        className={`p-4 border border-gray-800 ${rowHeightClass} ${cellWidthNumber5Class} max-w-xs flex items-center justify-center pl-0 pr-0`}
-      >
-        {number5}
-      </div>
-    </div>
+    <div className={`flex  items-center`}>
+  <div
+    className={`p-4 border border-gray-800 ${rowHeightTextClass} ${cellWidthTextClass} flex items-center font-sans text-sm overflow-hidden`}
+  >
+    <input
+      type="text"
+      id="text1Input"
+      value={text1}
+      onChange={handleText1Change}
+      className="outline-none w-52 text-center"
+      placeholder="Gasodoméstico Personalizado"
+      disabled={isDisabled}
+    />
+  </div>
+  <div
+    className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumberClass} flex items-center justify-center font-sans text-sm overflow-hidden`}
+  >
+    <input
+      type="number"
+      id="text2Input"
+      value={text2}
+      onChange={handleText2Change}
+      className="outline-none w-12 text-center"
+      placeholder="Alta"
+      disabled={isDisabled || text3 !== ""}
+    />
+  </div>
+  <div
+    className={`p-4 border border-gray-800 ${rowHeightNumberClass} ${cellWidthNumber2Class} flex items-center justify-center font-sans text-sm overflow-hidden`}
+  >
+    <input
+      type="number"
+      id="text3Input"
+      value={text3}
+      onChange={handleText3Change}
+      className="outline-none w-12 text-center"
+      placeholder="Baja"
+      disabled={isDisabled || text2 !== ""}
+    />
+  </div>
+</div>
   );
 };
 //Fin Componente CotReg7
