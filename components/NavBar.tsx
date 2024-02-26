@@ -1,4 +1,4 @@
-//SiteHeader.tsx
+//NavBar.tsx
 "use client";
 import classNames from "classnames";
 import Link from "next/link";
@@ -12,10 +12,10 @@ export function NavBar() {
       <div
         className={classNames(
           "flex items-center",
-          pathname === "/cotizacion" && "rounded bg-gray-400"
+          pathname === "/" && "rounded bg-gray-400"
         )}
       >
-        <Link href="/cotizacion">
+        <Link href="/">
           <span className="flex items-center justify-center px-1 py-1 h-6 text-black border border-gray-500 rounded">
             Cotización
           </span>

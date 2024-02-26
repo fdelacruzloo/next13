@@ -127,6 +127,8 @@ const CocinasComponent: React.FC<CocinasComponentProps> = ({
     },
   ]);
 
+
+
 // Función incrementar cantidad
 const incrementarCantidad = (id: string) => {
   setCocinas(
@@ -147,6 +149,7 @@ const incrementarCantidad = (id: string) => {
     })
   );
 };
+
 
 // Función decrementar cantidad
 const decrementarCantidad = (id: string) => {
@@ -182,8 +185,6 @@ useEffect(() => {
     })
   );
 }, []); // Dependencias vacías para que se ejecute solo una vez al montar el componente
-
-// Resto del código...
 
   // Filtra los datos basado en isHighPressureClicked e isLowPressureClicked
   const filteredCocinas = cocinas.filter((cocina) => {

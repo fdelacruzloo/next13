@@ -276,11 +276,6 @@ const CotRegDes2: React.FC<CotRegDes2Props> = ({
     }
   };
 
-  useEffect(() => {
-    console.log("boolean1:", boolean1);
-    console.log("boolean2:", boolean2);
-  }, [boolean1, boolean2]);
-
   // Determinar el valor del select basado en los estados boolean1 y boolean2
   let selectValue = "";
   if (boolean1) {
@@ -806,15 +801,12 @@ const CotReg6: React.FC<CotReg6Props> = ({
 type CotReg7Props = {
   text1InitialValue: string;
   onText1Change: (value: string) => void;
-  
   text2Name: number;
   text2InitialValue: string;
   onText2Change: (value: number) => void;
-  
   text3Name: number;
   text3InitialValue: string;
   onText3Change: (value: number) => void;
-
   rowHeightTextClass: string;
   rowHeightNumberClass: string;
   cellWidthTextClass: string;
@@ -825,15 +817,12 @@ type CotReg7Props = {
 const CotReg7: React.FC<CotReg7Props> = ({
   text1InitialValue,
   onText1Change,
-
   //text2Name,
   text2InitialValue,
   onText2Change,
-
   //text3Name,
   text3InitialValue,
   onText3Change,
-
   rowHeightTextClass,
   rowHeightNumberClass,
   cellWidthTextClass,

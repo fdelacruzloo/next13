@@ -92,6 +92,7 @@ export const getData = () => {
   const data = ids.map(id => {
     const cantidad = localStorage.getItem(id);
     const regulador = idToRegulator[id]; // obtiene el valor de regulador para este id
+    
     return {
       id,
       cantidad: cantidad ? Number(cantidad) : 0, // convierte la cantidad a un número, o usa 0 si no hay un valor almacenado
@@ -106,8 +107,7 @@ export const getData = () => {
       const kwValue = obj.cantidad * multiplier;
       localStorage.setItem(`kw${id.slice(1)}`, String(kwValue));
       localStorage.setItem(`Regulador${id.slice(1)}`, String(obj.regulador)); // guarda el valor de regulador para este id en localStorage
-      console.log(`Regulador${id.slice(1)}: ${obj.regulador}`); // imprime el valor de regulador para este id
-    }
+      }
   }
 
   return data;
