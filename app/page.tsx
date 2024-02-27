@@ -26,21 +26,109 @@ import {
 } from "@/components/FilasColumnas";
 
 export default function Page() {
-  {
-    /*Declaración de variables del registro del cliente */
-  }
-  const [razonNombre, setRazonNombre] = useState(""); // Cambia razonNombre a un estado
-  const initialRuc = typeof window !== 'undefined' && window.localStorage ? (localStorage.getItem('ruc') || '') : '';
+  //FUNCIÓN PARA LIMPIAR LOCALSTORAGE LA PRIMERA VEZ QUE CARGA COTIZACIÓN
+  useEffect(() => {
+    if (!localStorage.getItem("pageLoadedBefore")) {
+      localStorage.clear();
+      localStorage.setItem("pageLoadedBefore", "true");
+    }
+  }, []); // El array vacío [] significa que este efecto se ejecutará solo una vez, al cargar la página
+
+  //DECLARACIÓN DE VARIABLES Y FUNCIONES DEL REGISTRO DEL CLIENTE ALMACENAMIENTO EN LOCAL STORE
+
+  //Declaración y función que cuando 'ruc' cambia, guarda el nuevo valor en localStorage
+  const initialRuc =
+    typeof window !== "undefined" && window.localStorage
+      ? localStorage.getItem("ruc") || ""
+      : "";
   const [ruc, setRuc] = useState(initialRuc); // Cambia ruc a un estado
-  const [cel, setCel] = useState(""); // Cambia cel a un estado
-  const [correo, setCorreo] = useState(""); // Cambia correo a un estado
-  const [direccion, setDireccion] = useState(""); // Cambia direccion a un estado
-  const [coordenada, setCoordenada] = useState(""); // Cambia coordenada a un estado
+
+  useEffect(() => {
+    localStorage.setItem("ruc", ruc);
+  }, [ruc]);
+  const handleRucChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRuc(e.target.value);
+  };
+
+  //Declaración y función que cuando 'razonNombre' cambia, guarda el nuevo valor en localStorage*/
+  const initialRazonNombre =
+    typeof window !== "undefined" && window.localStorage
+      ? localStorage.getItem("razonNombre") || ""
+      : "";
+  const [razonNombre, setRazonNombre] = useState(initialRazonNombre); // Cambia razonNombre a un estado
+
+  useEffect(() => {
+    localStorage.setItem("razonNombre", razonNombre);
+  }, [razonNombre]);
+
+  const handleRazonNombreChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRazonNombre(e.target.value);
+  };
+
+  //Declaración y función que cuando 'cel' cambia, guarda el nuevo valor en localStorage*/
+  const initialCel =
+    typeof window !== "undefined" && window.localStorage
+      ? localStorage.getItem("cel") || ""
+      : "";
+  const [cel, setCel] = useState(initialCel); // Cambia cel a un estado
+
+  useEffect(() => {
+    localStorage.setItem("cel", cel);
+  }, [cel]);
+
+  const handleCelChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCel(e.target.value);
+  };
+
+  //Declaración y función que cuando 'correo' cambia, guarda el nuevo valor en localStorage*/
+  const initialCorreo =
+    typeof window !== "undefined" && window.localStorage
+      ? localStorage.getItem("correo") || ""
+      : "";
+  const [correo, setCorreo] = useState(initialCorreo); // Cambia correo a un estado 
+ 
+  useEffect(() => {
+    localStorage.setItem("correo", correo);
+  }, [correo]);
+
+  const handleCorreoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCorreo(e.target.value);
+  };
+
+  //Declaración y función  que cuando 'direccion' cambia, guarda el nuevo valor en localStorage
+  const initialDireccion =
+    typeof window !== "undefined" && window.localStorage
+      ? localStorage.getItem("direccion") || ""
+      : "";
+  const [direccion, setDireccion] = useState(initialDireccion); // Cambia direccion a un estado
+
+  useEffect(() => {
+    localStorage.setItem("direccion", direccion);
+  }, [direccion]);
+
+  const handleDireccionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setDireccion(e.target.value);
+  };
+
+  //Declaración y función que cuando 'coordenada' cambia, guarda el nuevo valor en localStorage*/
+  const initialCoordenada =
+    typeof window !== "undefined" && window.localStorage
+      ? localStorage.getItem("coordenada") || ""
+      : "";
+  const [coordenada, setCoordenada] = useState(initialCoordenada); // Cambia coordenada a un estado  
+
+  useEffect(() => {
+    localStorage.setItem("coordenada", coordenada);
+  }, [coordenada]);
+
+  const handleCoordenadaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setCoordenada(e.target.value);
+  };
+
+  //Declaración de variable que inhabilita la escritura para evitar borrado accidental
   const [isSaved, setIsSaved] = useState(false); // Añade un nuevo estado para saber si los valores han sido guardados
-  
-  {
-    /*Declaración de variables de Suministro e Instalación*/
-  }
+
+  //Declaración de variables de Suministro e Instalación
   const [usoIndividual, setUsoIndividual] = useState(false);
   const [doble, setDoble] = useState(false);
   const [triple, setTriple] = useState(false);
@@ -56,36 +144,18 @@ export default function Page() {
   const [peAlPe2025, setPeAlPe2025] = useState(false);
   const [cobre, setCobre] = useState(false);
 
-  {
-  /*Cada vez que 'ruc' cambia, guarda el nuevo valor en localStorage*/
-  }
-  useEffect(() => {
-    localStorage.setItem('ruc', ruc);
-  }, [ruc]);
-
-  const handleRucChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRuc(e.target.value);
-  };
-
-  {
-    /*Función para limpiar localStorage la primera vez que carga cotización*/
-  }
-  useEffect(() => {
-    if (!localStorage.getItem("pageLoadedBefore")) {
-      localStorage.clear();
-      localStorage.setItem("pageLoadedBefore", "true");
-    }
-  }, []); // El array vacío [] significa que este efecto se ejecutará solo una vez, al cargar la página
-  
-  {
-    /*Función para crear función kwItem que recupera kw, Regulador y debe
-recuperar descripción también*/
-  }
+  //Función para crear función kwItem que recupera kw, Regulador y debe recuperar descripción también
   let kwList = [];
 
-    for (let i = 1; i <= 38; i++) {
-    let kwItem = typeof window !== 'undefined' && window.localStorage ? (localStorage.getItem(`kw${i}`) || '') : '';
-    let reguladorItem = typeof window !== 'undefined' && window.localStorage ? (localStorage.getItem(`Regulador${i}`) || '') : '';
+  for (let i = 1; i <= 38; i++) {
+    let kwItem =
+      typeof window !== "undefined" && window.localStorage
+        ? localStorage.getItem(`kw${i}`) || ""
+        : "";
+    let reguladorItem =
+      typeof window !== "undefined" && window.localStorage
+        ? localStorage.getItem(`Regulador${i}`) || ""
+        : "";
 
     if (kwItem) {
       let kwValue = Number(kwItem);
@@ -98,9 +168,7 @@ recuperar descripción también*/
 
   console.log("kwList after sort:", kwList); // Agrega esta línea
 
-  {
-    /*Función para generar los valores de gasodomesticos 1,2 y 3 */
-  }
+  //Función para generar los valores de gasodomesticos 1,2 y 3
   let gasodomestico1Alta = 0;
   let gasodomestico1Baja = 0;
   let gasodomestico2Alta = 0;
@@ -137,44 +205,82 @@ recuperar descripción también*/
     }
   }
 
-  const [gasodomesticoPersonalisadoAlta, setGasodomesticoPersonalizadoAlta] = useState(0);
-  const [gasodomesticoPersonalizadoBaja, setGasodomesticoPersonalizadoBaja] = useState(0);
-  const [gasodomesticoPersonalizadoTexto, setGasodomesticoPersonalizadoTexto] = useState("");
+  //Declaración y función  que cuando 'gasodomesticoPersonalizadoAlta' cambia, guarda el nuevo valor en localStorage
+  const initialGasodomesticoPersonalizadoAlta =
+  typeof window !== "undefined" && window.localStorage
+    ? Number(localStorage.getItem("gasodomesticoPersonalizadoAlta")) || 0
+    : 0;
+  const [gasodomesticoPersonalizadoAlta, setGasodomesticoPersonalizadoAlta] = useState(initialGasodomesticoPersonalizadoAlta);
+
+  useEffect(() => {
+    localStorage.setItem("gasodomesticoPersonalizadoAlta", gasodomesticoPersonalizadoAlta.toString());
+  }, [gasodomesticoPersonalizadoAlta]);
+
+  const handleGasodomesticoPersonalizadoAltaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGasodomesticoPersonalizadoAlta(Number(e.target.value));
+  };
+
+  //Declaración y función  que cuando 'gasodomesticoPersonalizadoBaja' cambia, guarda el nuevo valor en localStorage
+  const initialGasodomesticoPersonalizadoBaja =
+  typeof window !== "undefined" && window.localStorage
+    ? Number(localStorage.getItem("gasodomesticoPersonalizadoBaja")) || 0
+    : 0;
+  const [gasodomesticoPersonalizadoBaja, setGasodomesticoPersonalizadoBaja] = useState(initialGasodomesticoPersonalizadoBaja);
+
+  useEffect(() => {
+    localStorage.setItem("gasodomesticoPersonalizadoBaja", gasodomesticoPersonalizadoBaja.toString());
+  }, [gasodomesticoPersonalizadoBaja]);
+
+  const handleGasodomesticoPersonalizadoBajaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGasodomesticoPersonalizadoBaja(Number(e.target.value));
+  };
+
+  //Declaración y función  que cuando 'gasodomesticoPersonalizadoTexto' cambia, guarda el nuevo valor en localStorage
+  const initialGasodomesticoPersonalizadoTexto =
+  typeof window !== "undefined" && window.localStorage
+    ? localStorage.getItem("gasodomesticoPersonalizadoTexto") || ""
+    : "";
+  const [gasodomesticoPersonalizadoTexto, setGasodomesticoPersonalizadoTexto] = useState(initialGasodomesticoPersonalizadoTexto);
+
+  useEffect(() => {
+    localStorage.setItem("gasodomesticoPersonalizadoTexto", gasodomesticoPersonalizadoTexto);
+  }, [gasodomesticoPersonalizadoTexto]);
+
+  const handleGasodomesticoPersonalizadoTextoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setGasodomesticoPersonalizadoTexto(e.target.value);
+  };
 
   const cantEquiposAlta =
     (gasodomestico1Alta !== 0 ? 1 : 0) +
     (gasodomestico2Alta !== 0 ? 1 : 0) +
     (gasodomestico3Alta !== 0 ? 1 : 0) +
-    (gasodomesticoPersonalisadoAlta !== 0 ? 1 : 0);
+    (gasodomesticoPersonalizadoAlta !== 0 ? 1 : 0);
   const cantEquiposBaja =
     (gasodomestico1Baja !== 0 ? 1 : 0) +
     (gasodomestico2Baja !== 0 ? 1 : 0) +
     (gasodomestico3Baja !== 0 ? 1 : 0) +
-    (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0);
+    (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0);  
+  
+  //Función para calcular el valor de configuración
+   let baja = "";
+  if (cantEquiposBaja === 1) baja = "23";
+  else if (cantEquiposBaja === 2) baja = "23 - 23";
+  else if (cantEquiposBaja === 3) baja = "23 - 23 - 23";
+  else if (cantEquiposBaja === 0) baja = "";
 
-    {
-      /*Función para calcular el valor de configuración */
-    }
+  let alta = "";
+  if (cantEquiposAlta === 1) alta = "340";
+  else if (cantEquiposAlta === 2) alta = "340 - 340";
+  else if (cantEquiposAlta === 3) alta = "340 - 340 - 340";
+  else if (cantEquiposAlta === 0) alta = "";
 
-    let baja = "";
-    if (cantEquiposBaja === 1) baja = "23";
-    else if (cantEquiposBaja === 2) baja = "23 - 23";
-    else if (cantEquiposBaja === 3) baja = "23 - 23 - 23";
-    else if (cantEquiposBaja === 0) baja = "";
-    
-    let alta = "";
-    if (cantEquiposAlta === 1) alta = "340";
-    else if (cantEquiposAlta === 2) alta = "340 - 340";
-    else if (cantEquiposAlta === 3) alta = "340 - 340 - 340";
-    else if (cantEquiposAlta === 0) alta = "";
-    
-    let configuracion = baja + " - " + alta;
+  let configuracion = baja + " - " + alta;
 
   const potenciaTotal =
     gasodomestico1Alta +
     gasodomestico2Alta +
     gasodomestico3Alta +
-    gasodomesticoPersonalisadoAlta +
+    gasodomesticoPersonalizadoAlta +
     gasodomestico1Baja +
     gasodomestico2Baja +
     gasodomestico3Baja +
@@ -192,16 +298,41 @@ recuperar descripción también*/
       ? "G10"
       : "";
 
-  {
-    /*Declaración de variables de Costos en Soles*/
-  }
 
+  //Declaración de variables de Costos en Soles*/
   const [costoMedidor, setCostoMedidor] = useState(0);
-  const [instalacionInterna, setInstalacionInterna] = useState<number>(0);
-  const [reguladorText, setReguladorText] = useState("");
-  const regulador = Number(reguladorText);
-  const [lineaMontanteText, setLineaMontanteText] = useState("");
-  const lineaMontante = Number(lineaMontanteText); 
+  const [instalacionInterna, setInstalacionInterna] = useState(0);
+  
+  //Declaración y función  que cuando 'regulador' cambia, guarda el nuevo valor en localStorage
+  const initialRegulador =
+  typeof window !== "undefined" && window.localStorage
+    ? Number(localStorage.getItem("regulador")) || 0
+    : 0;
+  const [regulador, setRegulador] = useState(initialRegulador);
+
+  useEffect(() => {
+    localStorage.setItem("regulador", regulador.toString());
+  }, [regulador]);
+
+  const handleReguladorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setRegulador(Number(e.target.value));
+  };
+
+  //Declaración y función  que cuando 'lineaMontante' cambia, guarda el nuevo valor en localStorage
+  const initialLineaMontante =
+  typeof window !== "undefined" && window.localStorage
+    ? Number(localStorage.getItem("lineaMontante")) || 0
+    : 0;
+  const [lineaMontante, setLineaMontante] = useState(initialLineaMontante);
+
+  useEffect(() => {
+    localStorage.setItem("lineaMontante", lineaMontante.toString());
+  }, [lineaMontante]);
+
+  const handleLineaMontanteChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLineaMontante(Number(e.target.value));
+  };
+
   const gastoInversion = parseFloat(
     (
       instalacionInterna +
@@ -212,7 +343,6 @@ recuperar descripción también*/
     ).toFixed(2)
   );
 
-  const [isSavedCosto, setIsSavedCosto] = useState(false); // Añade un nuevo estado para saber si los valores han sido guardados
   {
     /*Declaración de variables de Pago en cuotas*/
   }
@@ -332,18 +462,7 @@ recuperar descripción también*/
 
     setIsSaved(true); // Cambia el estado isSaved a true
   };
-  {
-    /*Función para guardar los valores en costos*/
-  }
-  const guardarValoresCosto = () => {
-    const valoresCosto = {
-      regulador,
-      instalacionInterna,
-      lineaMontanteText,
-    };
 
-    setIsSavedCosto(true); // Cambia el estado isSaved a true
-  };
   {
     /*Función para editar los valores de los estados*/
   }
@@ -810,33 +929,6 @@ recuperar descripción también*/
           />
         </div>
 
-        {/*BOTONES GUARDAR Y EDITAR*/}
-        <div className="flex justify-center space-x-5">
-          {/*Botón de Guardar*/}
-          <div
-            className={classNames(
-              "flex flex-col items-center mt-4",
-              isSaved && "rounded-lg bg-gray-400"
-            )}
-          >
-            <GuardarBotton
-              text={isSaved ? "Guardado" : "Guardar"} // Cambia el texto en función de isSaved
-              rowHeightTextBottonClass="h-4"
-              cellWidthTextBottonClass="w-26"
-              onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
-            />
-          </div>
-          {/*Boton Editar*/}
-          <div className="flex flex-col items-center mt-4">
-            <GuardarBotton
-              text="Editar"
-              rowHeightTextBottonClass="h-4"
-              cellWidthTextBottonClass="w-26"
-              onClick={editarValores} // Llama a la función guardarValores cuando se hace clic en el botón
-            />
-          </div>
-        </div>
-
         {/*TÍTULO: SUMINISTRO E INSTALACIÓN*/}
         <div className="flex flex-col items-center mt-4 mb-2">
           <h1 className="text-base ">Suministro e Instalación</h1>
@@ -1006,23 +1098,21 @@ recuperar descripción también*/
           />
         </div>
 
-        {/*Nuevo Gasodomestico Personalizado*/}
+        {/*Gasodomestico Personalizado*/}
         <div className="flex flex-col items-center mt-0.25">
           <CotReg7
-            text1InitialValue=""
+            text1InitialValue={gasodomesticoPersonalizadoTexto}
             onText1Change={setGasodomesticoPersonalizadoTexto}
-            text2Name={gasodomesticoPersonalisadoAlta}
-            text2InitialValue={""}
+            text2InitialValue={gasodomesticoPersonalizadoAlta}
             onText2Change={setGasodomesticoPersonalizadoAlta}
-            text3Name={gasodomesticoPersonalizadoBaja}
-            text3InitialValue={""}
+            text3InitialValue={gasodomesticoPersonalizadoBaja}
             onText3Change={setGasodomesticoPersonalizadoBaja}
             rowHeightTextClass="h-4"
             cellWidthTextClass="w-56"
             rowHeightNumberClass="h-4"
             cellWidthNumberClass="w-12"
             cellWidthNumber2Class="w-12"
-            isDisabled={isSavedCosto}
+            isDisabled={isSaved}
           />
         </div>
 
@@ -1034,7 +1124,7 @@ recuperar descripción también*/
               gasodomestico1Alta +
               gasodomestico2Alta +
               gasodomestico3Alta +
-              gasodomesticoPersonalisadoAlta
+              gasodomesticoPersonalizadoAlta
             }
             number2={
               gasodomestico1Baja +
@@ -1111,14 +1201,14 @@ recuperar descripción también*/
         <div className="flex flex-col items-center mt-0.25">
           <ClientReg1
             text1="Costo regulador"
-            text2Name={reguladorText}
-            text2InitialValue={reguladorText}
-            onText2Change={setReguladorText} // Pasa setCoordenada a ClientReg
+            text2Name={regulador}
+            text2InitialValue={regulador}
+            onText2Change={setRegulador} // Pasa setCoordenada a ClientReg
             rowHeightTextClass="h-4"
             cellWidthTextClass="w-56"
             rowHeightNumberClass="h-4"
             cellWidthNumberClass="w-24"
-            isDisabled={isSavedCosto} // Pasa isSaved a ClientReg como isDisabled
+            isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
           />
         </div>
         {/*Costo de Derecho de conexión*/}
@@ -1137,14 +1227,14 @@ recuperar descripción también*/
         <div className="flex flex-col items-center mt-0.25">
           <ClientReg1
             text1="Valor línea montante"
-            text2Name={lineaMontanteText}
-            text2InitialValue={lineaMontanteText}
-            onText2Change={setLineaMontanteText} // Pasa setLineaMontante a ClientReg
+            text2Name={lineaMontante}
+            text2InitialValue={lineaMontante}
+            onText2Change={setLineaMontante} // Pasa setLineaMontante a ClientReg
             rowHeightTextClass="h-4"
             cellWidthTextClass="w-56"
             rowHeightNumberClass="h-4"
             cellWidthNumberClass="w-24"
-            isDisabled={isSavedCosto} // Pasa isSaved a ClientReg como isDisabled
+            isDisabled={isSaved} // Pasa isSaved a ClientReg como isDisabled
           />
         </div>
 
@@ -1158,34 +1248,6 @@ recuperar descripción también*/
             rowHeightNumberClass="h-4"
             cellWidthNumberClass="w-24"
           />
-        </div>
-
-        {/*BOTONES CALCULAR E IMPRIMIR*/}
-        <div className="flex justify-center space-x-5">
-          {/*Boton Calcular*/}
-          <div
-            className={classNames(
-              "flex flex-col items-center mt-4",
-              isSavedCosto && "rounded-lg bg-gray-400"
-            )}
-          >
-            <GuardarBotton
-              text="Calcular"
-              rowHeightTextBottonClass="h-4"
-              cellWidthTextBottonClass="w-26"
-              onClick={guardarValoresCosto} // Llama a la función guardarValores cuando se hace clic en el botón
-            />
-          </div>
-
-          {/*Boton Imprimir*/}
-          <div className="flex flex-col items-center mt-4">
-            <GuardarBotton
-              text="Imprimir"
-              rowHeightTextBottonClass="h-4"
-              cellWidthTextBottonClass="w-26"
-              onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
-            />
-          </div>
         </div>
 
         {/*TITULO: PAGO EN CUOTAS*/}
@@ -1367,7 +1429,7 @@ recuperar descripción también*/
             cellWidthNumber3Class="w-12"
             cellWidthNumber4Class="w-12"
             cellWidthNumber5Class="w-12"
-            isDisabled={isSavedCosto} // Añade isDisabled a las props
+            isDisabled={isSaved} // Añade isDisabled a las props
           />
         </div>
 
@@ -1389,7 +1451,7 @@ recuperar descripción también*/
             cellWidthNumber3Class="w-12"
             cellWidthNumber4Class="w-12"
             cellWidthNumber5Class="w-12"
-            isDisabled={isSavedCosto} // Añade isDisabled a las props
+            isDisabled={isSaved} // Añade isDisabled a las props
           />
         </div>
 
@@ -1411,7 +1473,7 @@ recuperar descripción también*/
             cellWidthNumber3Class="w-12"
             cellWidthNumber4Class="w-12"
             cellWidthNumber5Class="w-12"
-            isDisabled={isSavedCosto} // Añade isDisabled a las props
+            isDisabled={isSaved} // Añade isDisabled a las props
           />
         </div>
 
@@ -1433,7 +1495,7 @@ recuperar descripción también*/
             cellWidthNumber3Class="w-12"
             cellWidthNumber4Class="w-12"
             cellWidthNumber5Class="w-12"
-            isDisabled={isSavedCosto} // Añade isDisabled a las props
+            isDisabled={isSaved} // Añade isDisabled a las props
           />
         </div>
 
@@ -1516,6 +1578,34 @@ recuperar descripción también*/
             cellWidthNumber2Class="w-20"
             cellWidthNumber3Class="w-20"
           />
+        </div>
+
+        {/*BOTONES CALCULAR E IMPRIMIR*/}
+        <div className="flex justify-center space-x-5">
+          {/*Boton Calcular*/}
+          <div
+            className={classNames(
+              "flex flex-col items-center mt-4",
+              isSaved && "rounded-lg bg-gray-400"
+            )}
+          >
+            <GuardarBotton
+              text="Guardar"
+              rowHeightTextBottonClass="h-4"
+              cellWidthTextBottonClass="w-26"
+              onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
+            />
+          </div>
+
+          {/*Boton Imprimir*/}
+          <div className="flex flex-col items-center mt-4">
+            <GuardarBotton
+              text="Imprimir"
+              rowHeightTextBottonClass="h-4"
+              cellWidthTextBottonClass="w-26"
+              onClick={guardarValores} // Llama a la función guardarValores cuando se hace clic en el botón
+            />
+          </div>
         </div>
       </div>
     </main>

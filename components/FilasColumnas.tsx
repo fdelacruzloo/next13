@@ -60,9 +60,9 @@ const ClientReg: React.FC<ClientRegProps> = ({
 //Componente ClientReg1 filas con un ingreso texto
 type ClientReg1Props = {
   text1: string;
-  text2Name: string;
-  text2InitialValue: string;
-  onText2Change: (value: string) => void;
+  text2Name: number;
+  text2InitialValue: number;
+  onText2Change: (value: number) => void;
   rowHeightTextClass: string;
   rowHeightNumberClass: string;
   cellWidthTextClass: string;
@@ -83,8 +83,8 @@ const ClientReg1: React.FC<ClientReg1Props> = ({
   const [text2, setText2] = useState(text2InitialValue);
 
   const handleText2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText2(e.target.value);
-    onText2Change(e.target.value); // Llama a onText2Change cuando el valor del campo de entrada cambia
+    setText2(Number(e.target.value));
+    onText2Change(Number(e.target.value)); // Llama a onText2Change cuando el valor del campo de entrada cambia
   };
 
   return (
@@ -102,7 +102,7 @@ const ClientReg1: React.FC<ClientReg1Props> = ({
           id="text2Input"
           value={text2}
           onChange={handleText2Change}
-          className="outline-none w-12"
+          className="outline-none w-12 text-right"
           placeholder="Enter text"
           disabled={isDisabled} // Usa isDisabled para deshabilitar el campo de entrada de texto
         />
@@ -801,11 +801,9 @@ const CotReg6: React.FC<CotReg6Props> = ({
 type CotReg7Props = {
   text1InitialValue: string;
   onText1Change: (value: string) => void;
-  text2Name: number;
-  text2InitialValue: string;
+  text2InitialValue: number;
   onText2Change: (value: number) => void;
-  text3Name: number;
-  text3InitialValue: string;
+  text3InitialValue: number;
   onText3Change: (value: number) => void;
   rowHeightTextClass: string;
   rowHeightNumberClass: string;
@@ -817,10 +815,8 @@ type CotReg7Props = {
 const CotReg7: React.FC<CotReg7Props> = ({
   text1InitialValue,
   onText1Change,
-  //text2Name,
   text2InitialValue,
   onText2Change,
-  //text3Name,
   text3InitialValue,
   onText3Change,
   rowHeightTextClass,
@@ -840,12 +836,12 @@ const CotReg7: React.FC<CotReg7Props> = ({
   };
 
   const handleText2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText2(e.target.value);
+    setText2(parseInt(e.target.value));
     onText2Change(parseInt(e.target.value));
   };
 
   const handleText3Change = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setText3(e.target.value);
+    setText3(parseInt(e.target.value));
     onText3Change(parseInt(e.target.value));
   };
 
@@ -872,9 +868,9 @@ const CotReg7: React.FC<CotReg7Props> = ({
       id="text2Input"
       value={text2}
       onChange={handleText2Change}
-      className="outline-none w-12 text-center"
+      className="outline-none w-12 text-right"
       placeholder="Alta"
-      disabled={isDisabled || text3 !== ""}
+      disabled={isDisabled || (text3 ? text3.toString().length >= 2 : false)}
     />
   </div>
   <div
@@ -885,9 +881,9 @@ const CotReg7: React.FC<CotReg7Props> = ({
       id="text3Input"
       value={text3}
       onChange={handleText3Change}
-      className="outline-none w-12 text-center"
+      className="outline-none w-12 text-right"
       placeholder="Baja"
-      disabled={isDisabled || text2 !== ""}
+      disabled={isDisabled || (text2 ? text2.toString().length >= 2 : false)}
     />
   </div>
 </div>
