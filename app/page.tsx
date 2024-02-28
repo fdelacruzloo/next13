@@ -825,8 +825,26 @@ export default function Page() {
     construido,
   ]);
 
-  /*RETURN PRINCIPAL*/
+  //OBTENCION DE RAZON SOCIAL POR LA API CON UN TOKEN
+  useEffect(() => {
+    localStorage.setItem("ruc", ruc);
+    if (ruc.length === 11) {
+      fetch(`https://api.apis.net.pe/v2/sunat/ruc?numero=${parseInt(ruc)}`, {
+        headers: {
+          Authorization: "Bearer apis-token-6383.BtVhLGpMzjiNTuWQPE-90aOThK4pkR7u"
+        }
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data); // Imprime el JSON de la respuesta en la consola
+          console.log(ruc);
+          setRazonNombre(data.razonSocial);
+        })
+        .catch(error => console.error(error));
+    }
+  }, [ruc]);
 
+  //RETURN PRINCIPAL
   return (
     <main className="container w-[320px]  flex flex-col items-center justify-center min-h-screen font-sans text-sm">
       <div className="flex-grow w-full flex flex-col items-center"></div>
