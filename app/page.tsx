@@ -829,9 +829,11 @@ export default function Page() {
   useEffect(() => {
     localStorage.setItem("ruc", ruc);
     if (ruc.length === 11) {
-      fetch(`https://api.apis.net.pe/v2/sunat/ruc?numero=${parseInt(ruc)}`, {
+      fetch(`https://api.apis.net.pe/v2/reniec/dni?numero=${ruc}`, {
+        method: 'GET',
         headers: {
-          Authorization: "Bearer apis-token-6383.BtVhLGpMzjiNTuWQPE-90aOThK4pkR7u"
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer apis-token-6383.BtVhLGpMzjiNTuWQPE-90aOThK4pkR7u'
         }
       })
         .then(response => response.json())
