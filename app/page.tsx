@@ -2,8 +2,9 @@
 "use client";
 import { NavBar } from "@/components/NavBar";
 import React, { useEffect, useState } from "react";
+import dynamic from 'next/dynamic';
+import VozText from "@/components/vozText";
 import classNames from "classnames"; // Asegúrate de importar la biblioteca classnames
-import { getData } from "@/app/productos/data.js";
 import {
   ClientReg,
   ClientReg1,
@@ -25,7 +26,11 @@ import {
   GuardarBotton,
 } from "@/components/FilasColumnas";
 
+
 export default function Page() {
+
+  const VozText = dynamic(() => import('@/components/vozText'), { ssr: false });
+
   //FUNCIÓN PARA LIMPIAR LOCALSTORAGE LA PRIMERA VEZ QUE CARGA COTIZACIÓN
   useEffect(() => {
     if (!localStorage.getItem("pageLoadedBefore")) {
@@ -34,21 +39,28 @@ export default function Page() {
     }
   }, []); // El array vacío [] significa que este efecto se ejecutará solo una vez, al cargar la página
 
-  //DECLARACIÓN DE VARIABLES Y FUNCIONES DEL REGISTRO DEL CLIENTE ALMACENAMIENTO EN LOCAL STORE
-
-  //Declaración y función que cuando 'ruc' cambia, guarda el nuevo valor en localStorage
+  //DECLARACIÓN DE VOZ Y TEXTO
   const initialRuc =
-    typeof window !== "undefined" && window.localStorage
-      ? localStorage.getItem("ruc") || ""
-      : "";
-  const [ruc, setRuc] = useState(initialRuc); // Cambia ruc a un estado
+  typeof window !== "undefined" && window.localStorage
+    ? localStorage.getItem("ruc") || ""
+    : "";
+const [ruc, setRuc] = useState(initialRuc); // Cambia ruc a un estado
 
-  useEffect(() => {
-    localStorage.setItem("ruc", ruc);
-  }, [ruc]);
-  const handleRucChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setRuc(e.target.value);
-  };
+useEffect(() => {
+  const textRuc = localStorage.getItem("textRuc");
+  if (textRuc && textRuc !== "") {
+    setRuc(textRuc);
+  }
+}, []);
+
+useEffect(() => {
+  localStorage.setItem("ruc", ruc);
+}, [ruc]);
+
+const handleRucChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  setRuc(e.target.value);
+};
+
 
   //Declaración y función que cuando 'razonNombre' cambia, guarda el nuevo valor en localStorage*/
   const initialRazonNombre =
@@ -86,7 +98,7 @@ export default function Page() {
       ? localStorage.getItem("correo") || ""
       : "";
   const [correo, setCorreo] = useState(initialCorreo); // Cambia correo a un estado 
- 
+
   useEffect(() => {
     localStorage.setItem("correo", correo);
   }, [correo]);
@@ -207,9 +219,9 @@ export default function Page() {
 
   //Declaración y función  que cuando 'gasodomesticoPersonalizadoAlta' cambia, guarda el nuevo valor en localStorage
   const initialGasodomesticoPersonalizadoAlta =
-  typeof window !== "undefined" && window.localStorage
-    ? Number(localStorage.getItem("gasodomesticoPersonalizadoAlta")) || 0
-    : 0;
+    typeof window !== "undefined" && window.localStorage
+      ? Number(localStorage.getItem("gasodomesticoPersonalizadoAlta")) || 0
+      : 0;
   const [gasodomesticoPersonalizadoAlta, setGasodomesticoPersonalizadoAlta] = useState(initialGasodomesticoPersonalizadoAlta);
 
   useEffect(() => {
@@ -222,9 +234,9 @@ export default function Page() {
 
   //Declaración y función  que cuando 'gasodomesticoPersonalizadoBaja' cambia, guarda el nuevo valor en localStorage
   const initialGasodomesticoPersonalizadoBaja =
-  typeof window !== "undefined" && window.localStorage
-    ? Number(localStorage.getItem("gasodomesticoPersonalizadoBaja")) || 0
-    : 0;
+    typeof window !== "undefined" && window.localStorage
+      ? Number(localStorage.getItem("gasodomesticoPersonalizadoBaja")) || 0
+      : 0;
   const [gasodomesticoPersonalizadoBaja, setGasodomesticoPersonalizadoBaja] = useState(initialGasodomesticoPersonalizadoBaja);
 
   useEffect(() => {
@@ -237,9 +249,9 @@ export default function Page() {
 
   //Declaración y función  que cuando 'gasodomesticoPersonalizadoTexto' cambia, guarda el nuevo valor en localStorage
   const initialGasodomesticoPersonalizadoTexto =
-  typeof window !== "undefined" && window.localStorage
-    ? localStorage.getItem("gasodomesticoPersonalizadoTexto") || ""
-    : "";
+    typeof window !== "undefined" && window.localStorage
+      ? localStorage.getItem("gasodomesticoPersonalizadoTexto") || ""
+      : "";
   const [gasodomesticoPersonalizadoTexto, setGasodomesticoPersonalizadoTexto] = useState(initialGasodomesticoPersonalizadoTexto);
 
   useEffect(() => {
@@ -259,10 +271,10 @@ export default function Page() {
     (gasodomestico1Baja !== 0 ? 1 : 0) +
     (gasodomestico2Baja !== 0 ? 1 : 0) +
     (gasodomestico3Baja !== 0 ? 1 : 0) +
-    (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0);  
-  
+    (gasodomesticoPersonalizadoBaja !== 0 ? 1 : 0);
+
   //Función para calcular el valor de configuración
-   let baja = "";
+  let baja = "";
   if (cantEquiposBaja === 1) baja = "23";
   else if (cantEquiposBaja === 2) baja = "23 - 23";
   else if (cantEquiposBaja === 3) baja = "23 - 23 - 23";
@@ -289,25 +301,25 @@ export default function Page() {
     potenciaTotal === 0
       ? ""
       : potenciaTotal < 30.09
-      ? "G1.6"
-      : potenciaTotal < 72.1
-      ? "G4"
-      : potenciaTotal < 120.16
-      ? "G6"
-      : potenciaTotal < 192.26
-      ? "G10"
-      : "";
+        ? "G1.6"
+        : potenciaTotal < 72.1
+          ? "G4"
+          : potenciaTotal < 120.16
+            ? "G6"
+            : potenciaTotal < 192.26
+              ? "G10"
+              : "";
 
 
   //Declaración de variables de Costos en Soles*/
   const [costoMedidor, setCostoMedidor] = useState(0);
   const [instalacionInterna, setInstalacionInterna] = useState(0);
-  
+
   //Declaración y función  que cuando 'regulador' cambia, guarda el nuevo valor en localStorage
   const initialRegulador =
-  typeof window !== "undefined" && window.localStorage
-    ? Number(localStorage.getItem("regulador")) || 0
-    : 0;
+    typeof window !== "undefined" && window.localStorage
+      ? Number(localStorage.getItem("regulador")) || 0
+      : 0;
   const [regulador, setRegulador] = useState(initialRegulador);
 
   useEffect(() => {
@@ -320,9 +332,9 @@ export default function Page() {
 
   //Declaración y función  que cuando 'lineaMontante' cambia, guarda el nuevo valor en localStorage
   const initialLineaMontante =
-  typeof window !== "undefined" && window.localStorage
-    ? Number(localStorage.getItem("lineaMontante")) || 0
-    : 0;
+    typeof window !== "undefined" && window.localStorage
+      ? Number(localStorage.getItem("lineaMontante")) || 0
+      : 0;
   const [lineaMontante, setLineaMontante] = useState(initialLineaMontante);
 
   useEffect(() => {
@@ -825,26 +837,6 @@ export default function Page() {
     construido,
   ]);
 
-  //OBTENCION DE RAZON SOCIAL POR LA API CON UN TOKEN
-  useEffect(() => {
-    localStorage.setItem("ruc", ruc);
-    if (ruc.length === 11) {
-      fetch(`https://api.apis.net.pe/v2/reniec/dni?numero=${ruc}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer apis-token-6383.BtVhLGpMzjiNTuWQPE-90aOThK4pkR7u'
-        }
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data); // Imprime el JSON de la respuesta en la consola
-          console.log(ruc);
-          setRazonNombre(data.razonSocial);
-        })
-        .catch(error => console.error(error));
-    }
-  }, [ruc]);
 
   //RETURN PRINCIPAL
   return (
@@ -860,6 +852,9 @@ export default function Page() {
         </div>
 
         {/*Ingreso de RUC, DNI, CE en registro ruc*/}
+        <div>
+          <VozText />
+        </div>
         <div className="flex flex-col items-center mt-0.25">
           <ClientReg
             text1="RUC, DNI, CE"
@@ -1311,7 +1306,7 @@ export default function Page() {
                 retornoInversionBalon45KgAño1 +
                 retornoInversionGlpAño1 +
                 retornoInversionPetroleoAño1 >
-              gastoInversion
+                gastoInversion
                 ? "pagado"
                 : ""
             }
@@ -1332,7 +1327,7 @@ export default function Page() {
                 retornoInversionBalon45KgAño2 +
                 retornoInversionGlpAño2 +
                 retornoInversionPetroleoAño2 >
-              gastoInversion
+                gastoInversion
                 ? "pagado"
                 : ""
             }
@@ -1353,7 +1348,7 @@ export default function Page() {
                 retornoInversionBalon45KgAño3 +
                 retornoInversionGlpAño3 +
                 retornoInversionPetroleoAño3 >
-              gastoInversion
+                gastoInversion
                 ? "pagado"
                 : ""
             }
@@ -1374,7 +1369,7 @@ export default function Page() {
                 retornoInversionBalon45KgAño3 +
                 retornoInversionGlpAño3 +
                 retornoInversionPetroleoAño3 >
-              gastoInversion
+                gastoInversion
                 ? "pagado"
                 : ""
             }
@@ -1395,7 +1390,7 @@ export default function Page() {
                 retornoInversionBalon45KgAño3 +
                 retornoInversionGlpAño3 +
                 retornoInversionPetroleoAño3 >
-              gastoInversion
+                gastoInversion
                 ? "pagado"
                 : ""
             }
